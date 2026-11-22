@@ -1,45 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>User Console | FistEngine</title>
-    
-<meta name="theme-color" content="#0b101c">
-<meta name="description" content="FistEngine - User Console page from where users can Add Applications, softwares, apps, games, mods, etc | Once the Application is added then it will not be deleted by User. For this User should remind us by contact page on FistEngine-Devs">
-
+<meta content="#0b101c" name="theme-color"/>
+<meta content="FistEngine - User Console page from where users can Add Applications, softwares, apps, games, mods, etc | Once the Application is added then it will not be deleted by User. For this User should remind us by contact page on FistEngine-Devs" name="description"/>
 <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://fistengine.github.io/favicon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="https://fistengine.github.io/favicon.png">
-<link rel="apple-touch-icon" href="https://fistengine.github.io/favicon.png">
-    
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
->
-
-<link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
->
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="FistENGINE — User Console. Add software, games, mods, apps...">
-<meta property="og:description" content="FistENGINE - User Console page from where users can Add Applications, softwares, apps, games, mods, etc | Once the Application is added then it will not be deleted by User. For this User should remind us by contact page">
-<meta property="og:url" content="https://fistengine.github.io/User-Console.html">
-<meta property="og:image" content="https://fistengine.github.io/logo.png">
-    
+<link href="https://fistengine.github.io/favicon.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="https://fistengine.github.io/favicon.png" rel="icon" sizes="192x192" type="image/png"/>
+<link href="https://fistengine.github.io/favicon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet"/>
+<meta content="website" property="og:type"/>
+<meta content="FistENGINE — User Console. Add software, games, mods, apps..." property="og:title"/>
+<meta content="FistENGINE - User Console page from where users can Add Applications, softwares, apps, games, mods, etc | Once the Application is added then it will not be deleted by User. For this User should remind us by contact page" property="og:description"/>
+<meta content="https://fistengine.github.io/User-Console.html" property="og:url"/>
+<meta content="https://fistengine.github.io/logo.png" property="og:image"/>
 <style>
 /* ================================================================
    FISTENGINE USER CONSOLE — PRISM / AURORA GLASS SYSTEM
@@ -101,8 +80,9 @@ img{max-width:100%}
 }
 .header-inner{width:min(100%,1460px);min-height:78px;margin:auto;display:flex;align-items:center;gap:18px}
 .logo{display:flex;align-items:center;gap:12px;flex:none;color:#fff;font-size:23px;font-weight:900;letter-spacing:-1.1px;text-transform:uppercase}
-.logo-icon{width:42px;height:42px;display:grid;place-items:center;overflow:hidden;border-radius:14px;background:linear-gradient(145deg,rgba(108,231,220,.23),rgba(169,149,255,.18));border:1px solid rgba(207,242,255,.34);box-shadow:0 0 28px rgba(108,231,220,.12),inset 0 1px rgba(255,255,255,.25)}
-.logo-icon img{width:100%;height:100%;object-fit:contain;padding:4px}
+.logo-icon{width:42px;height:42px;display:grid;place-items:center;overflow:visible;border-radius:0;background:transparent;border:0;box-shadow:none}
+.logo-icon img{width:100%;height:100%;object-fit:contain;padding:0}
+
 .logo>span{color:var(--fe-teal)}
 .admin-label{margin-left:4px;padding:7px 10px;border:1px solid rgba(108,231,220,.2);border-radius:10px;background:linear-gradient(130deg,rgba(108,231,220,.12),rgba(169,149,255,.10));color:#a8eee6;font-size:9px;font-weight:850;letter-spacing:1.1px;text-transform:uppercase;white-space:nowrap}
 .header-right{margin-left:auto;display:flex;align-items:center;gap:10px}
@@ -119,7 +99,8 @@ img{max-width:100%}
 
 /* Workspace frame and heading */
 .layout{width:min(100% - 56px,1460px);margin:0 auto;display:block;min-height:calc(100vh - 78px)}
-.main{width:100%;min-width:0;padding:42px 0 84px}
+.main{width:100%;min-width:0;padding:16px 0 84px}
+
 .page-title{position:relative;margin:0 0 28px;padding:0 0 23px;border-bottom:1px solid rgba(206,225,255,.13)}
 .page-title::before{content:"FISTENGINE  /  PUBLISHER WORKSPACE";display:block;margin:0 0 10px;color:#8bded8;font-size:9px;font-weight:850;letter-spacing:2px}
 .page-title::after{content:"NEW LISTING";position:absolute;right:0;top:3px;padding:7px 10px;border:1px solid rgba(108,231,220,.18);border-radius:9px;background:rgba(108,231,220,.07);color:#9ce8df;font-size:8px;font-weight:850;letter-spacing:1.15px}
@@ -219,7 +200,7 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
   .logo{font-size:20px;gap:9px}
   .logo-icon{width:37px;height:37px;border-radius:12px}
   .layout{width:min(100% - 36px,680px)}
-  .main{padding:30px 0 60px}
+  .main{padding:14px 0 60px}
   .form-layout{grid-template-columns:1fr}
   .preview-box{position:static;grid-row:1;margin-bottom:4px}
   .preview-info{grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -260,165 +241,205 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
   *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
 }
 
+
+
+/* ================================================================
+   GUIDED PUBLISHER WIZARD — FIVE CLEAR, VALIDATED STAGES
+   ================================================================ */
+.wizard-layout{grid-template-columns:220px minmax(0,1fr) minmax(290px,340px);gap:19px;align-items:start}
+.wizard-stepper{position:sticky;top:104px;align-self:start;overflow:hidden;padding:20px 14px 15px;border:1px solid rgba(206,225,255,.14);border-radius:22px;background:linear-gradient(155deg,rgba(24,35,56,.84),rgba(10,16,28,.91));box-shadow:0 20px 48px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.08);backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%)}
+.stepper-heading{padding:3px 8px 19px;border-bottom:1px solid rgba(206,225,255,.11)}
+.stepper-eyebrow{display:block;margin-bottom:7px;color:#8de5dc;font-size:8px;font-weight:900;letter-spacing:1.6px}
+.stepper-heading>strong{display:block;color:#f4f7ff;font-size:16px;font-weight:900;letter-spacing:-.45px}
+.stepper-caption{display:block;margin-top:6px;color:#8997b1;font-size:9px;line-height:1.55}
+.step-list{position:relative;display:grid;gap:6px;margin:16px 0 0;padding:0;list-style:none}
+.step-list::before{content:"";position:absolute;left:21px;top:25px;bottom:25px;width:1px;background:linear-gradient(180deg,rgba(108,231,220,.32),rgba(169,149,255,.12));pointer-events:none}
+.step-link{position:relative;z-index:1;width:100%;min-height:62px;display:flex;align-items:center;gap:11px;padding:8px 7px;border:1px solid transparent;border-radius:13px;background:transparent;color:#93a0b9;text-align:left;transition:background .18s,border-color .18s,transform .18s}
+.step-link:not(:disabled):hover{transform:translateX(2px);background:rgba(255,255,255,.045);border-color:rgba(206,225,255,.1)}
+.step-link:disabled{opacity:.42;cursor:not-allowed}
+.step-number{width:29px;height:29px;flex:none;display:grid;place-items:center;border:1px solid rgba(206,225,255,.17);border-radius:10px;background:#111b2b;color:#9aa7c0;font-size:9px;font-weight:900;box-shadow:0 0 0 4px rgba(11,17,29,.95)}
+.step-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.step-copy strong{color:#bec9df;font-size:10px;font-weight:800;line-height:1.25}
+.step-copy small{color:#78869f;font-size:8px;line-height:1.4}
+.step-link.is-active{border-color:rgba(108,231,220,.22);background:linear-gradient(105deg,rgba(108,231,220,.11),rgba(169,149,255,.07));box-shadow:inset 0 1px rgba(255,255,255,.06)}
+.step-link.is-active .step-number{border-color:rgba(108,231,220,.55);background:linear-gradient(145deg,#b7fff0,#8be2dc);color:#0b1d27;box-shadow:0 0 20px rgba(108,231,220,.16),0 0 0 4px rgba(11,17,29,.95)}
+.step-link.is-active .step-copy strong{color:#f0fffd}
+.step-link.is-complete .step-number{border-color:rgba(108,231,220,.3);background:rgba(108,231,220,.13);color:#9cf2e8}
+.step-link.is-complete .step-copy strong{color:#d7e5f7}
+.stepper-foot{display:flex;gap:8px;align-items:flex-start;margin:17px 4px 0;padding:12px 9px;border:1px solid rgba(169,149,255,.12);border-radius:12px;background:rgba(169,149,255,.055);color:#8996b0;font-size:8px;line-height:1.5}
+.stepper-foot i{margin-top:1px;color:#b3a4ff}
+.wizard-main{min-width:0}
+.wizard-step-heading{scroll-margin-top:102px;margin:2px 2px 18px;padding:0 0 17px;border-bottom:1px solid rgba(206,225,255,.12)}
+.wizard-kicker{margin-bottom:7px;color:#8de5dc;font-size:8px;font-weight:900;letter-spacing:1.8px}
+.wizard-step-heading h2{margin:0 0 6px;color:#f6f8ff;font-size:clamp(19px,2vw,26px);font-weight:900;letter-spacing:-.9px;line-height:1.2}
+.wizard-step-heading p{margin:0;color:#96a4bd;font-size:10px;line-height:1.65}
+.wizard-step{display:none;min-width:0}
+.wizard-step.is-active{display:block;animation:stepReveal .28s ease both}
+@keyframes stepReveal{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+.step-content-intro{margin:0 2px 15px}
+.step-content-intro>span{display:block;margin-bottom:5px;color:#8b9bb8;font-size:8px;font-weight:900;letter-spacing:1.35px}
+.step-content-intro h3{margin:0 0 5px;color:#eff4ff;font-size:16px;font-weight:850;letter-spacing:-.35px}
+.step-content-intro p{margin:0;color:#8f9db6;font-size:9px;line-height:1.65}
+.panel-lead{margin:-8px 0 18px;color:#9aa8c1;font-size:10px;line-height:1.7}
+.consent-panel{padding:19px 21px}
+.consent-panel .panel-title{margin-bottom:13px}
+.consent-list{display:grid;gap:9px}
+.consent-card{position:relative;display:grid;grid-template-columns:19px minmax(0,1fr) auto;gap:11px;align-items:center;padding:13px 13px;border:1px solid rgba(206,225,255,.12);border-radius:14px;background:linear-gradient(110deg,rgba(255,255,255,.045),rgba(255,255,255,.018));cursor:pointer;transition:border-color .18s,background .18s,transform .18s}
+.consent-card:hover{border-color:rgba(108,231,220,.27);background:rgba(108,231,220,.045)}
+.consent-card:has(input:checked){border-color:rgba(108,231,220,.34);background:linear-gradient(110deg,rgba(108,231,220,.08),rgba(169,149,255,.045))}
+.consent-card input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.consent-check{width:19px;height:19px;display:grid;place-items:center;border:1px solid rgba(206,225,255,.26);border-radius:6px;background:rgba(4,9,18,.6);color:#0b1a22;font-size:10px;transition:all .18s}
+.consent-check i{opacity:0;transform:scale(.7);transition:all .18s}
+.consent-card input:checked+.consent-check{border-color:#9df3e7;background:linear-gradient(135deg,#b8fff1,#8be2dc);box-shadow:0 0 17px rgba(108,231,220,.16)}
+.consent-card input:checked+.consent-check i{opacity:1;transform:scale(1)}
+.consent-card input:focus-visible+.consent-check{outline:2px solid #76c9ff;outline-offset:3px}
+.consent-copy{min-width:0;display:flex;flex-direction:column;gap:3px}
+.consent-copy strong{color:#e4ecfb;font-size:9px;font-weight:800;line-height:1.45}
+.consent-copy small{color:#8d9ab3;font-size:8px;line-height:1.5}
+.required-pill{padding:4px 6px;border:1px solid rgba(255,194,140,.16);border-radius:6px;background:rgba(255,194,140,.055);color:#e9bd91;font-size:6px;font-weight:900;letter-spacing:.8px;white-space:nowrap}
+.privacy-url-field{margin:0 0 16px}
+.privacy-guidance{display:flex;gap:12px;align-items:flex-start;margin:0 0 16px;padding:14px;border:1px solid rgba(118,201,255,.13);border-radius:14px;background:linear-gradient(110deg,rgba(118,201,255,.07),rgba(169,149,255,.045))}
+.privacy-guidance-icon{width:31px;height:31px;flex:none;display:grid;place-items:center;border-radius:10px;background:rgba(118,201,255,.12);color:#91d8ff}
+.privacy-guidance strong{display:block;margin:1px 0 4px;color:#dceaff;font-size:9px;font-weight:850}
+.privacy-guidance p{margin:0;color:#8fa0bb;font-size:8px;line-height:1.65}
+.wizard-controls{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:6px 0 30px;padding:15px 0 0;border-top:1px solid rgba(206,225,255,.12)}
+.wizard-control-right{display:flex;align-items:center;gap:12px}
+.step-counter{color:#8795ae;font-size:8px;font-weight:800;letter-spacing:.7px}
+.wizard-controls .btn{min-height:43px}
+.wizard-controls #previousStepBtn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+.actions{margin-top:15px;padding-top:16px;border-top:1px solid rgba(206,225,255,.11)}
+.actions .btn{min-width:174px}
+.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.review-item{min-width:0;padding:12px;border:1px solid rgba(206,225,255,.1);border-radius:12px;background:rgba(255,255,255,.03)}
+.review-item span{display:block;margin-bottom:5px;color:#8492ac;font-size:7px;font-weight:850;letter-spacing:.9px;text-transform:uppercase}
+.review-item strong{display:block;overflow-wrap:anywhere;color:#e7efff;font-size:9px;font-weight:800;line-height:1.5}
+.review-item-wide{grid-column:1/-1}
+.review-note{display:flex;gap:9px;margin-top:13px;padding:12px;border:1px solid rgba(255,194,140,.13);border-radius:12px;background:rgba(255,194,140,.045);color:#b8a58f;font-size:8px;line-height:1.6}
+.review-note i{margin-top:1px;color:#ffc28c}
+.final-consent-panel{border-color:rgba(108,231,220,.2)}
+.preview-extra{display:grid;gap:8px;margin-top:15px;padding-top:13px;border-top:1px solid rgba(206,225,255,.1)}
+.preview-extra-row,.preview-completeness-top{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.preview-extra-row span{color:#8291aa;font-size:8px}
+.preview-extra-row strong{color:#d8e7fb;font-size:8px;font-weight:800;text-align:right}
+.preview-description{display:-webkit-box;overflow:hidden;-webkit-box-orient:vertical;-webkit-line-clamp:4;margin-top:13px;color:#9ba9c1;font-size:9px;line-height:1.65}
+.preview-completeness{margin-top:15px;padding-top:12px;border-top:1px solid rgba(206,225,255,.1)}
+.preview-completeness-top span{color:#8694ad;font-size:8px}
+.preview-completeness-top strong{color:#a7eee6;font-size:8px;font-weight:850}
+.preview-progress{height:5px;overflow:hidden;margin-top:8px;border-radius:99px;background:rgba(255,255,255,.08)}
+.preview-progress span{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#6ce7dc,#76c9ff,#a995ff);box-shadow:0 0 12px rgba(108,231,220,.25);transition:width .25s ease}
+.preview-box{top:104px}
+.success-overlay[hidden]{display:none!important}
+.success-overlay{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:22px;background:rgba(3,6,13,.76);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.success-dialog{width:min(100%,570px);padding:34px;border:1px solid rgba(206,225,255,.2);border-radius:27px;background:radial-gradient(ellipse at 50% 0,rgba(108,231,220,.13),transparent 45%),linear-gradient(150deg,rgba(27,39,62,.98),rgba(9,15,27,.98));box-shadow:0 35px 100px rgba(0,0,0,.52),inset 0 1px rgba(255,255,255,.1);text-align:center}
+.success-emblem{width:58px;height:58px;display:grid;place-items:center;margin:0 auto 14px;border:1px solid rgba(108,231,220,.35);border-radius:19px;background:linear-gradient(145deg,rgba(108,231,220,.18),rgba(169,149,255,.12));color:#a6fff0;font-size:22px;box-shadow:0 0 35px rgba(108,231,220,.12)}
+.success-status{color:#8ce7dc;font-size:8px;font-weight:900;letter-spacing:1.8px}
+.success-dialog h2{margin:10px 0 8px;color:#f4f7ff;font-size:25px;line-height:1.2;letter-spacing:-.8px}
+.success-dialog>p{margin:0;color:#9eabc2;font-size:11px;line-height:1.7}
+.success-detail{display:flex;gap:10px;align-items:flex-start;margin:20px 0;padding:13px;border:1px solid rgba(255,194,140,.15);border-radius:13px;background:rgba(255,194,140,.05);color:#b9ab99;text-align:left;font-size:9px;line-height:1.65}
+.success-detail i{margin-top:2px;color:#ffc28c}
+.success-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:20px}
+.success-actions .btn{text-decoration:none}
+
+@media(max-width:1240px){.wizard-layout{grid-template-columns:190px minmax(0,1fr) 290px;gap:14px}.wizard-stepper{padding:17px 10px}.step-link{gap:8px}.step-copy strong{font-size:9px}}
+@media(max-width:1050px){.wizard-layout{grid-template-columns:185px minmax(0,1fr)}.wizard-stepper{top:96px}.preview-box{position:relative;top:auto;grid-column:2;grid-row:2}.wizard-main{grid-column:2;grid-row:1}.wizard-stepper{grid-column:1;grid-row:1 / span 2}}
+@media(max-width:760px){.layout{width:min(100% - 32px,1460px)}.main{padding-top:14px}.page-title{margin-bottom:19px}.wizard-layout{display:flex;flex-direction:column;gap:14px}.wizard-stepper{position:relative;top:auto;width:100%;padding:13px 12px}.stepper-heading{padding:2px 5px 10px}.stepper-heading>strong{font-size:14px}.stepper-caption{font-size:8px}.step-list{display:flex;overflow-x:auto;gap:7px;margin:10px 0 0;padding:0 0 4px;scroll-snap-type:x mandatory;scrollbar-width:thin}.step-list::before{display:none}.step-list li{flex:0 0 auto;scroll-snap-align:start}.step-link{width:auto;min-height:48px;padding:7px 9px;border-color:rgba(206,225,255,.1);background:rgba(255,255,255,.025)}.step-number{width:26px;height:26px}.step-copy strong{font-size:8px}.step-copy small{display:none}.stepper-foot{display:none}.wizard-main{width:100%}.preview-box{width:100%;position:relative;top:auto;order:3}.wizard-step-heading{margin-bottom:15px}.wizard-controls{margin-bottom:16px}}
+@media(max-width:560px){.header{padding:0 14px}.header-inner{min-height:67px;gap:9px}.logo{gap:8px;font-size:18px}.logo-icon{width:35px;height:35px;border-radius:11px}.admin-label{padding:6px 7px;font-size:7px}.header-btn{min-height:36px;padding:0 10px;font-size:8px}.header-btn span{display:none}.layout{width:calc(100% - 24px)}.main{padding:12px 0 48px}.page-title::after{display:none}.page-title h1{font-size:29px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:17px;border-radius:18px}.consent-panel{padding:15px}.consent-card{grid-template-columns:19px minmax(0,1fr);padding:11px}.required-pill{grid-column:2;justify-self:start;margin-top:-3px}.review-grid{grid-template-columns:1fr}.review-item-wide{grid-column:auto}.wizard-controls .btn{min-height:41px;padding:0 13px;font-size:8px}.step-counter{display:none}.actions{flex-direction:column}.actions .btn{width:100%}.success-dialog{padding:25px 18px;border-radius:22px}.success-dialog h2{font-size:21px}.success-actions{flex-direction:column}.success-actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 </style>
-
 </head>
-
-
 <body>
-
-
 <!-- =====================================================
      HEADER
 ===================================================== -->
-
 <header class="header">
-
 <div class="header-inner">
-
 <div class="logo">
-
 <div class="logo-icon">
-    <img src="logo.png" alt="FistEngine logo">
+<img alt="FistEngine logo" src="logo.png"/>
 </div>
 
 
 FIST<span>ENGINE</span>
-
 <div class="admin-label">
 User Console
 </div>
-
 </div>
-
-
 <div class="header-right">
-
-<a
-    class="header-btn"
-    href="index.html"
-    aria-label="Back to the FistEngine store"
->
-
+<a aria-label="Back to the FistEngine store" class="header-btn" href="index.html">
 <i class="fa-solid fa-globe"></i>
-
 <span>Back to Store</span>
-
 </a>
 </div>
-
 </div>
-
 </header>
-
-
-
 <div class="layout">
-
-
 <!-- =====================================================
      SIDEBAR
 ===================================================== -->
-
-
-
-
-
 <!-- =====================================================
      MAIN
 ===================================================== -->
-
 <main class="main">
-
-
 <div class="page-title">
-
-<h1 id="pageHeading">
-Add Application
-</h1>
-
-<p id="pageDescription">
-Once submitted, an app cannot be deleted by its submitter. To request removal, contact FistEngine-Devs through the <a href="https://appexiodev.github.io/contact.html">Contact</a> page.
-</p>
-
+<h1 id="pageHeading">Submit a Product</h1>
+<p id="pageDescription">Submit a product listing through five guided stages. Complete the required declarations and review your information before sending it to FistEngine. <a href="https://appexiodev.github.io/contact.html">Contact support</a> for questions about a submission.</p>
 </div>
-
 <!-- Add Application form -->
 <section class="form-management" id="formManagement">
-
-
-<div class="form-layout">
-
-
-<div>
-
-
-<!-- BASIC INFORMATION -->
-
-<section class="panel">
-
+<div class="form-layout wizard-layout"><nav aria-label="Listing submission steps" class="wizard-stepper">
+<div class="stepper-heading">
+<span class="stepper-eyebrow">PUBLISHER WORKFLOW</span>
+<strong>New listing</strong>
+<span class="stepper-caption">Complete each stage to prepare your store listing.</span>
+</div>
+<ol class="step-list">
+<li><button aria-current="step" class="step-link is-active" data-step-link="1" type="button"><span class="step-number">01</span><span class="step-copy"><strong>Product details</strong><small>Name, category &amp; platform</small></span></button></li>
+<li><button class="step-link" data-step-link="2" disabled="" type="button"><span class="step-number">02</span><span class="step-copy"><strong>Media &amp; links</strong><small>Icon, screenshots &amp; file</small></span></button></li>
+<li><button class="step-link" data-step-link="3" disabled="" type="button"><span class="step-number">03</span><span class="step-copy"><strong>Store description</strong><small>Discoverability &amp; details</small></span></button></li>
+<li><button class="step-link" data-step-link="4" disabled="" type="button"><span class="step-number">04</span><span class="step-copy"><strong>Privacy &amp; policies</strong><small>Required declarations</small></span></button></li>
+<li><button class="step-link" data-step-link="5" disabled="" type="button"><span class="step-number">05</span><span class="step-copy"><strong>Review &amp; submit</strong><small>Final confirmation</small></span></button></li>
+</ol>
+<div class="stepper-foot"><i class="fa-solid fa-shield-halved"></i><span>Your progress stays in this browser until you submit.</span></div>
+</nav><div class="wizard-main">
+<div aria-live="polite" class="wizard-step-heading">
+<div class="wizard-kicker" id="wizardStepKicker">STEP 01 / 05</div>
+<h2 id="wizardStepTitle">Tell us about your product</h2>
+<p id="wizardStepDescription">Start with the essential details customers will see on FistEngine.</p>
+</div>
+<section aria-labelledby="wizardStepTitle" class="wizard-step is-active" data-step="1"><section class="panel">
 <div class="panel-title">
-
 <i class="fa-solid fa-circle-info"></i>
-
 <span id="formTitle">
 Basic Information
 </span>
-
 </div>
-
-
 <div class="form-grid">
-
-
 <div class="field">
-
 <label>
 App Name
 </label>
-
-<input
-    id="appName"
-    type="text"
-    placeholder="eg; whatsapp, minecraft"
->
-
+<input id="appName" placeholder="eg; whatsapp, minecraft" type="text"/>
 </div>
-
-
 <div class="field">
-
 <label>
 Developer
 </label>
-
-<input
-    id="developer"
-    type="text"
-    placeholder="eg; WhatsApp LLC"
->
-
+<input id="developer" placeholder="eg; WhatsApp LLC" type="text"/>
 </div>
-
-
 <div class="field">
-
 <label>
 Category
 </label>
-
 <select id="category">
-
 <option value="">
 Select Category
 </option>
-
 <option>Apps</option>
 <option>Games</option>
 <option>Social</option>
 <option>Communication</option>
 <option>Entertainment</option>
-<option>Music & Audio</option>
+<option>Music &amp; Audio</option>
 <option>Video Players</option>
 <option>Photography</option>
 <option>Tools</option>
@@ -427,486 +448,250 @@ Select Category
 <option>Finance</option>
 <option>Lifestyle</option>
 <option>Other</option>
-
 </select>
-
 </div>
-
 <div class="field">
-
 <label>
 Content Type <span>(homepage section)</span>
 </label>
-
-<select id="contentType" required>
+<select id="contentType" required="">
 <option value="Apps">Apps</option>
 <option value="Games">Games</option>
 <option value="PC Software">PC Software</option>
 </select>
-
 </div>
-
-
 <div class="field">
-
 <label>
 Version
 </label>
-
-<input
-    id="version"
-    type="text"
-    placeholder="eg; 2.0, 1.0"
->
-
+<input id="version" placeholder="eg; 2.0, 1.0" type="text"/>
 </div>
-
-
 <div class="field">
-
 <label>
 Size
 </label>
-
-<input
-    id="size"
-    type="text"
-    placeholder="eg; 2mb, 2gb"
->
-
+<input id="size" placeholder="eg; 2mb, 2gb" type="text"/>
 </div>
-
-
 <div class="field">
-
 <label>
 Platform
 </label>
-
-<input
-    id="android"
-    type="text"
-    placeholder="eg; android, pc"
->
-
+<input id="android" placeholder="eg; android, pc" type="text"/>
 </div>
-
-
 <div class="field">
-
 <label>
 Rating
 </label>
-
-<input
-    id="rating"
-    type="number"
-    min="0"
-    max="5"
-    step="0.1"
-    value="4.5"
->
-
+<input id="rating" max="5" min="0" step="0.1" type="number" value="4.5"/>
 </div>
-
-
 <div class="field">
-
 <label>
 Compatibility
 </label>
-
-<input
-    id="downloads"
-    type="text"
-    placeholder="eg; OS version, Android version"
->
-
+<input id="downloads" placeholder="eg; OS version, Android version" type="text"/>
 </div>
-
 </div>
-
-</section>
-
-
-
-<!-- SEARCH TAGS -->
-
-<section class="panel">
-
+</section><section class="panel consent-panel"><div class="panel-title"><i class="fa-solid fa-clipboard-check"></i><span>Publisher declarations</span></div><p class="panel-lead">These confirmations help keep product information reliable for the FistEngine community.</p><div class="consent-list" id="productDeclarations"><label class="consent-card" for="confirmAuthority"><input id="confirmAuthority" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>I am authorized to submit this product.</strong><small>I own the product or have permission from its owner or publisher to create this listing.</small></span><span class="required-pill">REQUIRED</span></label><label class="consent-card" for="confirmAccuracy"><input id="confirmAccuracy" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>The product information is accurate.</strong><small>The name, developer, category, platform and technical details are truthful and not misleading.</small></span><span class="required-pill">REQUIRED</span></label></div></section></section>
+<section aria-labelledby="wizardStepTitle" class="wizard-step" data-step="2"><section class="panel">
 <div class="panel-title">
-
-<i class="fa-solid fa-tags"></i>
-
-Search Tags
-
-</div>
-
-
-<div class="field">
-
-<label>
-Search Keywords
-</label>
-
-<input
-    id="tags"
-    type="text"
-    placeholder="whatsapp, chat, messaging, calling, gaming, mods"
->
-
-<small style="
-color:#626978;
-font-size:9px;
-">
-Separate keywords with commas.
-</small>
-
-</div>
-
-</section>
-
-
-
-<!-- GITHUB FILES -->
-
-<section class="panel">
-
-<div class="panel-title">
-
 <i class="fa-solid fa-link"></i>
 
-Files & Media
+Files &amp; Media
 
 </div>
-
-
 <div class="form-grid">
-
-
 <div class="field full">
-
 <label>
 Application Icon / Cover Image
 </label>
-
-<input
-    id="icon"
-    type="text"
-    placeholder="eg; https://fistengine.github.io/assets/pictures/whatsapp.png/jpg/webp..."
->
-
+<input id="icon" placeholder="eg; https://fistengine.github.io/assets/pictures/whatsapp.png/jpg/webp..." type="text"/>
 </div>
-
-
 <div class="field full">
-
 <label>
 Download Link
 </label>
-
-<input
-    id="apk"
-    type="text"
-    placeholder="eg; https://fistengine.github.io/assets/whatsapp.apk/exe/rar/zip..."
->
-
+<input id="apk" placeholder="eg; https://fistengine.github.io/assets/whatsapp.apk/exe/rar/zip..." type="text"/>
 </div>
-
 </div>
-
-
-<br>
-
-
+<br/>
 <div class="field">
-
 <label>
 Screenshots
 <span>
 Maximum 3
 </span>
 </label>
-
-
 <div class="screenshot-list">
-
-
 <div class="screenshot-field">
-
 <div class="shot-number">
 1
 </div>
-
-<input
-    id="screenshot1"
-    type="text"
-    placeholder="https://fistengine.github.io/assets/screenshots/app/1.jpg"
->
-
+<input id="screenshot1" placeholder="https://fistengine.github.io/assets/screenshots/app/1.jpg" type="text"/>
 </div>
-
-
 <div class="screenshot-field">
-
 <div class="shot-number">
 2
 </div>
-
-<input
-    id="screenshot2"
-    type="text"
-    placeholder="https://fistengine.github.io/assets/screenshots/app/2.jpg"
->
-
+<input id="screenshot2" placeholder="https://fistengine.github.io/assets/screenshots/app/2.jpg" type="text"/>
 </div>
-
-
 <div class="screenshot-field">
-
 <div class="shot-number">
 3
 </div>
-
-<input
-    id="screenshot3"
-    type="text"
-    placeholder="https://fistengine.github.io/assets/screenshots/app/3.jpg"
->
-
+<input id="screenshot3" placeholder="https://fistengine.github.io/assets/screenshots/app/3.jpg" type="text"/>
 </div>
-
-
 </div>
-
 </div>
-
-</section>
-
-
-
-<!-- DESCRIPTION -->
-
-<section class="panel">
-
+</section><section class="panel consent-panel"><div class="panel-title"><i class="fa-solid fa-photo-film"></i><span>Media and download checks</span></div><div class="consent-list" id="mediaDeclarations"><label class="consent-card" for="confirmMediaRights"><input id="confirmMediaRights" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>I have the rights to use these images.</strong><small>The icon, cover image and screenshots are mine or I have permission to display them.</small></span><span class="required-pill">REQUIRED</span></label><label class="consent-card" for="confirmDownloadSafety"><input id="confirmDownloadSafety" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>The download link is correct and safe.</strong><small>The link leads to the intended product file and does not use deceptive redirects or unrelated downloads.</small></span><span class="required-pill">REQUIRED</span></label></div></section></section>
+<section aria-labelledby="wizardStepTitle" class="wizard-step" data-step="3"><section class="panel">
 <div class="panel-title">
+<i class="fa-solid fa-tags"></i>
 
+Search Tags
+
+</div>
+<div class="field">
+<label>
+Search Keywords
+</label>
+<input id="tags" placeholder="whatsapp, chat, messaging, calling, gaming, mods" type="text"/>
+<small style="
+color:#626978;
+font-size:9px;
+">
+Separate keywords with commas.
+</small>
+</div>
+</section><section class="panel">
+<div class="panel-title">
 <i class="fa-solid fa-align-left"></i>
 
 Description
 
 </div>
-
-
-<textarea
-    id="description"
-    placeholder="Write the application description..."
-></textarea>
-
-</section>
-
-
-
-<!-- WHAT'S NEW -->
-
-<section class="panel">
-
+<textarea id="description" placeholder="Write the application description..."></textarea>
+</section><section class="panel">
 <div class="panel-title">
-
 <i class="fa-solid fa-wand-magic-sparkles"></i>
 
 What's New
 
 </div>
-
-
-<textarea
-    id="whatsNew"
-    placeholder="New features&#10;Performance improvements&#10;Bug fixes"
-></textarea>
-
-</section>
-
-
-
-<!-- BUTTONS -->
-
-<div class="actions">
-
-
-<button
-    class="btn btn-primary"
-    id="saveAppBtn"
->
-
+<textarea id="whatsNew" placeholder="New features
+Performance improvements
+Bug fixes"></textarea>
+</section></section>
+<section aria-labelledby="wizardStepTitle" class="wizard-step" data-step="4"><section class="panel privacy-panel">
+<div class="panel-title"><i class="fa-solid fa-user-shield"></i><span>Privacy information</span></div>
+<p class="panel-lead">Be transparent about how the product handles information. Do not claim that a product is privacy-safe unless you have checked its actual behaviour.</p>
+<div class="field privacy-url-field">
+<label for="privacyPolicyUrl">Privacy policy URL <span>(add a public link when applicable)</span></label>
+<input id="privacyPolicyUrl" inputmode="url" placeholder="https://example.com/privacy" type="url"/>
+<small>Use a public HTTPS link to the policy that applies to this product. Leave blank only when no policy URL is applicable.</small>
+</div>
+<div class="privacy-guidance">
+<div class="privacy-guidance-icon"><i class="fa-solid fa-eye"></i></div>
+<div><strong>Review the product's data practices</strong><p>Consider account details, analytics, advertising, device identifiers, location, diagnostics, payment data and information shared with third parties.</p></div>
+</div>
+<div class="consent-list privacy-consents" id="privacyDeclarations"><label class="consent-card" for="confirmPrivacyReview"><input id="confirmPrivacyReview" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>I have reviewed the product’s privacy and data practices.</strong><small>The listing does not misrepresent what information the product collects, uses, stores or shares.</small></span><span class="required-pill">REQUIRED</span></label><label class="consent-card" for="confirmPrivacyPolicy"><input id="confirmPrivacyPolicy" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>I have considered applicable privacy-policy requirements.</strong><small>Where a privacy policy is required, the link above points to an accessible and relevant policy.</small></span><span class="required-pill">REQUIRED</span></label></div>
+</section></section>
+<section aria-labelledby="wizardStepTitle" class="wizard-step" data-step="5"><section class="panel review-panel">
+<div class="panel-title"><i class="fa-solid fa-list-check"></i><span>Submission summary</span></div>
+<div class="review-grid" id="reviewSummary">
+<div class="review-item"><span>Product</span><strong id="reviewName">Not entered</strong></div>
+<div class="review-item"><span>Developer</span><strong id="reviewDeveloper">Not entered</strong></div>
+<div class="review-item"><span>Category / Type</span><strong id="reviewCategory">Not selected</strong></div>
+<div class="review-item"><span>Version / Size</span><strong id="reviewVersion">—</strong></div>
+<div class="review-item"><span>Platform</span><strong id="reviewPlatform">—</strong></div>
+<div class="review-item"><span>Media links</span><strong id="reviewMedia">Not added</strong></div>
+<div class="review-item review-item-wide"><span>Description</span><strong id="reviewDescription">Not entered</strong></div>
+<div class="review-item review-item-wide"><span>Privacy policy</span><strong id="reviewPrivacy">Not supplied</strong></div>
+</div>
+<div class="review-note"><i class="fa-solid fa-circle-info"></i><span>Submission confirms that your information has been sent. It does not by itself confirm approval, endorsement or a guaranteed storefront placement.</span></div>
+</section><section class="panel consent-panel final-consent-panel"><div class="panel-title"><i class="fa-solid fa-file-signature"></i><span>Final declaration</span></div><div class="consent-list" id="finalDeclarations"><label class="consent-card" for="confirmFinalSubmission"><input id="confirmFinalSubmission" required="" type="checkbox"/><span aria-hidden="true" class="consent-check"><i class="fa-solid fa-check"></i></span><span class="consent-copy"><strong>I confirm this submission is ready to be sent.</strong><small>I have checked the listing, have the necessary rights, and understand that the final publishing decision is separate from this submission confirmation.</small></span><span class="required-pill">REQUIRED</span></label></div></section><div class="actions">
+<button class="btn btn-primary" id="saveAppBtn">
 <i class="fa-solid fa-plus"></i>
-
-<span id="saveAppText">
-ADD APP
-</span>
-
+<span id="saveAppText">SUBMIT LISTING</span>
 </button>
-
-
-<button
-    class="btn btn-danger"
-    id="resetBtn"
->
-
+<button class="btn btn-danger" id="resetBtn">
 <i class="fa-solid fa-rotate-left"></i>
 
 RESET
 
 </button>
-
-
+</div></section>
+<div class="wizard-controls" id="wizardControls">
+<button class="btn btn-secondary" disabled="" id="previousStepBtn" type="button"><i class="fa-solid fa-arrow-left"></i><span>BACK</span></button>
+<div class="wizard-control-right"><span class="step-counter" id="stepCounter">1 of 5</span><button class="btn btn-primary" id="nextStepBtn" type="button"><span>CONTINUE</span><i class="fa-solid fa-arrow-right"></i></button></div>
 </div>
-
-
-</div>
-
-
-
-<!-- PREVIEW -->
-
-<aside class="preview-box">
-
+</div><aside class="preview-box">
 <div class="preview-label">
 Live Preview
 </div>
-
-
 <div class="app-preview">
-
-
 <div class="preview-top">
-
-
-<img
-    id="previewIcon"
-    class="preview-icon"
-    alt="App"
->
-
-
+<img alt="App" class="preview-icon" id="previewIcon"/>
 <div>
-
-<div
-    id="previewName"
-    class="preview-name"
->
+<div class="preview-name" id="previewName">
 App Name
 </div>
-
-
-<div
-    id="previewDeveloper"
-    class="preview-developer"
->
+<div class="preview-developer" id="previewDeveloper">
 Developer
 </div>
-
-
-<div
-    id="previewCategory"
-    class="preview-category"
->
+<div class="preview-category" id="previewCategory">
 Category
 </div>
-
 </div>
-
 </div>
-
-
 <div class="preview-info">
-
-
 <div>
-
 <strong id="previewVersion">
 —
 </strong>
-
 <span>
 Version
 </span>
-
 </div>
-
-
 <div>
-
 <strong id="previewSize">
 —
 </strong>
-
 <span>
 Size
 </span>
-
 </div>
-
-
 <div>
-
 <strong id="previewRating">
 —
 </strong>
-
 <span>
 Rating
 </span>
-
 </div>
-
-
 <div>
-
 <strong id="previewAndroid">
 —
 </strong>
-
-<span>
-Android
-</span>
-
+<span>Platform</span>
 </div>
-
-
 </div>
-
+<div class="preview-extra">
+<div class="preview-extra-row"><span>Listing type</span><strong id="previewContentType">Apps</strong></div>
+<div class="preview-extra-row"><span>Media assets</span><strong id="previewMediaCount">0 screenshots</strong></div>
 </div>
-
-<p class="preview-hint">Your listing preview updates as you enter the product details. Check the information and links before submitting.</p>
-
-</aside>
-
-
+<div class="preview-description" id="previewDescription">Your product description will appear here as you write it.</div>
+<div class="preview-completeness"><div class="preview-completeness-top"><span>Listing details</span><strong id="previewCompletenessLabel">0% complete</strong></div><div class="preview-progress"><span id="previewCompletenessBar"></span></div></div>
 </div>
-
+<p class="preview-hint">This preview updates as you complete each step, so you can keep checking the listing while you work.</p>
+</aside></div>
 </section>
-
-
 </main>
-
 </div>
-
-
-
-<div
-    class="toast"
-    id="toast"
-></div>
-
-
-
+<div class="toast" id="toast"></div>
 <!-- =====================================================
      FIREBASE
 ===================================================== -->
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+<script type="module">import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -922,9 +707,25 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const saveAppBtn = document.getElementById("saveAppBtn");
 const originalButtonHTML = saveAppBtn.innerHTML;
+const totalSteps = 5;
+let currentStep = 1;
+let maxUnlockedStep = 1;
+let toastTimer = null;
+
+const stepMeta = {
+    1: { kicker: "STEP 01 / 05", title: "Tell us about your product", description: "Start with the essential details customers will see on FistEngine." },
+    2: { kicker: "STEP 02 / 05", title: "Add your artwork and download links", description: "Provide clear product imagery and a direct, working download destination." },
+    3: { kicker: "STEP 03 / 05", title: "Make your listing easy to discover", description: "Write a useful description and include keywords that help people find your product." },
+    4: { kicker: "STEP 04 / 05", title: "Review privacy and compliance", description: "Confirm that the listing represents the product and its data practices responsibly." },
+    5: { kicker: "STEP 05 / 05", title: "Review everything before submission", description: "Check the details one last time, then send your listing to FistEngine." }
+};
 
 function value(id) {
     return (document.getElementById(id)?.value || "").trim();
+}
+
+function checked(id) {
+    return document.getElementById(id)?.checked === true;
 }
 
 function collectFormData() {
@@ -944,6 +745,16 @@ function collectFormData() {
         tags: value("tags").split(",").map(tag => tag.trim()).filter(Boolean),
         description: value("description"),
         whatsNew: value("whatsNew"),
+        privacyPolicy: value("privacyPolicyUrl"),
+        submissionAcknowledgements: {
+            authorizedToSubmit: checked("confirmAuthority"),
+            listingInformationAccurate: checked("confirmAccuracy"),
+            mediaRightsConfirmed: checked("confirmMediaRights"),
+            downloadLinkChecked: checked("confirmDownloadSafety"),
+            privacyPracticesReviewed: checked("confirmPrivacyReview"),
+            privacyPolicyRequirementsReviewed: checked("confirmPrivacyPolicy"),
+            finalDeclarationAccepted: checked("confirmFinalSubmission")
+        },
         verified: document.getElementById("verified")?.checked ?? false
     };
 }
@@ -952,85 +763,267 @@ function showToast(message) {
     const toast = document.getElementById("toast");
     toast.textContent = message;
     toast.classList.add("show");
-    clearTimeout(window.__adminToastTimer);
-    window.__adminToastTimer = setTimeout(() => toast.classList.remove("show"), 4500);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 4300);
 }
 
-function validateData(data) {
-    if (!data.name) return showToast("Please enter the app name."), false;
-    if (!data.developer) return showToast("Please enter the developer."), false;
-    if (!data.category) return showToast("Please select a category."), false;
-    if (!data.icon) return showToast("Please enter the app picture URL."), false;
-    if (!data.apk) return showToast("Please enter the APK URL."), false;
-    if (data.rating < 0 || data.rating > 5) return showToast("Rating must be between 0 and 5."), false;
+function isHttpUrl(raw) {
+    if (!raw) return false;
+    try {
+        const parsed = new URL(raw);
+        return parsed.protocol === "https:" || parsed.protocol === "http:";
+    } catch {
+        return false;
+    }
+}
+
+function fail(message, fieldId) {
+    showToast(message);
+    if (fieldId) {
+        const field = document.getElementById(fieldId);
+        field?.focus({ preventScroll: true });
+        field?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+    return false;
+}
+
+function requireConsent(id, message) {
+    if (checked(id)) return true;
+    return fail(message, id);
+}
+
+function validateStep(step, quiet = false) {
+    const noMessage = () => false;
+    const invalid = (message, id) => quiet ? noMessage() : fail(message, id);
+
+    if (step === 1) {
+        if (!value("appName")) return invalid("Enter the product name to continue.", "appName");
+        if (!value("developer")) return invalid("Enter the developer or publisher name to continue.", "developer");
+        if (!value("category")) return invalid("Choose a product category to continue.", "category");
+        const rating = Number(value("rating"));
+        if (!Number.isFinite(rating) || rating < 0 || rating > 5) return invalid("Rating must be between 0 and 5.", "rating");
+        if (!checked("confirmAuthority")) return invalid("Confirm that you are authorized to submit this product.", "confirmAuthority");
+        if (!checked("confirmAccuracy")) return invalid("Confirm that the product information is accurate.", "confirmAccuracy");
+    }
+
+    if (step === 2) {
+        if (!value("icon")) return invalid("Add the product icon or cover image URL.", "icon");
+        if (!isHttpUrl(value("icon"))) return invalid("Enter a valid HTTP or HTTPS image URL.", "icon");
+        if (!value("apk")) return invalid("Add the product download URL.", "apk");
+        if (!isHttpUrl(value("apk"))) return invalid("Enter a valid HTTP or HTTPS download URL.", "apk");
+        for (const id of ["screenshot1", "screenshot2", "screenshot3"]) {
+            if (value(id) && !isHttpUrl(value(id))) return invalid("Each screenshot URL must use HTTP or HTTPS.", id);
+        }
+        if (!checked("confirmMediaRights")) return invalid("Confirm that you have permission to use the submitted images.", "confirmMediaRights");
+        if (!checked("confirmDownloadSafety")) return invalid("Confirm that the download link is correct and safe.", "confirmDownloadSafety");
+    }
+
+    if (step === 3) {
+        if (!value("description")) return invalid("Add a product description before continuing.", "description");
+    }
+
+    if (step === 4) {
+        const privacyUrl = value("privacyPolicyUrl");
+        if (privacyUrl && !isHttpUrl(privacyUrl)) return invalid("The privacy policy link must be a valid HTTP or HTTPS URL.", "privacyPolicyUrl");
+        if (!checked("confirmPrivacyReview")) return invalid("Confirm that you have reviewed the product's privacy and data practices.", "confirmPrivacyReview");
+        if (!checked("confirmPrivacyPolicy")) return invalid("Confirm that you have considered the applicable privacy-policy requirements.", "confirmPrivacyPolicy");
+    }
+
+    if (step === 5) {
+        if (!checked("confirmFinalSubmission")) return invalid("Accept the final declaration before submitting your listing.", "confirmFinalSubmission");
+    }
     return true;
 }
 
-async function saveApp() {
-    const data = collectFormData();
-    if (!validateData(data)) return;
+function updateStepper() {
+    document.querySelectorAll("[data-step-link]").forEach(button => {
+        const step = Number(button.dataset.stepLink);
+        button.classList.toggle("is-active", step === currentStep);
+        button.classList.toggle("is-complete", step < currentStep && step <= maxUnlockedStep);
+        button.disabled = step > maxUnlockedStep;
+        if (step === currentStep) button.setAttribute("aria-current", "step");
+        else button.removeAttribute("aria-current");
+    });
+    document.querySelectorAll(".wizard-step").forEach(panel => {
+        const active = Number(panel.dataset.step) === currentStep;
+        panel.classList.toggle("is-active", active);
+        panel.setAttribute("aria-hidden", String(!active));
+    });
+    const meta = stepMeta[currentStep];
+    document.getElementById("wizardStepKicker").textContent = meta.kicker;
+    document.getElementById("wizardStepTitle").textContent = meta.title;
+    document.getElementById("wizardStepDescription").textContent = meta.description;
+    document.getElementById("stepCounter").textContent = `${currentStep} of ${totalSteps}`;
+    document.getElementById("previousStepBtn").disabled = currentStep === 1;
+    document.getElementById("nextStepBtn").hidden = currentStep === totalSteps;
+    saveAppBtn.closest(".actions").hidden = currentStep !== totalSteps;
+}
 
+function goToStep(step, shouldScroll = true) {
+    if (step < 1 || step > totalSteps || step > maxUnlockedStep) return;
+    currentStep = step;
+    updateStepper();
+    updateReviewSummary();
+    updatePreview();
+    if (shouldScroll) {
+        const title = document.querySelector(".wizard-step-heading");
+        title?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+}
+
+function updateReviewSummary() {
+    const set = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text || "—"; };
+    set("reviewName", value("appName") || "Not entered");
+    set("reviewDeveloper", value("developer") || "Not entered");
+    set("reviewCategory", [value("category"), value("contentType")].filter(Boolean).join(" / ") || "Not selected");
+    set("reviewVersion", [value("version"), value("size")].filter(Boolean).join(" · ") || "Not supplied");
+    set("reviewPlatform", value("android") || "Not supplied");
+    const mediaCount = ["screenshot1", "screenshot2", "screenshot3"].filter(id => value(id)).length;
+    set("reviewMedia", `${value("icon") ? "Icon" : "No icon"} · ${value("apk") ? "Download link added" : "No download link"} · ${mediaCount} screenshot${mediaCount === 1 ? "" : "s"}`);
+    set("reviewDescription", value("description") || "Not entered");
+    set("reviewPrivacy", value("privacyPolicyUrl") || "No URL supplied");
+}
+
+function updatePreview() {
+    const get = id => document.getElementById(id)?.value || "";
+    const text = (id, val) => { const node = document.getElementById(id); if (node) node.textContent = val; };
+    text("previewName", get("appName").trim() || "App Name");
+    text("previewDeveloper", get("developer").trim() || "Developer");
+    text("previewCategory", get("category") || "Category");
+    text("previewVersion", get("version") || "—");
+    text("previewSize", get("size") || "—");
+    text("previewAndroid", get("android") || "—");
+    text("previewRating", get("rating") ? `★ ${get("rating")}` : "—");
+    text("previewContentType", get("contentType") || "Apps");
+    const mediaCount = ["screenshot1", "screenshot2", "screenshot3"].filter(id => get(id).trim()).length;
+    text("previewMediaCount", `${mediaCount} screenshot${mediaCount === 1 ? "" : "s"}`);
+    text("previewDescription", get("description").trim() || "Your product description will appear here as you write it.");
+
+    const icon = get("icon").trim();
+    const previewIcon = document.getElementById("previewIcon");
+    if (icon && isHttpUrl(icon)) previewIcon.src = icon;
+    else previewIcon.removeAttribute("src");
+
+    const completionChecks = [
+        !!get("appName").trim(), !!get("developer").trim(), !!get("category"),
+        !!get("icon").trim(), !!get("apk").trim(), !!get("description").trim(),
+        checked("confirmAuthority"), checked("confirmAccuracy"),
+        checked("confirmMediaRights"), checked("confirmDownloadSafety"),
+        checked("confirmPrivacyReview"), checked("confirmPrivacyPolicy")
+    ];
+    const percent = Math.round(completionChecks.filter(Boolean).length / completionChecks.length * 100);
+    text("previewCompletenessLabel", `${percent}% complete`);
+    const bar = document.getElementById("previewCompletenessBar");
+    if (bar) bar.style.width = `${percent}%`;
+    updateReviewSummary();
+}
+
+async function saveApp() {
+    // Revalidate every stage because users can return to earlier stages and change declarations.
+    for (let step = 1; step <= totalSteps; step++) {
+        if (!validateStep(step, true)) {
+            goToStep(step);
+            validateStep(step);
+            return;
+        }
+    }
+
+    const data = collectFormData();
     saveAppBtn.disabled = true;
-    saveAppBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>ADDING...</span>';
+    saveAppBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>SENDING LISTING...</span>';
     try {
         await addDoc(collection(db, "apps"), {
             ...data,
             createdAt: serverTimestamp(),
             updatedAt: serverTimestamp()
         });
-        showToast("App added successfully!");
+        const submittedName = data.name;
         clearForm(false);
+        maxUnlockedStep = 1;
+        goToStep(1, false);
+        showSuccessModal(submittedName);
     } catch (error) {
         console.error("Firestore error:", error);
         if (error?.code === "permission-denied") {
-            showToast("Firebase denied this write. Firestore Rules require permission for adding apps; this cannot be fixed by removing the HTML login redirect.");
+            showToast("Firebase denied this submission. Check the Firestore rules for permission to add documents to the apps collection.");
         } else {
-            showToast("Failed to add app: " + (error?.message || "Unknown error"));
+            showToast("The listing could not be submitted: " + (error?.message || "Unknown error"));
         }
     } finally {
         saveAppBtn.disabled = false;
         saveAppBtn.innerHTML = originalButtonHTML;
+        updateStepper();
     }
 }
 
+function showSuccessModal(productName) {
+    const modal = document.getElementById("successModal");
+    const description = document.getElementById("successDescription");
+    description.textContent = `Thank you. The information for “${productName}” has been saved to FistEngine. This is a submission receipt only, not an approval or publication notice. Storefront placement is not guaranteed.`;
+    modal.hidden = false;
+    document.getElementById("addAnotherBtn").focus();
+}
+
+function closeSuccessModal() {
+    document.getElementById("successModal").hidden = true;
+    document.getElementById("appName")?.focus();
+}
+
 function clearForm(confirmFirst = true) {
-    if (confirmFirst && !confirm("Clear all fields?")) return;
-    document.querySelectorAll("#formManagement input[type='text'], #formManagement input[type='number'], #formManagement textarea").forEach(el => { el.value = ""; });
+    if (confirmFirst && !window.confirm("Clear all listing details and start again?")) return;
+    document.querySelectorAll("#formManagement input[type='text'], #formManagement input[type='number'], #formManagement input[type='url'], #formManagement textarea").forEach(el => { el.value = ""; });
     document.getElementById("category").value = "";
     document.getElementById("contentType").value = "Apps";
     document.getElementById("rating").value = "4.5";
+    document.querySelectorAll("#formManagement input[type='checkbox']").forEach(el => { el.checked = false; });
     const verifiedCheckbox = document.getElementById("verified");
     if (verifiedCheckbox) verifiedCheckbox.checked = true;
     updatePreview();
+    updateReviewSummary();
 }
 
-document.getElementById("resetBtn").addEventListener("click", () => clearForm(true));
+document.getElementById("previousStepBtn").addEventListener("click", () => goToStep(currentStep - 1));
+document.getElementById("nextStepBtn").addEventListener("click", () => {
+    if (!validateStep(currentStep)) return;
+    maxUnlockedStep = Math.max(maxUnlockedStep, currentStep + 1);
+    goToStep(currentStep + 1);
+});
+document.querySelectorAll("[data-step-link]").forEach(button => {
+    button.addEventListener("click", () => goToStep(Number(button.dataset.stepLink)));
+});
+document.getElementById("resetBtn").addEventListener("click", () => {
+    if (!window.confirm("Clear all listing details and start again?")) return;
+    clearForm(false);
+    maxUnlockedStep = 1;
+    goToStep(1);
+    showToast("The listing form has been reset.");
+});
 saveAppBtn.addEventListener("click", saveApp);
+document.getElementById("addAnotherBtn").addEventListener("click", closeSuccessModal);
+document.getElementById("successModal").addEventListener("click", event => {
+    if (event.target.id === "successModal") closeSuccessModal();
+});
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && !document.getElementById("successModal").hidden) closeSuccessModal();
+});
 
-function updatePreview() {
-    const get = id => document.getElementById(id)?.value || "";
-    document.getElementById("previewName").textContent = get("appName") || "App Name";
-    document.getElementById("previewDeveloper").textContent = get("developer") || "Developer";
-    document.getElementById("previewCategory").textContent = get("category") || "Category";
-    document.getElementById("previewVersion").textContent = get("version") || "—";
-    document.getElementById("previewSize").textContent = get("size") || "—";
-    document.getElementById("previewAndroid").textContent = get("android") || "—";
-    document.getElementById("previewRating").textContent = get("rating") ? "★ " + get("rating") : "—";
-    const icon = get("icon");
-    const previewIcon = document.getElementById("previewIcon");
-    if (icon) previewIcon.src = icon;
-    else previewIcon.removeAttribute("src");
-}
-
-["appName", "developer", "category", "version", "size", "android", "rating", "icon"].forEach(id => {
-    const el = document.getElementById(id);
+// Keep the live preview and final review synchronized with every field change.
+document.querySelectorAll("#formManagement input, #formManagement select, #formManagement textarea").forEach(el => {
     el.addEventListener("input", updatePreview);
     el.addEventListener("change", updatePreview);
 });
 
-let toastTimer = null;
+updatePreview();
+updateStepper();
 </script>
-
-</body>
-
+<div class="success-overlay" hidden="" id="successModal">
+<section aria-describedby="successDescription" aria-labelledby="successTitle" aria-modal="true" class="success-dialog" role="dialog">
+<div class="success-emblem"><i class="fa-solid fa-check"></i></div>
+<span class="success-status">SUBMISSION RECEIVED</span>
+<h2 id="successTitle">Your listing details have been received.</h2>
+<p id="successDescription">Your product details have been submitted to FistEngine. This message confirms successful receipt only — it is not a publication confirmation and does not mean the listing has been reviewed, approved or guaranteed to appear on the storefront.</p>
+<div class="success-detail"><i class="fa-solid fa-circle-info"></i><span>This confirmation is a receipt only. It does not confirm that your listing has been reviewed, approved or guaranteed a placement on the storefront.</span></div>
+<div class="success-actions"><button class="btn btn-secondary" id="addAnotherBtn" type="button">ADD ANOTHER LISTING</button><a class="btn btn-primary" href="index.html"><i class="fa-solid fa-house"></i> BACK TO FISTENGINE</a></div>
+</section>
+</div></body>
 </html>
