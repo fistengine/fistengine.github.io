@@ -345,6 +345,35 @@ input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-
 @media(max-width:760px){.layout{width:min(100% - 32px,1460px)}.main{padding-top:14px}.page-title{margin-bottom:19px}.wizard-layout{display:flex;flex-direction:column;gap:14px}.wizard-stepper{position:relative;top:auto;width:100%;padding:13px 12px}.stepper-heading{padding:2px 5px 10px}.stepper-heading>strong{font-size:14px}.stepper-caption{font-size:8px}.step-list{display:flex;overflow-x:auto;gap:7px;margin:10px 0 0;padding:0 0 4px;scroll-snap-type:x mandatory;scrollbar-width:thin}.step-list::before{display:none}.step-list li{flex:0 0 auto;scroll-snap-align:start}.step-link{width:auto;min-height:48px;padding:7px 9px;border-color:rgba(206,225,255,.1);background:rgba(255,255,255,.025)}.step-number{width:26px;height:26px}.step-copy strong{font-size:8px}.step-copy small{display:none}.stepper-foot{display:none}.wizard-main{width:100%}.preview-box{width:100%;position:relative;top:auto;order:3}.wizard-step-heading{margin-bottom:15px}.wizard-controls{margin-bottom:16px}}
 @media(max-width:560px){.header{padding:0 14px}.header-inner{min-height:67px;gap:9px}.logo{gap:8px;font-size:18px}.logo-icon{width:35px;height:35px;border-radius:11px}.admin-label{padding:6px 7px;font-size:7px}.header-btn{min-height:36px;padding:0 10px;font-size:8px}.header-btn span{display:none}.layout{width:calc(100% - 24px)}.main{padding:12px 0 48px}.page-title::after{display:none}.page-title h1{font-size:29px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.panel{padding:17px;border-radius:18px}.consent-panel{padding:15px}.consent-card{grid-template-columns:19px minmax(0,1fr);padding:11px}.required-pill{grid-column:2;justify-self:start;margin-top:-3px}.review-grid{grid-template-columns:1fr}.review-item-wide{grid-column:auto}.wizard-controls .btn{min-height:41px;padding:0 13px;font-size:8px}.step-counter{display:none}.actions{flex-direction:column}.actions .btn{width:100%}.success-dialog{padding:25px 18px;border-radius:22px}.success-dialog h2{font-size:21px}.success-actions{flex-direction:column}.success-actions .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+/* Custom Steam-Style Page Scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(145, 173, 212, 0.35) #080c14;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(145, 173, 212, 0.32);
+  border-radius: 999px;
+  border: 2px solid #080c14;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(108, 231, 220, 0.55);
+}
+
+::-webkit-scrollbar-corner {
+  background: #080c14;
+}
+
 </style>
 </head>
 <body>
