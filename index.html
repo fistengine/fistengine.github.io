@@ -1017,6 +1017,375 @@ html {
   background: #080c14;
 }
 
+
+/* FistEngine account authentication */
+.header-auth-wrap{position:relative;display:flex;align-items:center;margin-left:10px}
+.header-auth-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:40px;padding:0 16px;border:1px solid rgba(102,192,244,.38);border-radius:8px;background:linear-gradient(135deg,rgba(26,159,255,.20),rgba(102,192,244,.08));color:#eaf6ff;font-weight:700;cursor:pointer;transition:.2s}
+.header-auth-btn:hover{border-color:var(--blue);background:rgba(26,159,255,.25);transform:translateY(-1px)}
+.account-avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#1a9fff,#7c6cff);color:white;font-weight:800;font-size:13px;border:1px solid rgba(255,255,255,.22);cursor:pointer;overflow:hidden}
+.account-avatar img{width:100%;height:100%;object-fit:cover}
+.account-menu{position:absolute;z-index:1000;right:0;top:calc(100% + 10px);width:225px;padding:9px;border:1px solid rgba(102,192,244,.24);border-radius:12px;background:#111c29;box-shadow:0 18px 50px rgba(0,0,0,.48)}
+.account-menu[hidden]{display:none}
+.account-menu-name{padding:10px 10px 12px;border-bottom:1px solid rgba(255,255,255,.09);margin-bottom:6px;overflow:hidden;text-overflow:ellipsis;color:#eef7ff;font-weight:700}
+.account-menu-email{display:block;color:#8fabbf;font-size:11px;font-weight:400;overflow:hidden;text-overflow:ellipsis}
+.account-menu button{width:100%;text-align:left;border:0;border-radius:7px;padding:10px;background:transparent;color:#c7d5e0;cursor:pointer}
+.account-menu button:hover{background:rgba(102,192,244,.12);color:white}
+.auth-backdrop{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,8,14,.78);backdrop-filter:blur(12px)}
+.auth-backdrop.open{display:flex}
+.auth-card{position:relative;width:min(100%,440px);padding:30px;border:1px solid rgba(102,192,244,.25);border-radius:18px;background:linear-gradient(145deg,#1b2a3a,#101923 75%);box-shadow:0 28px 90px rgba(0,0,0,.62);color:#eaf3fb}
+.auth-close{position:absolute;right:15px;top:13px;width:34px;height:34px;border:0;border-radius:8px;background:rgba(255,255,255,.06);color:#b8c8d8;cursor:pointer}
+.auth-brand{font-size:11px;letter-spacing:2px;color:#66c0f4;font-weight:800;text-transform:uppercase}
+.auth-title{font-size:25px;line-height:1.2;margin:9px 0 6px;color:#fff}
+.auth-subtitle{margin:0 0 22px;color:#91a5b8;font-size:13px}
+.auth-tabs{display:flex;gap:5px;padding:4px;margin-bottom:18px;border-radius:9px;background:rgba(0,0,0,.23)}
+.auth-tabs button{flex:1;border:0;border-radius:7px;padding:9px;background:transparent;color:#91a5b8;font-weight:700;cursor:pointer}
+.auth-tabs button.active{background:#263d52;color:#fff}
+.auth-field{display:block;margin:0 0 13px;color:#b9c9d8;font-size:12px;font-weight:700}
+.auth-field input{display:block;width:100%;height:43px;margin-top:7px;padding:0 12px;border:1px solid rgba(150,184,211,.2);border-radius:8px;outline:0;background:#0d1721;color:#fff;font-size:14px}
+.auth-field input:focus{border-color:#66c0f4;box-shadow:0 0 0 3px rgba(102,192,244,.1)}
+.auth-primary,.auth-google{width:100%;height:44px;border-radius:8px;font-weight:800;cursor:pointer}
+.auth-primary{border:0;background:linear-gradient(90deg,#168fe2,#4eb8ed);color:#061421}
+.auth-primary:disabled,.auth-google:disabled{opacity:.6;cursor:wait}
+.auth-google{margin-top:10px;border:1px solid rgba(170,198,221,.23);background:rgba(255,255,255,.04);color:#e6f0f8}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:15px 0;color:#71869a;font-size:11px}
+.auth-divider:before,.auth-divider:after{content:"";height:1px;flex:1;background:rgba(255,255,255,.1)}
+.auth-forgot{display:block;margin:12px 0 0 auto;border:0;background:none;color:#66c0f4;font-size:12px;cursor:pointer}
+.auth-message{min-height:18px;margin:10px 0 0;color:#ffb5a9;font-size:12px}
+.auth-message.success{color:#9fe3bd}
+.auth-terms{margin:15px 0 0;color:#72889b;font-size:10px;line-height:1.5}
+@media(max-width:700px){.header-auth-wrap{margin-left:4px}.header-auth-btn{min-height:36px;padding:0 10px;font-size:11px}.auth-card{padding:25px 20px}.header-right .install-client span{display:none}}
+</style>
+
+
+<style id="fe-account-wishlist-layout-fixes">
+  /* Keep the account popover above the sticky category/search rail instead of clipping it. */
+  .header { z-index: 1505 !important; }
+  .header-auth-wrap { z-index: 1510; }
+  .account-menu { z-index: 1600 !important; }
+
+  /* Google profile photos are shown as the original image, without a CSS-coloured button tile. */
+  .account-avatar.has-photo {
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+  .account-avatar.has-photo img {
+    display: block;
+    width: 100%; height: 100%;
+    border: 0; border-radius: 50%;
+    object-fit: cover;
+  }
+
+    .header-wishlist {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 2px;
+    border: 0; background: transparent;
+    color: #6ce7dc; font: inherit; font-size: 10px; font-weight: 800; letter-spacing: .5px;
+    cursor: pointer; white-space: nowrap; transition: color .18s ease;
+  }
+  .header-wishlist > i { color: inherit; font-size: 11px; }
+  .header-wishlist:hover { color: #fff; background: transparent; border: 0; transform: none; }
+  .wishlist-count {
+    color: #9cb3c5; font-size: 10px; font-weight: 700;
+  }
+  .wishlist-count::before { content: "("; }
+  .wishlist-count::after { content: ")"; }
+.wishlist-sidebar-count {
+    display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px;
+    margin-left: auto; border: 1px solid rgba(108,231,220,.18); border-radius: 7px;
+    background: rgba(108,231,220,.08); color: #b5f9ed; font-size: 9px; font-weight: 800;
+  }
+  .wishlist-sidebar-link.selected i, .wishlist-sidebar-link:hover i { color: var(--fe-teal); }
+
+  .app-wishlist-toggle {
+    position: absolute; top: 10px; left: 10px; z-index: 6;
+    display: inline-grid; place-items: center; width: 35px; height: 35px; padding: 0;
+    border: 1px solid rgba(232,240,255,.22); border-radius: 12px;
+    background: rgba(8,12,22,.72); color: #f3f6ff; font-size: 14px;
+    box-shadow: 0 7px 20px rgba(0,0,0,.26); cursor: pointer;
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    transition: transform .18s,border-color .18s,background .18s,color .18s;
+  }
+  .app-wishlist-toggle:hover { transform: translateY(-2px) scale(1.03); border-color: rgba(108,231,220,.62); color: #9df5e6; }
+  .app-wishlist-toggle.is-saved { border-color: rgba(255,112,159,.42); background: rgba(84,20,49,.78); color: #ff80b0; }
+  .app-wishlist-toggle:focus-visible, .header-wishlist:focus-visible { outline: 2px solid var(--fe-teal); outline-offset: 3px; }
+  .app-wishlist-toggle[disabled] { opacity: .65; cursor: wait; }
+
+  .wishlist-toast {
+    position: fixed; right: 22px; bottom: 22px; z-index: 6500;
+    max-width: min(420px, calc(100vw - 28px)); padding: 13px 16px;
+    border: 1px solid rgba(108,231,220,.27); border-radius: 14px;
+    background: rgba(12,19,32,.96); color: #eaf8ff;
+    box-shadow: 0 18px 50px rgba(0,0,0,.42); font-size: 12px; line-height: 1.5;
+    -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  }
+  .wishlist-toast.is-warning { border-color: rgba(255,194,140,.4); }
+  .wishlist-toast[hidden] { display: none !important; }
+
+  /* Keep the search field aligned inside its glass rail while popovers use their own higher layer. */
+  .store-nav-wrap { isolation: isolate; }
+  .store-nav { position: relative; z-index: 1; }
+  @media (max-width: 1100px) {
+    .top-nav-links { display: none !important; }
+    .nav { gap: 18px !important; }
+    .header-right { margin-left: auto; }
+  }
+    @media (max-width: 700px) {
+    .header-wishlist { font-size: 9px; gap: 4px; padding: 4px 2px; }
+    .header-wishlist .wishlist-label { display: none; }
+    .app-wishlist-toggle { width: 31px; height: 31px; top: 7px; left: 7px; border-radius: 10px; }
+    .wishlist-toast { right: 12px; bottom: 12px; }
+  }
+
+</style>
+
+
+<style id="fe-requested-signin-and-details-wishlist">
+      .header-auth-wrap { flex: none; }
+  .header-auth-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    height: 32px; padding: 0 13px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #d8e4f0; font-size: 11px; font-weight: 700;
+    cursor: pointer;
+    transition: background .18s ease, border-color .18s ease, color .18s ease;
+  }
+  .header-auth-btn i { font-size: 11px; color: #6ce7dc; }
+  .header-auth-btn:hover {
+    background: rgba(108, 231, 220, 0.12);
+    border-color: rgba(108, 231, 220, 0.45);
+    color: #fff;
+  }
+  .header-auth-btn .auth-button-logo { display: none; }
+
+  .auth-brand { display: flex; align-items: center; gap: 12px; min-height: 45px; }
+  .auth-brand img {
+    display: block; flex: none; width: 43px; height: 43px; padding: 4px; object-fit: contain;
+    border: 1px solid rgba(108,231,220,.24); border-radius: 13px;
+    background: linear-gradient(135deg,rgba(108,231,220,.12),rgba(169,149,255,.12));
+    box-shadow: 0 6px 20px rgba(108,231,220,.10);
+  }
+  .auth-brand span { display: inline-block; }
+
+  /* The product detail page uses the same wishlist toggle as the product cards. */
+  .details-wishlist-toggle {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    width: 225px; min-height: 48px; padding: 0 18px;
+    border: 1px solid rgba(108,231,220,.28); border-radius: 14px;
+    background: linear-gradient(135deg,rgba(108,231,220,.12),rgba(169,149,255,.13));
+    color: #e4fffa; font-size: 11px; font-weight: 900; letter-spacing: .15px;
+    cursor: pointer; box-shadow: 0 8px 23px rgba(0,0,0,.18),inset 0 1px rgba(255,255,255,.08);
+    transition: transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease,color .2s ease;
+  }
+  .details-wishlist-toggle > i { color: #83eee0; font-size: 15px; }
+  .details-wishlist-toggle:hover {
+    transform: translateY(-2px); border-color: rgba(108,231,220,.72);
+    background: linear-gradient(135deg,rgba(108,231,220,.22),rgba(169,149,255,.22));
+    box-shadow: 0 12px 29px rgba(38,195,188,.12),inset 0 1px rgba(255,255,255,.12); color: #fff;
+  }
+  .details-wishlist-toggle.is-saved {
+    border-color: rgba(255,112,159,.44); background: linear-gradient(135deg,rgba(116,25,62,.78),rgba(65,24,64,.75)); color: #ffdce9;
+  }
+  .details-wishlist-toggle.is-saved > i { color: #ff80b0; }
+  .details-wishlist-toggle:focus-visible { outline: 2px solid var(--fe-teal); outline-offset: 3px; }
+  .details-wishlist-toggle:disabled { opacity: .65; cursor: wait; transform: none; }
+    @media (max-width: 700px) {
+    .header-auth-btn { min-height: 34px; gap: 6px; padding: 0 9px 0 7px; border-radius: 10px; font-size: 9px; }
+    .header-auth-btn .auth-button-logo { width: 18px; height: 18px; }
+    .auth-brand img { width: 39px; height: 39px; }
+    .details-wishlist-toggle { width: 100%; min-height: 47px; }
+  }
+  @media (max-width: 420px) {
+    .header-auth-btn { min-height: 32px; gap: 5px; padding: 0 7px; font-size: 9px; }
+    .header-auth-btn .auth-button-logo { width: 16px; height: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .header-auth-btn, .header-auth-btn::before, .header-auth-btn .auth-button-logo, .details-wishlist-toggle { transition: none !important; }
+  }
+</style>
+
+
+<style id="fe-auth-dialog-split-redesign">
+  /* A balanced two-column account dialog: brand storytelling left, sign-in form right. */
+  .auth-backdrop {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 16px;
+    align-items: center;
+  }
+  .auth-card {
+    display: grid;
+    grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr);
+    width: min(100%, 1060px);
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    min-height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(135, 204, 235, .25);
+    border-radius: 24px;
+    background: linear-gradient(135deg, rgba(17, 27, 43, .99), rgba(9, 15, 26, .99));
+    box-shadow: 0 36px 110px rgba(0,0,0,.66), 0 0 0 1px rgba(108,231,220,.045), 0 0 75px rgba(74,128,255,.10);
+  }
+  .auth-promo-panel {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+    min-width: 0;
+    padding: clamp(28px, 3.2vw, 42px) clamp(25px, 3.1vw, 39px) 25px;
+    overflow: hidden;
+    border-right: 1px solid rgba(175, 213, 255, .13);
+    background: linear-gradient(145deg, rgba(28, 53, 76, .96), rgba(18, 28, 46, .96) 60%, rgba(24, 24, 50, .96));
+  }
+  .auth-promo-panel::before,
+  .auth-promo-panel::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+  .auth-promo-panel::before {
+    width: 390px; height: 390px; right: -205px; top: -160px;
+    background: radial-gradient(circle, rgba(108,231,220,.20), rgba(108,231,220,0) 70%);
+  }
+  .auth-promo-panel::after {
+    width: 430px; height: 430px; left: -255px; bottom: -250px;
+    background: radial-gradient(circle, rgba(145,119,255,.22), rgba(145,119,255,0) 70%);
+  }
+  .auth-promo-top { display: flex; align-items: center; gap: 13px; min-width: 0; }
+  .auth-promo-logo {
+    display: block; flex: none; width: 48px; height: 48px; padding: 4px;
+    object-fit: contain; border-radius: 15px;
+    border: 1px solid rgba(145, 233, 229, .34);
+    background: linear-gradient(135deg, rgba(108,231,220,.14), rgba(169,149,255,.14));
+    box-shadow: 0 8px 24px rgba(0,0,0,.20), 0 0 23px rgba(108,231,220,.08);
+  }
+  .auth-promo-brand {
+    display: flex; flex-direction: column; gap: 5px;
+    color: #f3f8ff; font-size: 12px; font-weight: 900; letter-spacing: 2.3px;
+  }
+  .auth-promo-brand small { color: #8ddbdc; font-size: 8px; font-weight: 800; letter-spacing: 1.35px; }
+  .auth-promo-copy { margin: auto 0; padding: 25px 0 20px; }
+  .auth-promo-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px; margin-bottom: 17px;
+    color: #9bf2e7; font-size: 9px; font-weight: 900; letter-spacing: 1.45px;
+  }
+  .auth-promo-eyebrow i { color: #d5f78d; font-size: 11px; }
+  .auth-promo-copy h2 {
+    margin: 0 0 15px; color: #f6f8ff;
+    font-size: clamp(30px, 3.25vw, 43px); font-weight: 800; letter-spacing: -1.65px; line-height: 1.08;
+  }
+  .auth-promo-copy h2 span {
+    color: transparent;
+    background: linear-gradient(95deg, #8bf0df 0%, #8ccfff 48%, #c0a7ff 100%);
+    background-clip: text; -webkit-background-clip: text;
+  }
+  .auth-promo-copy > p { max-width: 390px; margin: 0; color: #b0bfd5; font-size: 12px; line-height: 1.8; }
+  .auth-promo-features { display: grid; gap: 14px; margin-top: 29px; }
+  .auth-promo-feature { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .auth-promo-feature-icon {
+    display: grid; place-items: center; flex: none; width: 37px; height: 37px;
+    border: 1px solid rgba(157,205,244,.19); border-radius: 12px;
+    background: linear-gradient(135deg, rgba(108,231,220,.11), rgba(169,149,255,.12));
+    color: #9cece5; font-size: 13px;
+  }
+  .auth-promo-feature > span:last-child { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .auth-promo-feature strong { color: #eaf2ff; font-size: 11px; font-weight: 800; }
+  .auth-promo-feature small { color: #8fa6c0; font-size: 10px; line-height: 1.4; }
+  .auth-promo-footer {
+    display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+    padding-top: 16px; border-top: 1px solid rgba(188,215,255,.12);
+    color: #a6c4d5; font-size: 8px; font-weight: 900; letter-spacing: 1.3px;
+  }
+  .auth-promo-footer-dot { width: 7px; height: 7px; border-radius: 50%; background: #a7f1da; box-shadow: 0 0 12px rgba(108,231,220,.75); }
+  .auth-promo-footer-note { margin-left: auto; color: #7e96b1; font-size: 9px; font-weight: 500; letter-spacing: 0; }
+  .auth-form-panel {
+    position: relative; min-width: 0; min-height: 0;
+    padding: 29px clamp(25px, 3.15vw, 39px) 22px;
+    overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+    scrollbar-color: rgba(145,173,212,.3) transparent;
+    background: linear-gradient(160deg, rgba(21,31,46,.93), rgba(12,19,30,.97));
+  }
+  .auth-close { z-index: 4; top: 16px; right: 16px; width: 32px; height: 32px; border: 1px solid rgba(206,225,255,.10); border-radius: 10px; background: rgba(255,255,255,.045); transition: background .18s, transform .18s, color .18s; }
+  .auth-close:hover { color: #fff; background: rgba(108,231,220,.13); transform: rotate(90deg); }
+  .auth-brand { min-height: 42px; gap: 11px; padding-right: 30px; font-size: 10px; letter-spacing: 2px; }
+  .auth-brand img { width: 39px; height: 39px; padding: 4px; border-radius: 12px; }
+  .auth-title { margin: 12px 0 5px; font-size: clamp(24px, 2.4vw, 29px); letter-spacing: -.75px; }
+  .auth-subtitle { margin: 0 0 17px; font-size: 12px; line-height: 1.6; }
+  .auth-tabs { gap: 5px; margin-bottom: 14px; padding: 4px; border: 1px solid rgba(190,214,255,.06); border-radius: 11px; background: rgba(3,8,15,.36); }
+  .auth-tabs button { min-height: 36px; padding: 7px 9px; border-radius: 8px; font-size: 11px; transition: color .18s, background .18s, box-shadow .18s; }
+  .auth-tabs button.active { background: linear-gradient(120deg, rgba(108,231,220,.19), rgba(118,201,255,.18), rgba(169,149,255,.17)); color: #f4fbff; box-shadow: inset 0 0 0 1px rgba(153,220,241,.15), 0 4px 12px rgba(0,0,0,.12); }
+  .auth-field { margin-bottom: 10px; font-size: 11px; }
+  .auth-field input { height: 41px; margin-top: 6px; border-color: rgba(150,184,211,.19); border-radius: 10px; font-size: 13px; }
+  .auth-field input:focus { border-color: rgba(108,231,220,.8); box-shadow: 0 0 0 3px rgba(108,231,220,.09); }
+  .auth-primary, .auth-google { height: 42px; border-radius: 10px; font-size: 12px; transition: transform .18s, box-shadow .18s, border-color .18s, background .18s; }
+  .auth-primary { background: linear-gradient(100deg, #159eea, #4bc5e8 58%, #72d7d0); box-shadow: 0 8px 20px rgba(29,153,226,.16), inset 0 1px rgba(255,255,255,.22); }
+  .auth-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 11px 25px rgba(29,153,226,.23), inset 0 1px rgba(255,255,255,.26); }
+  .auth-forgot { margin-top: 9px; font-size: 11px; }
+  .auth-forgot:hover { color: #a6f6ed; }
+  .auth-divider { margin: 11px 0; font-size: 10px; }
+  .auth-google { margin-top: 0; border-color: rgba(170,198,221,.19); background: rgba(255,255,255,.035); }
+  .auth-google:hover:not(:disabled) { border-color: rgba(108,231,220,.42); background: rgba(108,231,220,.075); box-shadow: 0 7px 18px rgba(0,0,0,.12); }
+  .auth-message { min-height: 15px; margin: 7px 0 0; font-size: 11px; }
+  .auth-terms { margin: 9px 0 0; font-size: 9px; line-height: 1.55; }
+
+  @media (max-height: 730px) and (min-width: 761px) {
+    .auth-promo-panel { padding-top: 23px; padding-bottom: 19px; gap: 15px; }
+    .auth-promo-copy { padding: 12px 0; }
+    .auth-promo-copy h2 { margin-bottom: 10px; font-size: clamp(28px, 3vw, 37px); }
+    .auth-promo-features { gap: 9px; margin-top: 17px; }
+    .auth-promo-feature-icon { width: 32px; height: 32px; }
+    .auth-form-panel { padding-top: 22px; padding-bottom: 17px; }
+    .auth-title { margin-top: 7px; }
+    .auth-subtitle { margin-bottom: 12px; }
+    .auth-tabs { margin-bottom: 10px; }
+    .auth-field { margin-bottom: 8px; }
+    .auth-field input { height: 38px; }
+    .auth-primary, .auth-google { height: 39px; }
+    .auth-divider { margin: 8px 0; }
+    .auth-terms { margin-top: 6px; }
+  }
+  @media (max-width: 760px) {
+    .auth-backdrop { padding: 10px; align-items: flex-start; }
+    .auth-card { display: flex; flex-direction: column; width: min(100%, 560px); max-height: calc(100vh - 20px); max-height: calc(100dvh - 20px); overflow-x: hidden; overflow-y: auto; border-radius: 20px; }
+    .auth-promo-panel { flex: none; gap: 10px; padding: 19px 22px 16px; border-right: 0; border-bottom: 1px solid rgba(175,213,255,.13); }
+    .auth-promo-logo { width: 38px; height: 38px; border-radius: 12px; }
+    .auth-promo-brand { font-size: 10px; gap: 3px; }
+    .auth-promo-brand small { font-size: 7px; }
+    .auth-promo-copy { margin: 0; padding: 8px 0 2px; }
+    .auth-promo-eyebrow { margin-bottom: 8px; font-size: 8px; }
+    .auth-promo-copy h2 { margin-bottom: 7px; font-size: 25px; letter-spacing: -.8px; }
+    .auth-promo-copy > p { max-width: 460px; font-size: 10px; line-height: 1.55; }
+    .auth-promo-features { display: none; }
+    .auth-promo-footer { padding-top: 10px; font-size: 7px; }
+    .auth-form-panel { flex: none; overflow: visible; padding: 21px 22px 22px; }
+    .auth-close { position: absolute; top: 12px; right: 12px; }
+    .auth-brand { min-height: 36px; }
+    .auth-brand img { width: 34px; height: 34px; }
+    .auth-title { margin-top: 8px; font-size: 24px; }
+    .auth-subtitle { margin-bottom: 13px; }
+    .auth-terms { margin-top: 8px; }
+  }
+  @media (max-width: 420px) {
+    .auth-backdrop { padding: 6px; }
+    .auth-card { max-height: calc(100vh - 12px); max-height: calc(100dvh - 12px); border-radius: 17px; }
+    .auth-promo-panel { padding: 16px 16px 13px; }
+    .auth-promo-copy h2 { font-size: 23px; }
+    .auth-form-panel { padding: 18px 16px 19px; }
+    .auth-field input { height: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .auth-close, .auth-tabs button, .auth-primary, .auth-google { transition: none !important; }
+  }
 </style>
 
 </head>
@@ -1036,12 +1405,84 @@ html {
     <div class="header-right">
       <a class="install-client" href="fistengine-download.html"><i class="fa-solid fa-download"></i><span>Install FistEngine</span></a>
       <span class="header-separator"></span>
-      
+      <button class="header-wishlist" id="topWishlistButton" type="button" aria-label="Open wishlist" title="Wishlist">
+        <i class="fa-regular fa-heart" aria-hidden="true"></i><span class="wishlist-label">Wishlist</span><span class="wishlist-count" id="topWishlistCount">0</span>
+      </button>
       <span class="header-separator"></span>
       <a class="header-upload" href="User-Console.html"><i class="fa-solid fa-cloud-arrow-up"></i><span>UPLOAD</span></a>
+      <div class="header-auth-wrap" id="headerAuthWrap">
+        <button class="header-auth-btn" id="openAuthButton" type="button"><img class="auth-button-logo" src="logo.png" alt="" onerror="this.onerror=null;this.src='favicon.png';"><span>Sign in</span></button>
+        <button class="account-avatar" id="accountAvatar" type="button" aria-label="Account menu" aria-expanded="false" hidden></button>
+        <div class="account-menu" id="accountMenu" hidden>
+          <div class="account-menu-name"><span id="accountDisplayName">Your account</span><span class="account-menu-email" id="accountDisplayEmail"></span></div>
+          <button type="button" id="accountSignOut"><i class="fa-solid fa-arrow-right-from-bracket"></i> &nbsp; Sign out</button>
+        </div>
+      </div>
     </div>
   </nav>
 </header>
+<div class="auth-backdrop" id="authBackdrop" aria-hidden="true">
+  <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <aside class="auth-promo-panel" aria-label="Discover the FistEngine experience">
+      <div class="auth-promo-top">
+        <img class="auth-promo-logo" src="logo.png" alt="FistEngine logo" onerror="this.onerror=null;this.src='favicon.png';">
+        <span class="auth-promo-brand">FISTENGINE<small>THE DISCOVERY STARTS HERE</small></span>
+      </div>
+      <div class="auth-promo-copy">
+        <span class="auth-promo-eyebrow"><i class="fa-solid fa-sparkles" aria-hidden="true"></i> YOUR NEXT FAVORITE AWAITS</span>
+        <h2>Find your next<br><span>favorite thing.</span></h2>
+        <p>From unforgettable games to everyday PC essentials, discover more of what you love — all in one place.</p>
+        <div class="auth-promo-features">
+          <div class="auth-promo-feature">
+            <span class="auth-promo-feature-icon"><i class="fa-solid fa-compass" aria-hidden="true"></i></span>
+            <span><strong>Explore without limits</strong><small>Games, apps and tools worth discovering.</small></span>
+          </div>
+          <div class="auth-promo-feature">
+            <span class="auth-promo-feature-icon"><i class="fa-regular fa-heart" aria-hidden="true"></i></span>
+            <span><strong>Keep the good stuff close</strong><small>Save favorites to your personal wishlist.</small></span>
+          </div>
+          <div class="auth-promo-feature">
+            <span class="auth-promo-feature-icon"><i class="fa-solid fa-layer-group" aria-hidden="true"></i></span>
+            <span><strong>Your store, your world</strong><small>One account for your FistEngine journey.</small></span>
+          </div>
+        </div>
+      </div>
+      <div class="auth-promo-footer">
+        <span class="auth-promo-footer-dot"></span>
+        <span>DISCOVER · SAVE · ENJOY</span>
+        <span class="auth-promo-footer-note">Made for curious minds.</span>
+      </div>
+    </aside>
+    <div class="auth-form-panel">
+      <button class="auth-close" id="authClose" type="button" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="auth-brand"><img src="logo.png" alt="FistEngine logo" onerror="this.onerror=null;this.src='favicon.png';"><span>FistEngine</span></div>
+      <h2 class="auth-title" id="authTitle">Welcome back</h2>
+      <p class="auth-subtitle" id="authSubtitle">Sign in to continue to your FistEngine account.</p>
+      <div class="auth-tabs" id="authTabs">
+        <button type="button" class="active" data-auth-mode="signin">Sign in</button>
+        <button type="button" data-auth-mode="signup">Create account</button>
+      </div>
+      <form id="authForm">
+        <label class="auth-field" id="authNameField" hidden>Full name
+          <input id="authName" type="text" autocomplete="name" maxlength="80" placeholder="Your name">
+        </label>
+        <label class="auth-field">Email address
+          <input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com">
+        </label>
+        <label class="auth-field">Password
+          <input id="authPassword" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters">
+        </label>
+        <button class="auth-primary" id="authSubmit" type="submit">Sign in</button>
+      </form>
+      <button class="auth-forgot" id="authForgot" type="button">Forgot password?</button>
+      <div class="auth-divider">OR</div>
+      <button class="auth-google" id="authGoogle" type="button"><i class="fa-brands fa-google"></i> &nbsp; Continue with Google</button>
+      <p class="auth-message" id="authMessage" role="status" aria-live="polite"></p>
+      <p class="auth-terms">By continuing, you agree to use your account responsibly. Your sign-in is secured by Firebase Authentication.</p>
+    </div>
+  </section>
+</div>
+<div id="wishlistToast" class="wishlist-toast" role="status" aria-live="polite" hidden></div>
 <div class="store-nav-wrap">
     <div class="store-nav">
       <nav class="store-nav-links" aria-label="Store categories">
@@ -1067,6 +1508,7 @@ html {
     <a class="sidebar-link" data-catalog-view="games" href="#games" title="Games"><i class="fa-solid fa-gamepad"></i><span>Games</span></a>
     <a class="sidebar-link" data-catalog-view="apps" href="#games" title="Apps"><i class="fa-solid fa-mobile-screen-button"></i><span>Apps</span></a>
     <a class="sidebar-link" data-catalog-view="pc-software" href="#games" title="PC Software"><i class="fa-solid fa-desktop"></i><span>PC Software</span></a>
+    <a class="sidebar-link wishlist-sidebar-link" data-catalog-view="wishlist" data-wishlist-view="true" href="#games" title="Wishlist"><i class="fa-regular fa-heart"></i><span>Wishlist</span><span class="sidebar-wishlist-count" id="sidebarWishlistCount">0</span></a>
     <div class="sidebar-divider"></div>
     <p class="sidebar-caption">Explore FistEngine</p>
     <a class="sidebar-link" href="#games" data-open-explore title="All items"><i class="fa-solid fa-layer-group"></i><span>All Products</span></a>
@@ -1198,6 +1640,7 @@ html {
             </div>
             <div class="ae-product-hero-action">
               <a id="detailsDownload" class="details-download" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>
+              <button type="button" class="details-wishlist-toggle" id="detailsWishlistButton" aria-pressed="false" title="Add to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Add to Wishlist</span></button>
               <span class="ae-safe-note"><i class="fa-solid fa-shield-halved"></i> Check platform and publisher information before installing.</span>
             </div>
           </section>
@@ -1270,9 +1713,26 @@ html {
             collection,
             getDocs,
             query,
-            orderBy
+            orderBy,
+            doc,
+            setDoc,
+            deleteDoc
         }
         from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+        import {
+            getAuth,
+            onAuthStateChanged,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
+            GoogleAuthProvider,
+            signInWithPopup,
+            sendPasswordResetEmail,
+            signOut,
+            updateProfile,
+            setPersistence,
+            browserLocalPersistence
+        } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
         /* =====================================================
@@ -1311,6 +1771,462 @@ html {
         const db =
             getFirestore(app);
 
+        /* =====================================================
+           FISTENGINE ACCOUNT AUTHENTICATION
+        ====================================================== */
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+        googleProvider.setCustomParameters({ prompt: "select_account" });
+
+        const authBackdrop = document.getElementById("authBackdrop");
+        const authForm = document.getElementById("authForm");
+        const authMessage = document.getElementById("authMessage");
+        const authNameField = document.getElementById("authNameField");
+        const authName = document.getElementById("authName");
+        const authEmail = document.getElementById("authEmail");
+        const authPassword = document.getElementById("authPassword");
+        const authSubmit = document.getElementById("authSubmit");
+        const authTitle = document.getElementById("authTitle");
+        const authSubtitle = document.getElementById("authSubtitle");
+        const authForgot = document.getElementById("authForgot");
+        const authGoogle = document.getElementById("authGoogle");
+        const openAuthButton = document.getElementById("openAuthButton");
+        const accountAvatar = document.getElementById("accountAvatar");
+        const accountMenu = document.getElementById("accountMenu");
+        const accountDisplayName = document.getElementById("accountDisplayName");
+        const accountDisplayEmail = document.getElementById("accountDisplayEmail");
+        let authMode = "signin";
+        let currentUser = null;
+        let activeDetailsProduct = null;
+        let wishlistIds = new Set();
+        let wishlistItems = new Map();
+        let wishlistRemovedKeys = new Set();
+        let wishlistLoadToken = 0;
+        let activeCatalogView = "for-you";
+        const WISHLIST_CACHE_PREFIX = "fistengine-wishlist-v1-";
+        let wishlistToastTimer = null;
+
+        function setAuthMessage(message, success = false) {
+            authMessage.textContent = message || "";
+            authMessage.classList.toggle("success", Boolean(success));
+        }
+
+        function setAuthMode(mode) {
+            authMode = mode;
+            const isSignup = mode === "signup";
+            authTitle.textContent = isSignup ? "Create your account" : "Welcome back";
+            authSubtitle.textContent = isSignup
+                ? "Create one account to use FistEngine across your devices."
+                : "Sign in to continue to your FistEngine account.";
+            authNameField.hidden = !isSignup;
+            authName.required = isSignup;
+            authPassword.autocomplete = isSignup ? "new-password" : "current-password";
+            authSubmit.textContent = isSignup ? "Create account" : "Sign in";
+            authForgot.hidden = isSignup;
+            document.querySelectorAll("[data-auth-mode]").forEach(button => {
+                button.classList.toggle("active", button.dataset.authMode === mode);
+            });
+            setAuthMessage("");
+        }
+
+        function openAuth(mode = "signin") {
+            setAuthMode(mode);
+            authBackdrop.classList.add("open");
+            authBackdrop.setAttribute("aria-hidden", "false");
+            accountMenu.hidden = true;
+            setTimeout(() => (isModeSignup(mode) ? authName : authEmail).focus(), 40);
+        }
+        function isModeSignup(mode) { return mode === "signup"; }
+        function closeAuth() {
+            authBackdrop.classList.remove("open");
+            authBackdrop.setAttribute("aria-hidden", "true");
+            setAuthMessage("");
+        }
+
+        openAuthButton?.addEventListener("click", () => openAuth("signin"));
+        document.querySelectorAll("[data-auth-mode]").forEach(button => {
+            button.addEventListener("click", () => setAuthMode(button.dataset.authMode));
+        });
+        document.getElementById("authClose")?.addEventListener("click", closeAuth);
+        authBackdrop?.addEventListener("click", event => {
+            if (event.target === authBackdrop) closeAuth();
+        });
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape" && authBackdrop?.classList.contains("open")) closeAuth();
+        });
+
+        function friendlyAuthError(error) {
+            const messages = {
+                "auth/email-already-in-use": "An account with this email already exists. Try signing in.",
+                "auth/invalid-email": "Please enter a valid email address.",
+                "auth/weak-password": "Choose a stronger password with at least 6 characters.",
+                "auth/invalid-credential": "Email or password is incorrect.",
+                "auth/user-not-found": "No account was found for this email.",
+                "auth/wrong-password": "Email or password is incorrect.",
+                "auth/popup-closed-by-user": "The Google sign-in window was closed before completion.",
+                "auth/popup-blocked": "Your browser blocked the Google sign-in popup. Allow popups and try again.",
+                "auth/unauthorized-domain": "This website is not authorized in Firebase Authentication settings.",
+                "auth/network-request-failed": "Network error. Check your internet connection and try again.",
+                "auth/too-many-requests": "Too many attempts. Please wait a little and try again."
+            };
+            return messages[error?.code] || error?.message || "Something went wrong. Please try again.";
+        }
+
+        const authPersistenceReady = setPersistence(auth, browserLocalPersistence).catch(error => {
+            console.error("Could not set persistent sign-in:", error);
+            throw error;
+        });
+
+        async function withAuthBusy(task) {
+            authSubmit.disabled = true;
+            authGoogle.disabled = true;
+            try {
+                await authPersistenceReady;
+                await task();
+            }
+            catch (error) {
+                console.error("FistEngine authentication:", error);
+                setAuthMessage(friendlyAuthError(error));
+            } finally {
+                authSubmit.disabled = false;
+                authGoogle.disabled = false;
+            }
+        }
+
+        authForm?.addEventListener("submit", event => {
+            event.preventDefault();
+            const email = authEmail.value.trim();
+            const password = authPassword.value;
+            withAuthBusy(async () => {
+                if (authMode === "signup") {
+                    const name = authName.value.trim();
+                    if (!name) { setAuthMessage("Please enter your name."); return; }
+                    const credential = await createUserWithEmailAndPassword(auth, email, password);
+                    await updateProfile(credential.user, { displayName: name });
+                    setAuthMessage("Your account has been created successfully.", true);
+                } else {
+                    await signInWithEmailAndPassword(auth, email, password);
+                }
+                closeAuth();
+                authForm.reset();
+            });
+        });
+
+        authGoogle?.addEventListener("click", () => withAuthBusy(async () => {
+            await signInWithPopup(auth, googleProvider);
+            closeAuth();
+            authForm.reset();
+        }));
+
+        authForgot?.addEventListener("click", async () => {
+            const email = authEmail.value.trim();
+            if (!email) { setAuthMessage("Enter your email address first."); authEmail.focus(); return; }
+            try {
+                await sendPasswordResetEmail(auth, email);
+                setAuthMessage("Password reset email sent. Check your inbox.", true);
+            } catch (error) {
+                setAuthMessage(friendlyAuthError(error));
+            }
+        });
+
+        accountAvatar?.addEventListener("click", () => {
+            accountMenu.hidden = !accountMenu.hidden;
+            accountAvatar.setAttribute("aria-expanded", String(!accountMenu.hidden));
+        });
+        document.addEventListener("click", event => {
+            if (!event.target.closest("#headerAuthWrap")) {
+                accountMenu.hidden = true;
+                accountAvatar?.setAttribute("aria-expanded", "false");
+            }
+        });
+        document.getElementById("accountSignOut")?.addEventListener("click", async () => {
+            try {
+                await signOut(auth);
+                accountMenu.hidden = true;
+            } catch (error) {
+                console.error("FistEngine sign out:", error);
+                alert(friendlyAuthError(error));
+            }
+        });
+
+        /* =====================================================
+           ACCOUNT WISHLIST — per-user Firestore sync + local fallback
+        ====================================================== */
+        function wishlistKey(product) {
+            if (product && product.wishlistKey) return String(product.wishlistKey);
+            const hasId = product && product.id !== undefined && product.id !== null && String(product.id).trim() !== "";
+            const source = String(product?.source || "FistEngine").normalize("NFKD").toLowerCase()
+                .replace(/[^a-z0-9_-]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "") || "fistengine";
+            const identity = hasId
+                ? `${source}-id-${product.id}`
+                : `${source}-${product?.homepage || product?.url || product?.name || "untitled"}`;
+            return String(identity).normalize("NFKD").toLowerCase()
+                .replace(/[^a-z0-9_-]+/g, "-").replace(/-+/g, "-")
+                .replace(/^-|-$/g, "").slice(0, 140) || "product";
+        }
+
+        function serialiseWishlistProduct(product, key = wishlistKey(product)) {
+            const list = value => Array.isArray(value) ? value.filter(item => typeof item === "string").slice(0, 20) : [];
+            return {
+                id: String(product?.id || key), wishlistKey: key,
+                name: String(product?.name || "Untitled product"),
+                developer: String(product?.developer || "FistEngine Developer"),
+                category: String(product?.category || "Apps"),
+                contentType: String(product?.contentType || inferContentType(product || {})),
+                rating: String(product?.rating ?? "4.8"),
+                downloads: String(product?.downloads ?? "New"),
+                icon: String(product?.icon || "logo.png"),
+                apk: String(product?.apk || "#"),
+                version: String(product?.version || ""),
+                size: String(product?.size || ""),
+                android: String(product?.android || ""),
+                homepage: String(product?.homepage || product?.url || ""),
+                detailsBackground: String(product?.detailsBackground || product?.detailsBackgroundUrl || ""),
+                description: String(product?.description || ""),
+                whatsNew: String(product?.whatsNew || ""),
+                screenshots: list(product?.screenshots),
+                videos: list(product?.videos || product?.videoUrls),
+                featured: Boolean(product?.featured), verified: product?.verified !== false,
+                homepageSection: String(product?.homepageSection || ""),
+                tags: list(product?.tags),
+                source: String(product?.source || "FistEngine"),
+                sourceLabel: String(product?.sourceLabel || ""),
+                external: Boolean(product?.external),
+                downloadLabel: String(product?.downloadLabel || "Download")
+            };
+        }
+
+        function wishlistCacheKey(uid) { return `${WISHLIST_CACHE_PREFIX}${uid}`; }
+
+        function readWishlistCache(uid) {
+            try {
+                const parsed = JSON.parse(localStorage.getItem(wishlistCacheKey(uid)) || "null");
+                const items = new Map();
+                Object.entries(parsed?.items || {}).forEach(([key, product]) => {
+                    if (product && typeof product === "object") items.set(key, { ...product, wishlistKey: key });
+                });
+                return { items, removed: new Set(Array.isArray(parsed?.removed) ? parsed.removed : []) };
+            } catch (_) {
+                return { items: new Map(), removed: new Set() };
+            }
+        }
+
+        function persistWishlistCache() {
+            if (!currentUser) return;
+            try {
+                const items = {};
+                wishlistItems.forEach((product, key) => { items[key] = serialiseWishlistProduct(product, key); });
+                localStorage.setItem(wishlistCacheKey(currentUser.uid), JSON.stringify({ items, removed: [...wishlistRemovedKeys] }));
+            } catch (error) {
+                console.warn("FistEngine wishlist local cache could not be saved:", error);
+            }
+        }
+
+        function showWishlistToast(message, warning = false) {
+            const toast = document.getElementById("wishlistToast");
+            if (!toast) return;
+            toast.textContent = message;
+            toast.classList.toggle("is-warning", Boolean(warning));
+            toast.hidden = false;
+            clearTimeout(wishlistToastTimer);
+            wishlistToastTimer = setTimeout(() => { toast.hidden = true; }, 3800);
+        }
+
+        function updateWishlistUI() {
+            const count = wishlistIds.size;
+            const topCount = document.getElementById("topWishlistCount");
+            const sidebarCount = document.getElementById("sidebarWishlistCount");
+            if (topCount) topCount.textContent = String(count);
+            if (sidebarCount) sidebarCount.textContent = String(count);
+            document.querySelectorAll(".app-wishlist-toggle").forEach(button => {
+                const key = button.dataset.wishlistKey;
+                const saved = Boolean(key && wishlistIds.has(key));
+                button.classList.toggle("is-saved", saved);
+                button.setAttribute("aria-pressed", String(saved));
+                button.setAttribute("aria-label", saved ? "Remove from wishlist" : "Add to wishlist");
+                button.title = saved ? "Remove from wishlist" : "Add to wishlist";
+                button.innerHTML = saved
+                    ? '<i class="fa-solid fa-heart" aria-hidden="true"></i>'
+                    : '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
+            });
+            const detailsButton = document.getElementById("detailsWishlistButton");
+            if (detailsButton) {
+                const key = detailsButton.dataset.wishlistKey;
+                const saved = Boolean(key && wishlistIds.has(key));
+                detailsButton.classList.toggle("is-saved", saved);
+                detailsButton.setAttribute("aria-pressed", String(saved));
+                detailsButton.title = saved ? "Remove from wishlist" : "Add to wishlist";
+                detailsButton.innerHTML = saved
+                    ? '<i class="fa-solid fa-heart" aria-hidden="true"></i><span>Saved to Wishlist</span>'
+                    : '<i class="fa-regular fa-heart" aria-hidden="true"></i><span>Add to Wishlist</span>';
+            }
+        }
+
+        function wishlistAppsForView() {
+            const live = new Map();
+            const sources = [
+                ...(Array.isArray(manualCatalogApps) ? manualCatalogApps : []),
+                ...(Array.isArray(automaticCatalogApps) ? automaticCatalogApps : [])
+            ];
+            sources.forEach(product => live.set(wishlistKey(product), product));
+            const result = [];
+            wishlistItems.forEach((savedProduct, key) => {
+                if (wishlistRemovedKeys.has(key) || !wishlistIds.has(key)) return;
+                result.push(live.get(key) || { ...savedProduct, wishlistKey: key });
+            });
+            return result;
+        }
+
+        async function loadWishlistForUser(user) {
+            const token = ++wishlistLoadToken;
+            wishlistIds = new Set();
+            wishlistItems = new Map();
+            wishlistRemovedKeys = new Set();
+            if (!user) { updateWishlistUI(); return; }
+
+            const local = readWishlistCache(user.uid);
+            wishlistItems = new Map(local.items);
+            wishlistRemovedKeys = new Set(local.removed);
+            wishlistRemovedKeys.forEach(key => wishlistItems.delete(key));
+            wishlistItems.forEach((product, key) => wishlistIds.add(key));
+            updateWishlistUI();
+
+            try {
+                const snapshot = await getDocs(collection(db, "users", user.uid, "wishlist"));
+                if (token !== wishlistLoadToken || currentUser?.uid !== user.uid) return;
+                const remoteKeys = new Set();
+                snapshot.forEach(itemDoc => {
+                    const key = itemDoc.id;
+                    remoteKeys.add(key);
+                    if (wishlistRemovedKeys.has(key)) return;
+                    const data = itemDoc.data() || {};
+                    const product = data.product && typeof data.product === "object" ? data.product : data;
+                    wishlistItems.set(key, { ...product, wishlistKey: key });
+                    wishlistIds.add(key);
+                });
+
+                let syncFailed = false;
+                // Carry locally saved entries to the account if a previous write was blocked/offline.
+                for (const [key, product] of [...wishlistItems.entries()]) {
+                    if (remoteKeys.has(key) || wishlistRemovedKeys.has(key)) continue;
+                    try {
+                        await setDoc(doc(db, "users", user.uid, "wishlist", key), {
+                            key, product: serialiseWishlistProduct(product, key), savedAt: Date.now()
+                        });
+                    } catch (error) { syncFailed = true; console.warn("FistEngine wishlist upload:", error); }
+                }
+                // Retain local removal intent and retry deletions after reconnecting or fixing rules.
+                for (const key of [...wishlistRemovedKeys]) {
+                    if (!remoteKeys.has(key)) continue;
+                    try {
+                        await deleteDoc(doc(db, "users", user.uid, "wishlist", key));
+                        wishlistIds.delete(key); wishlistItems.delete(key);
+                    } catch (error) { syncFailed = true; console.warn("FistEngine wishlist removal sync:", error); }
+                }
+                if (token !== wishlistLoadToken || currentUser?.uid !== user.uid) return;
+                persistWishlistCache();
+                updateWishlistUI();
+                if (activeCatalogView === "wishlist") renderCurrentCatalog();
+                if (syncFailed) showWishlistToast("Your wishlist is available here, but Firebase rules currently block some cloud changes.", true);
+            } catch (error) {
+                if (token !== wishlistLoadToken || currentUser?.uid !== user.uid) return;
+                console.warn("FistEngine wishlist cloud load failed; using this device's cache:", error);
+                updateWishlistUI();
+                if (activeCatalogView === "wishlist") renderCurrentCatalog();
+                showWishlistToast("Wishlist cloud sync is unavailable. Saved items will remain on this device for now.", true);
+            }
+        }
+
+        async function toggleWishlist(product, button) {
+            if (!currentUser) {
+                openAuth("signin");
+                setAuthMessage("Sign in to save products to your wishlist.");
+                return;
+            }
+            const user = currentUser;
+            const key = wishlistKey(product);
+            const remove = wishlistIds.has(key);
+            if (button) button.disabled = true;
+            if (remove) {
+                wishlistIds.delete(key);
+                wishlistItems.delete(key);
+                wishlistRemovedKeys.add(key);
+            } else {
+                const snapshot = { ...serialiseWishlistProduct(product, key), wishlistKey: key };
+                wishlistIds.add(key);
+                wishlistItems.set(key, snapshot);
+                wishlistRemovedKeys.delete(key);
+            }
+            persistWishlistCache();
+            updateWishlistUI();
+            if (activeCatalogView === "wishlist") renderCurrentCatalog();
+
+            try {
+                const itemRef = doc(db, "users", user.uid, "wishlist", key);
+                if (remove) await deleteDoc(itemRef);
+                else await setDoc(itemRef, { key, product: serialiseWishlistProduct(product, key), savedAt: Date.now() });
+                if (remove) wishlistRemovedKeys.add(key);
+                persistWishlistCache();
+                showWishlistToast(remove ? "Removed from your wishlist." : "Added to your wishlist.");
+            } catch (error) {
+                console.warn("FistEngine wishlist cloud save failed:", error);
+                persistWishlistCache();
+                showWishlistToast("Wishlist updated on this device. For account-wide sync, allow users to access only their own wishlist in Firestore rules.", true);
+            } finally {
+                if (button) button.disabled = false;
+                updateWishlistUI();
+            }
+        }
+
+        function openWishlistView(event) {
+            event?.preventDefault();
+            if (!currentUser) {
+                openAuth("signin");
+                setAuthMessage("Sign in to see your saved wishlist.");
+                return;
+            }
+            setCatalogView("wishlist");
+            document.body.classList.remove("sidebar-open");
+            window.requestAnimationFrame(() => document.getElementById("games")?.scrollIntoView({
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+                block: "start"
+            }));
+        }
+
+        document.getElementById("topWishlistButton")?.addEventListener("click", openWishlistView);
+        document.getElementById("detailsWishlistButton")?.addEventListener("click", () => {
+            if (activeDetailsProduct) toggleWishlist(activeDetailsProduct, document.getElementById("detailsWishlistButton"));
+        });
+
+        onAuthStateChanged(auth, user => {
+            currentUser = user || null;
+            loadWishlistForUser(user || null).catch(error => console.warn("FistEngine wishlist init failed:", error));
+            if (user) {
+                const label = user.displayName || user.email || "FistEngine user";
+                accountDisplayName.textContent = label;
+                accountDisplayEmail.textContent = user.email || "";
+                const googlePhoto = user.photoURL || user.providerData?.find(provider => provider.providerId === "google.com")?.photoURL || "";
+                const initial = (user.displayName || user.email || "F").trim().charAt(0).toUpperCase();
+                accountAvatar.classList.toggle("has-photo", Boolean(googlePhoto));
+                accountAvatar.innerHTML = googlePhoto
+                    ? `<img src="${escapeHTML(googlePhoto)}" alt="Google account profile photo">`
+                    : initial;
+                const profileImage = accountAvatar.querySelector("img");
+                if (profileImage) profileImage.addEventListener("error", () => {
+                    accountAvatar.classList.remove("has-photo");
+                    accountAvatar.textContent = initial;
+                }, { once: true });
+                accountAvatar.hidden = false;
+                openAuthButton.hidden = true;
+                updateWishlistUI();
+            } else {
+                accountAvatar.hidden = true;
+                accountAvatar.classList.remove("has-photo");
+                openAuthButton.hidden = false;
+                accountMenu.hidden = true;
+                if (activeCatalogView === "wishlist") setCatalogView("for-you");
+            }
+        });
 
         /* =====================================================
            LOAD APPS FROM FIRESTORE
@@ -1797,6 +2713,21 @@ html {
                 verified
             );
 
+            const wishlistButton = document.createElement("button");
+            wishlistButton.type = "button";
+            wishlistButton.className = "app-wishlist-toggle";
+            wishlistButton.dataset.wishlistKey = wishlistKey(app);
+            wishlistButton.setAttribute("aria-pressed", "false");
+            wishlistButton.setAttribute("aria-label", "Add to wishlist");
+            wishlistButton.title = "Add to wishlist";
+            wishlistButton.innerHTML = '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
+            wishlistButton.addEventListener("click", event => {
+                event.preventDefault();
+                event.stopPropagation();
+                toggleWishlist(app, wishlistButton);
+            });
+            card.appendChild(wishlistButton);
+
             const cover = document.createElement("img");
             cover.className = "app-cover-art";
             cover.alt = "";
@@ -1894,7 +2825,7 @@ card.dataset.size = String(app.size || "");
                         .toLowerCase()
                     : "";
 
-
+            updateWishlistUI();
             return card;
 
         }
@@ -1905,6 +2836,10 @@ card.dataset.size = String(app.size || "");
         ====================================================== */
 
         function openAppDetails(app) {
+            activeDetailsProduct = app;
+            const detailsWishlistButton = document.getElementById("detailsWishlistButton");
+            if (detailsWishlistButton) detailsWishlistButton.dataset.wishlistKey = wishlistKey(app);
+            updateWishlistUI();
 
             const modal =
                 document.getElementById(
@@ -2452,24 +3387,23 @@ card.dataset.size = String(app.size || "");
                 !apps.length
             ) {
 
-                container.innerHTML = `
-
-                    <div class="empty-state">
-
-                        <i class="fa-solid fa-mobile-screen-button"></i>
-
-                        <h3>
-                            Nothing here yet
-                        </h3>
-
-                        <p>
-                            Items will appear here when they are added in the FistEngine admin panel.
-                        </p>
-
-                    </div>
-
-                `;
-
+                if (activeCatalogView === "wishlist") {
+                    container.innerHTML = `
+                        <div class="empty-state wishlist-empty-state">
+                            <i class="fa-regular fa-heart"></i>
+                            <h3>Your wishlist is empty</h3>
+                            <p>Use the heart on any game, app or software card to save it here.</p>
+                        </div>
+                    `;
+                } else {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <h3>Nothing here yet</h3>
+                            <p>Items will appear here when they are added in the FistEngine admin panel.</p>
+                        </div>
+                    `;
+                }
                 return;
 
             }
@@ -2479,13 +3413,10 @@ card.dataset.size = String(app.size || "");
 
             apps.forEach(
                 function (app) {
-
-                    container.appendChild(
-                        createAppCard(app)
-                    );
-
+                    container.appendChild(createAppCard(app));
                 }
             );
+            updateWishlistUI();
 
         }
 
@@ -3126,8 +4057,6 @@ card.dataset.size = String(app.size || "");
             await finishExternalSearchLoading(searchId);
         }
 
-        let activeCatalogView = "for-you";
-
         function inferContentType(app) {
             const explicit = String(app?.contentType || "").trim().toLowerCase();
             if (explicit === "games" || explicit === "game") return "Games";
@@ -3157,6 +4086,7 @@ card.dataset.size = String(app.size || "");
 
         function appsForActiveView() {
             const all = Array.isArray(manualCatalogApps) ? manualCatalogApps : [];
+            if (activeCatalogView === "wishlist") return wishlistAppsForView();
             if (activeCatalogView === "for-you") return combinedCatalog();
             if (activeCatalogView === "apps") return all.filter(app => inferContentType(app) === "Apps");
             if (activeCatalogView === "games") return all.filter(app => inferContentType(app) === "Games");
@@ -3366,7 +4296,7 @@ if (videos.length) {
             const filtered = viewApps.filter(app => !term || searchableAppText(app).includes(term));
             renderApps(grid, filtered);
             renderExternalSearchLoader();
-            window.apkCityApps = activeCatalogView === "for-you" ? combinedCatalog() : manualCatalogApps;
+            window.apkCityApps = activeCatalogView === "for-you" ? combinedCatalog() : (activeCatalogView === "wishlist" ? wishlistAppsForView() : manualCatalogApps);
             const count = document.getElementById("appCount");
             if (count) count.textContent = `${window.apkCityApps.length}+`;
             if (explorePageOpen) renderExplorePage();
@@ -3378,14 +4308,17 @@ if (videos.length) {
                 "apps": ["Apps", "Applications added by the FistEngine admin."],
                 "games": ["Games", "Games added by the FistEngine admin."],
                 "pc-software": ["PC software", "Desktop software added by the FistEngine admin."],
-                "latest": ["Latest releases", "Only items added in the last 3 days."]
+                "latest": ["Latest releases", "Only items added in the last 3 days."],
+                "wishlist": ["Your wishlist", "The games, apps and software you have saved to your FistEngine account."]
             };
             if (title && headings[activeCatalogView]) title.textContent = headings[activeCatalogView][0];
             if (subtitle && headings[activeCatalogView]) subtitle.textContent = headings[activeCatalogView][1];
 
             const status = document.getElementById("autoCatalogStatus");
             if (status) {
-                if (activeCatalogView === "latest") {
+                if (activeCatalogView === "wishlist") {
+                    status.textContent = filtered.length ? `${filtered.length} saved item(s) in your wishlist.` : "Your wishlist is empty. Use the heart on any product card to save it here.";
+                } else if (activeCatalogView === "latest") {
                     status.textContent = filtered.length ? `${filtered.length} recent item(s) added in the last 3 days.` : "No recent releases. Items appear here only for 3 days after they are added.";
                 } else if (activeCatalogView === "for-you") {
                     status.textContent = term
@@ -3530,8 +4463,10 @@ if (videos.length) {
             const links = document.querySelectorAll(".sidebar-link[data-catalog-view], .top-nav-link[data-catalog-view], .category[data-catalog-view]");
             links.forEach(el => {
                 const label = String(el.textContent || "").trim().toLowerCase();
-                let view = null;
-                if (el.classList.contains("category")) {
+                let view = el.dataset.wishlistView === "true" || el.dataset.catalogView === "wishlist" ? "wishlist" : null;
+                if (view) {
+                    // Wishlist uses the same catalog renderer but is scoped to this signed-in account.
+                } else if (el.classList.contains("category")) {
                     if (label.includes("for you") || label.includes("store")) view = "for-you";
                     else if (label.includes("latest") || label.includes("new release")) view = "latest";
                     else if (label.includes("games")) view = "games";
@@ -3550,7 +4485,14 @@ if (videos.length) {
                 el.dataset.catalogBound = "true";
                 el.addEventListener("click", event => {
                     event.preventDefault();
+                    if (view === "wishlist" && !currentUser) {
+                        openAuth("signin");
+                        setAuthMessage("Sign in to see your saved wishlist.");
+                        document.body.classList.remove("sidebar-open");
+                        return;
+                    }
                     setCatalogView(view);
+                    if (el.matches(".sidebar-link")) document.body.classList.remove("sidebar-open");
                     // Keep the filtered catalog in view on desktop and mobile,
                     // even when the visitor has scrolled far down the storefront.
                     window.requestAnimationFrame(() => {
