@@ -1388,6 +1388,720 @@ html {
   }
 </style>
 
+
+<style id="fistengine-entertainment-section">
+  /* Entertainment is a view inside the existing FistEngine storefront, not a separate site. */
+  .fe-ent-hub { min-width: 0; padding: 2px 0 40px; }
+  .fe-ent-heading-row { display:flex; align-items:flex-end; justify-content:space-between; gap:22px; margin:0 0 24px; padding:4px 0 21px; border-bottom:1px solid rgba(206,225,255,.12); }
+  .fe-ent-heading-copy { min-width:0; }
+  .fe-ent-breadcrumb { display:flex; align-items:center; gap:9px; margin:0 0 17px; color:#7888a3; font-size:9px; font-weight:800; letter-spacing:1.5px; }
+  .fe-ent-breadcrumb i { font-size:8px; color:#52627d; }
+  .fe-ent-breadcrumb strong { color:#b8c6df; }
+  .fe-ent-eyebrow { display:flex; align-items:center; gap:7px; margin-bottom:7px; color:var(--fe-teal); font-size:9px; font-weight:900; letter-spacing:1.7px; }
+  .fe-ent-heading-copy h1 { margin:0; color:#f6f8ff; font-size:clamp(28px,3.3vw,39px); letter-spacing:-1.25px; line-height:1.1; }
+  .fe-ent-heading-copy p { margin:9px 0 0; color:#9aa8c1; font-size:12px; line-height:1.6; }
+  .fe-ent-heading-badge { flex:none; display:flex; align-items:center; gap:8px; padding:10px 12px; border:1px solid rgba(108,231,220,.19); border-radius:12px; background:linear-gradient(135deg,rgba(108,231,220,.09),rgba(169,149,255,.08)); color:#b9dedf; font-size:8px; font-weight:900; letter-spacing:1.3px; }
+  .fe-ent-heading-badge i { color:var(--fe-teal); }
+  .fe-ent-search-toolbar { display:flex; align-items:center; justify-content:space-between; gap:14px; margin:0 0 27px; }
+  .fe-ent-search { display:flex; align-items:center; gap:11px; width:min(600px,100%); min-height:47px; padding:0 14px; border:1px solid rgba(206,225,255,.14); border-radius:13px; background:rgba(7,11,20,.58); box-shadow:inset 0 2px 8px rgba(0,0,0,.15),0 5px 19px rgba(0,0,0,.08); transition:border-color .18s,box-shadow .18s; }
+  .fe-ent-search:focus-within { border-color:rgba(108,231,220,.52); box-shadow:0 0 0 3px rgba(108,231,220,.07),inset 0 2px 8px rgba(0,0,0,.15); }
+  .fe-ent-search>i { color:var(--fe-teal); font-size:13px; }
+  .fe-ent-search input { min-width:0; width:100%; height:43px; padding:0; border:0; outline:0; background:transparent; color:#f4f7ff; font-size:11px; box-shadow:none; }
+  .fe-ent-search input::placeholder { color:#737f99; }
+  .fe-ent-search kbd { flex:none; padding:3px 6px; border:1px solid rgba(217,227,255,.12); border-radius:5px; color:#6f7c96; font:9px Inter, sans-serif; }
+  .fe-ent-results-count { flex:none; color:#8390aa; font-size:10px; white-space:nowrap; }
+  .fe-ent-catalog-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin:0 0 11px; }
+  .fe-ent-kicker { display:block; margin:0 0 5px; color:#8d87ff; font-size:8px; font-weight:900; letter-spacing:1.7px; }
+  .fe-ent-catalog-heading h2 { margin:0; color:#f2f5ff; font-size:22px; font-weight:800; letter-spacing:-.45px; }
+  .fe-ent-catalog-heading p { margin:5px 0 0; color:#8d9ab3; font-size:10px; }
+  .fe-ent-category-indicator { display:flex; align-items:center; gap:7px; padding:7px 10px; border:1px solid rgba(205,224,255,.11); border-radius:9px; background:rgba(255,255,255,.025); color:#9eabc5; font-size:9px; white-space:nowrap; }
+  .fe-ent-category-indicator i { color:var(--fe-teal); }
+  .fe-ent-status { min-height:20px; margin:0 0 9px; color:#8492ad; font-size:9px; line-height:1.5; }
+  .fe-ent-status.is-error { color:#ff9aab; }
+  .fe-ent-status.is-loading::before { content:""; display:inline-block; width:8px; height:8px; margin-right:8px; border:1px solid var(--fe-teal); border-top-color:transparent; border-radius:50%; vertical-align:-1px; animation:fe-ent-spin .75s linear infinite; }
+  @keyframes fe-ent-spin { to { transform:rotate(360deg); } }
+  .fe-ent-card-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); align-items:stretch; gap:17px 13px; }
+  .fe-ent-card { position:relative; min-width:0; overflow:hidden; display:flex; flex-direction:column; border:1px solid rgba(207,224,255,.105); border-radius:14px; background:linear-gradient(155deg,rgba(23,30,47,.95),rgba(11,16,27,.97)); box-shadow:0 8px 23px rgba(0,0,0,.19); cursor:pointer; transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease,background .2s ease; }
+  .fe-ent-card:hover { transform:translateY(-4px); border-color:rgba(108,231,220,.43); background:linear-gradient(155deg,rgba(30,42,61,.97),rgba(12,18,29,.99)); box-shadow:0 15px 35px rgba(0,0,0,.33),0 0 0 1px rgba(108,231,220,.04); }
+  .fe-ent-card:focus-visible { outline:2px solid var(--fe-teal); outline-offset:3px; }
+  .fe-ent-poster-wrap { position:relative; isolation:isolate; width:100%; aspect-ratio:2/3; overflow:hidden; background:linear-gradient(145deg,#252c43,#111827); }
+  .fe-ent-poster { display:block; width:100%; height:100%; object-fit:cover; transition:transform .35s ease,filter .25s; }
+  .fe-ent-card:hover .fe-ent-poster { transform:scale(1.035); filter:brightness(1.08); }
+  .fe-ent-poster-shade { position:absolute; inset:35% 0 0; pointer-events:none; background:linear-gradient(180deg,transparent,rgba(5,8,15,.72)); }
+  .fe-ent-card-badge { position:absolute; left:9px; bottom:9px; max-width:calc(100% - 18px); padding:5px 7px; overflow:hidden; border:1px solid rgba(255,255,255,.19); border-radius:6px; background:rgba(7,11,20,.73); color:#e9f7ff; font-size:7px; font-weight:900; letter-spacing:.9px; text-overflow:ellipsis; white-space:nowrap; backdrop-filter:blur(12px); }
+  .fe-ent-card-badge.featured { color:#ffe0a3; border-color:rgba(255,220,145,.25); }
+  .fe-ent-card-badge.recommended { color:#a6fff0; border-color:rgba(108,231,220,.25); }
+  .fe-ent-card-copy { display:flex; flex:1; flex-direction:column; min-width:0; padding:10px 10px 11px; }
+  .fe-ent-card-title { display:-webkit-box; min-height:32px; overflow:hidden; color:#f0f4ff; font-size:11px; font-weight:800; line-height:1.45; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow-wrap:anywhere; }
+  .fe-ent-card-meta { display:flex; flex-wrap:wrap; align-items:center; gap:5px 8px; margin-top:7px; color:#8997b2; font-size:8px; }
+  .fe-ent-card-meta .rating { color:#ffd58a; }
+  .fe-ent-card-meta .rating i { margin-right:3px; color:#ffc76b; font-size:8px; }
+  .fe-ent-card-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:8px; min-height:19px; }
+  .fe-ent-card-tags span { max-width:100%; padding:3px 5px; overflow:hidden; border:1px solid rgba(206,225,255,.09); border-radius:5px; color:#8797b3; font-size:7px; text-overflow:ellipsis; white-space:nowrap; }
+  .fe-ent-card-open { display:flex; align-items:center; justify-content:center; gap:7px; min-height:31px; margin-top:10px; border:1px solid rgba(108,231,220,.17); border-radius:8px; background:rgba(108,231,220,.06); color:#a8eae2; font-size:8px; font-weight:800; transition:background .18s,border-color .18s; }
+  .fe-ent-card:hover .fe-ent-card-open { border-color:rgba(108,231,220,.35); background:rgba(108,231,220,.13); color:#f0fffd; }
+  .fe-ent-card .app-wishlist-toggle { top:8px; left:8px; width:31px; height:31px; border-radius:10px; }
+  .ent-sidebar-count { display:inline-grid; place-items:center; min-width:19px; height:19px; margin-left:auto; padding:0 5px; border:1px solid rgba(108,231,220,.14); border-radius:6px; background:rgba(108,231,220,.055); color:#a5d8d8; font-size:8px; font-weight:800; }
+  .entertainment-category-link.selected .ent-sidebar-count { border-color:rgba(108,231,220,.28); background:rgba(108,231,220,.12); color:#e1fffb; }
+  .entertainment-category-link.selected { background:linear-gradient(90deg,rgba(108,231,220,.16),rgba(169,149,255,.07)) !important; box-shadow:inset 3px 0 0 var(--fe-teal); }
+  .entertainment-category-link.selected i,.entertainment-category-link:hover i { color:var(--fe-teal) !important; }
+  .entertainment-back-link { color:#9caac3; }
+  .entertainment-back-link i { color:#8e9ab4 !important; }
+  .fe-ent-empty { grid-column:1/-1; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:220px; padding:28px; border:1px dashed rgba(207,224,255,.13); border-radius:16px; background:linear-gradient(145deg,rgba(20,27,43,.65),rgba(10,15,25,.58)); text-align:center; color:#8c9ab4; }
+  .fe-ent-empty>i { margin-bottom:13px; color:#6ce7dc; font-size:28px; }
+  .fe-ent-empty strong { margin-bottom:6px; color:#e3e9fa; font-size:14px; }
+  .fe-ent-empty span { max-width:440px; font-size:10px; line-height:1.7; }
+  .details-download-mirrors { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; width:225px; }
+  .details-download-mirrors[hidden] { display:none !important; }
+  .details-download-mirror { display:inline-flex; align-items:center; gap:6px; min-height:29px; padding:0 9px; border:1px solid rgba(108,231,220,.18); border-radius:9px; background:rgba(108,231,220,.05); color:#a7eae2; font-size:8px; font-weight:800; }
+  .details-download-mirror:hover { border-color:rgba(108,231,220,.45); background:rgba(108,231,220,.11); color:#fff; }
+  .ae-video-embed { position:absolute; inset:0; z-index:4; display:block; width:100%; height:100%; border:0; background:#05090d; }
+  .ae-video-embed[hidden] { display:none !important; }
+  body.entertainment-mode .store-nav-wrap .top-nav-link[data-open-entertainment],
+  body.entertainment-mode .top-nav-links [data-open-entertainment] { color:#fff; border-color:rgba(108,231,220,.2); background:linear-gradient(135deg,rgba(108,231,220,.16),rgba(169,149,255,.13)); }
+  body.entertainment-mode .store-nav .search-wrapper { display:none !important; }
+  body.entertainment-mode .store-nav { justify-content:flex-start; }
+  @media(max-width:1250px) { .fe-ent-card-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+  @media(max-width:1000px) { .fe-ent-card-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 11px; } .fe-ent-heading-badge { display:none; } }
+  @media(max-width:700px) { .fe-ent-heading-row { align-items:flex-start; margin-bottom:17px; padding-bottom:16px; } .fe-ent-heading-copy h1 { font-size:29px; } .fe-ent-heading-copy p { font-size:10px; } .fe-ent-search-toolbar { align-items:stretch; flex-direction:column; gap:8px; margin-bottom:22px; } .fe-ent-search { min-height:43px; } .fe-ent-search input { height:41px; } .fe-ent-results-count { text-align:right; } .fe-ent-catalog-heading h2 { font-size:19px; } .fe-ent-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 9px; } .fe-ent-card-copy { padding:9px 8px 9px; } .fe-ent-card-title { font-size:10px; } .fe-ent-card .app-wishlist-toggle { width:29px; height:29px; } .fe-ent-card-meta { font-size:8px; } .details-download-mirrors { width:100%; justify-content:center; } }
+  @media(max-width:380px) { .fe-ent-card-grid { gap:9px 7px; } .fe-ent-card-copy { padding:8px 7px; } .fe-ent-card-open { font-size:7px; } }
+  @media(hover:none),(pointer:coarse) { .fe-ent-card:hover { transform:none; } .fe-ent-card:hover .fe-ent-poster { transform:none; } }
+  @media(prefers-reduced-motion:reduce) { .fe-ent-status.is-loading::before { animation:none; } .fe-ent-card,.fe-ent-poster,.fe-ent-card-open { transition:none; } }
+</style>
+
+
+<style id="fistengine-entertainment-spotlight-style">
+  .fe-ent-spotlight { position:relative; display:flex; align-items:flex-end; min-height:218px; margin:0 0 24px; overflow:hidden; isolation:isolate; border:1px solid rgba(207,224,255,.15); border-radius:17px; background:radial-gradient(ellipse at 75% 8%,rgba(108,231,220,.18),transparent 38%),linear-gradient(115deg,#1c2841,#0d1422 72%); box-shadow:0 14px 35px rgba(0,0,0,.2); }
+  .fe-ent-spotlight[hidden] { display:none !important; }
+  .fe-ent-spotlight-art { position:absolute; inset:0; z-index:-2; background-position:center 38%; background-repeat:no-repeat; background-size:cover; opacity:.72; transform:scale(1.015); }
+  .fe-ent-spotlight-shade { position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(7,11,20,.97) 0%,rgba(7,11,20,.83) 43%,rgba(7,11,20,.24) 100%),linear-gradient(0deg,rgba(5,9,17,.65),transparent 68%); }
+  .fe-ent-spotlight-copy { position:relative; max-width:710px; padding:23px 25px 22px; }
+  .fe-ent-spotlight-label { display:inline-flex; align-items:center; gap:6px; margin-bottom:9px; color:#ffe0a3; font-size:8px; font-weight:900; letter-spacing:1.5px; }
+  .fe-ent-spotlight-label.recommended { color:#9df4e9; }
+  .fe-ent-spotlight-copy h2 { margin:0 0 7px; color:#fff; font-size:clamp(21px,2.8vw,31px); font-weight:900; letter-spacing:-.75px; line-height:1.13; text-shadow:0 3px 20px #000; }
+  .fe-ent-spotlight-copy p { max-width:640px; margin:0 0 12px; color:#d0d8e9; font-size:10px; line-height:1.65; text-shadow:0 2px 10px #000; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .fe-ent-spotlight-meta { display:flex; flex-wrap:wrap; gap:7px; margin:0 0 14px; color:#d3dced; font-size:8px; }
+  .fe-ent-spotlight-meta span { padding:4px 7px; border:1px solid rgba(235,242,255,.15); border-radius:6px; background:rgba(7,12,22,.46); backdrop-filter:blur(9px); }
+  .fe-ent-spotlight-cta { display:inline-flex; align-items:center; gap:9px; min-height:35px; padding:0 14px; border:1px solid rgba(108,231,220,.25); border-radius:10px; background:linear-gradient(135deg,rgba(108,231,220,.19),rgba(169,149,255,.17)); color:#edfffd; font-size:9px; font-weight:900; cursor:pointer; transition:transform .18s,border-color .18s,background .18s; }
+  .fe-ent-spotlight-cta:hover { transform:translateY(-2px); border-color:rgba(108,231,220,.58); background:linear-gradient(135deg,rgba(108,231,220,.29),rgba(169,149,255,.23)); }
+  @media(max-width:700px) { .fe-ent-spotlight { min-height:200px; margin-bottom:20px; border-radius:13px; } .fe-ent-spotlight-copy { padding:17px 15px; } .fe-ent-spotlight-copy h2 { font-size:22px; } .fe-ent-spotlight-copy p { font-size:9px; } }
+</style>
+
+
+<style id="fistengine-product-page-layout-fix">
+  /* Product-page header: only the FistEngine brand and Back control. */
+  .ae-product-topbar {
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    grid-template-columns:none !important;
+    gap:16px !important;
+    height:72px !important;
+    min-height:72px;
+    padding:0 clamp(16px,4vw,58px) !important;
+    background:rgba(8,13,24,.82) !important;
+    border-bottom:1px solid rgba(210,229,255,.14) !important;
+  }
+  .ae-product-brand { display:flex !important; align-items:center; gap:12px; min-width:0; }
+  .ae-product-brand img {
+    display:block; width:40px !important; height:40px !important; flex:none;
+    object-fit:contain; border:0 !important; border-radius:0 !important;
+    background:transparent !important; box-shadow:none !important;
+  }
+  .ae-product-brand span { color:#f7f9ff; font-size:17px; font-weight:900; letter-spacing:-.45px; }
+  .ae-product-nav, .ae-product-icon-link { display:none !important; }
+  .ae-product-header-actions { display:flex !important; justify-content:flex-end; align-items:center; gap:0 !important; margin-left:auto; }
+  .details-close { min-height:42px !important; padding:0 16px !important; border-radius:12px !important; font-size:10px !important; }
+
+  /* Keep arbitrary pasted text/URLs inside their own content panel. */
+  .ae-product-hero, .ae-product-hero-copy, .ae-product-spec-column,
+  .ae-product-showcase, .ae-product-lower, .ae-product-overview,
+  #detailsDescriptionSection, .details-section, .details-section p { min-width:0; max-width:100%; }
+  #detailsDescriptionSection { width:100%; overflow-wrap:anywhere; }
+  #detailsDescription, #detailsWhatsNew {
+    width:100%; max-width:100%; min-width:0; margin:0;
+    white-space:pre-wrap !important;
+    overflow-wrap:anywhere !important;
+    word-break:break-word !important;
+    hyphens:auto;
+  }
+  .details-section p { overflow-wrap:anywhere; word-break:break-word; }
+
+  /* Product information: tidy 2×2 data tiles with labels above values. */
+  .ae-product-spec-column { width:100%; max-width:405px; min-width:0; }
+  .ae-spec-panel, .ae-aside-card { width:100%; min-width:0; max-width:100%; overflow:hidden; }
+  .ae-product-stats {
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    align-items:stretch;
+    gap:8px !important;
+    margin-top:13px;
+  }
+  .ae-product-stats .details-stat {
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    justify-content:flex-start !important;
+    gap:8px !important;
+    width:100%; min-width:0; min-height:77px;
+    padding:12px 11px !important;
+    border:1px solid rgba(216,232,255,.12) !important;
+    border-radius:10px !important;
+    background:rgba(7,13,24,.35) !important;
+    overflow:hidden;
+  }
+  .ae-product-stats .details-stat span {
+    display:block; max-width:100%; color:rgba(193,209,237,.65);
+    font-size:7px; line-height:1.5; font-weight:850; letter-spacing:1px;
+    overflow-wrap:anywhere;
+  }
+  .ae-product-stats .details-stat strong {
+    display:block; max-width:100%; min-width:0; color:#f5f8ff;
+    font-size:11px; line-height:1.45; font-weight:800; text-align:left;
+    overflow-wrap:anywhere; word-break:break-word;
+  }
+  .ae-spec-footnote, .ae-aside-card p, .ae-aside-line span {
+    min-width:0; max-width:100%; overflow-wrap:anywhere; word-break:break-word;
+  }
+
+  /* Entertainment cards mirror the existing FistEngine app-card composition. */
+  .fe-ent-card {
+    overflow:hidden !important;
+    border:1px solid rgba(208,225,255,.14) !important;
+    border-radius:18px !important;
+    background:linear-gradient(155deg,rgba(34,43,65,.84),rgba(13,20,33,.96)) !important;
+    box-shadow:0 13px 32px rgba(0,0,0,.19),inset 0 1px rgba(255,255,255,.07) !important;
+  }
+  .fe-ent-card:hover { border-color:rgba(108,231,220,.43) !important; }
+  .fe-ent-poster-wrap { aspect-ratio:16/9 !important; overflow:hidden; }
+  .fe-ent-poster { width:100%; height:100%; object-fit:cover; }
+  .fe-ent-poster-shade { inset:40% 0 0; }
+  .fe-ent-card-badge { top:10px !important; right:10px !important; bottom:auto !important; left:auto !important; max-width:calc(100% - 58px) !important; }
+  .fe-ent-card-copy { display:flex; flex-direction:column; min-width:0; padding:0 13px 13px !important; }
+  .fe-ent-card-icon {
+    display:block; position:relative; z-index:2; flex:none;
+    width:48px; height:48px; margin:-24px 0 9px 0;
+    object-fit:cover; border:2px solid rgba(235,247,255,.68);
+    border-radius:13px; background:#111827;
+    box-shadow:0 8px 23px rgba(0,0,0,.42);
+  }
+  .fe-ent-card-title {
+    display:-webkit-box; min-width:0; min-height:31px; max-width:100%;
+    overflow:hidden; color:#f6f8ff; font-size:12px; font-weight:850;
+    line-height:1.38; letter-spacing:-.15px;
+    -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow-wrap:anywhere;
+  }
+  .fe-ent-card-developer {
+    min-width:0; max-width:100%; margin-top:3px; color:rgba(194,208,233,.58);
+    font-size:9px; line-height:1.4; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .fe-ent-card-meta { display:flex; align-items:center; flex-wrap:wrap; gap:6px 10px; margin-top:9px; color:rgba(215,226,246,.70); font-size:8px; }
+  .fe-ent-card-meta .rating { color:#f2d48c; }
+  .fe-ent-card-meta .rating i { color:#ffce76; }
+  .fe-ent-card .app-wishlist-toggle { top:10px; left:10px; width:35px; height:35px; border-radius:12px; }
+  @media(max-width:1540px) {
+    .apps-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+  }
+  @media(max-width:1250px) {
+    .fe-ent-card-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+  }
+  @media(max-width:1000px) {
+    .apps-grid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+    .fe-ent-card-grid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+    .ae-product-hero { grid-template-columns:minmax(0,1fr) minmax(270px,340px); gap:24px; }
+  }
+  @media(max-width:700px) {
+    .apps-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .fe-ent-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+    .ae-product-topbar { height:62px !important; min-height:62px; padding:0 13px !important; }
+    .ae-product-brand { gap:9px; }
+    .ae-product-brand img { width:34px !important; height:34px !important; }
+    .ae-product-brand span { font-size:14px; }
+    .ae-product-hero { display:block; padding:18px 15px 35px; }
+    .ae-product-hero-copy { max-width:100%; }
+    #detailsDescriptionSection { width:100%; }
+    .ae-product-spec-column { max-width:none; margin-top:20px; }
+    .ae-product-showcase { margin-top:0 !important; padding:16px 13px !important; }
+    .ae-product-overview, .ae-screenshots-section { padding:16px 13px !important; }
+    .ae-product-stats .details-stat { min-height:72px; padding:10px 9px !important; }
+    .fe-ent-card-copy { padding:0 9px 10px !important; }
+    .fe-ent-card-icon { width:40px; height:40px; margin-top:-20px; border-radius:11px; }
+    .fe-ent-card-title { font-size:10px; }
+    .fe-ent-card-developer { font-size:8px; }
+    .fe-ent-card-meta { font-size:7px; gap:5px 7px; }
+  }
+  @media(max-width:370px) {
+    .ae-product-stats { grid-template-columns:minmax(0,1fr) !important; }
+    .ae-product-stats .details-stat { min-height:0; }
+  }
+</style>
+
+
+<style id="fistengine-card-density-and-delayed-hover-fix">
+/* Keep the wide desktop catalog compact: five cards per row like the original store. */
+@media (min-width:1251px) {
+  .apps-grid,
+  .fe-ent-card-grid { grid-template-columns:repeat(5,minmax(0,1fr)) !important; }
+}
+@media (min-width:1001px) and (max-width:1250px) {
+  .apps-grid,
+  .fe-ent-card-grid { grid-template-columns:repeat(4,minmax(0,1fr)) !important; }
+}
+@media (min-width:701px) and (max-width:1000px) {
+  .apps-grid,
+  .fe-ent-card-grid { grid-template-columns:repeat(3,minmax(0,1fr)) !important; }
+}
+@media (max-width:700px) {
+  .apps-grid,
+  .fe-ent-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)) !important; }
+}
+
+/* App cards: a short, constrained popover instead of a large extra panel in the card. */
+.app-card { overflow:visible !important; }
+.app-card-extra-info {
+  display:block !important;
+  position:absolute !important;
+  top:calc(100% - 10px) !important;
+  left:-1px !important;
+  right:-1px !important;
+  z-index:80 !important;
+  max-height:104px !important;
+  overflow:hidden !important;
+  margin:0 !important;
+  padding:10px 11px 9px !important;
+  border:1px solid rgba(205,231,255,.19) !important;
+  border-top-color:rgba(108,231,220,.29) !important;
+  border-radius:0 0 14px 14px !important;
+  background:linear-gradient(145deg,rgba(27,43,57,.98),rgba(13,20,33,.99)) !important;
+  box-shadow:0 15px 28px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.08) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(145%) !important;
+  backdrop-filter:blur(18px) saturate(145%) !important;
+  visibility:hidden !important;
+  opacity:0 !important;
+  transform:translateY(-5px) !important;
+  pointer-events:none !important;
+  transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s !important;
+}
+.app-card-size { gap:6px !important; font-size:8px !important; line-height:1.3 !important; }
+.app-card-size strong { font-size:9px !important; }
+.app-card-description {
+  margin-top:6px !important;
+  font-size:8px !important;
+  line-height:1.42 !important;
+  display:-webkit-box !important;
+  -webkit-line-clamp:2 !important;
+  -webkit-box-orient:vertical !important;
+  overflow:hidden !important;
+  overflow-wrap:anywhere !important;
+}
+.app-card:hover .app-card-extra-info,
+.app-card:focus-visible .app-card-extra-info {
+  visibility:visible !important;
+  opacity:1 !important;
+  transform:translateY(0) !important;
+  pointer-events:none !important;
+  transition-delay:.8s,.8s,.8s !important;
+}
+.app-card:not(:hover):not(:focus-visible) .app-card-extra-info {
+  transition-delay:0s,0s,0s !important;
+}
+.app-card:focus-visible .app-card-extra-info { transition-delay:0s,0s,0s !important; }
+
+/* Entertainment cards use the same short delayed overlay, with media metadata and synopsis. */
+.fe-ent-card {
+  overflow:visible !important;
+  position:relative !important;
+}
+.fe-ent-card:hover, .fe-ent-card:focus-visible { z-index:35 !important; }
+.fe-ent-card .fe-ent-poster-wrap {
+  overflow:hidden !important;
+  border-radius:17px 17px 0 0;
+}
+.fe-ent-card-hover-info {
+  display:block;
+  position:absolute;
+  top:calc(100% - 10px);
+  left:-1px;
+  right:-1px;
+  z-index:80;
+  max-height:104px;
+  overflow:hidden;
+  padding:10px 11px 9px;
+  border:1px solid rgba(205,231,255,.19);
+  border-top-color:rgba(108,231,220,.29);
+  border-radius:0 0 14px 14px;
+  background:linear-gradient(145deg,rgba(27,43,57,.98),rgba(13,20,33,.99));
+  box-shadow:0 15px 28px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.08);
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+  visibility:hidden;
+  opacity:0;
+  transform:translateY(-5px);
+  pointer-events:none;
+  transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s;
+}
+.fe-ent-hover-meta {
+  max-width:100%;
+  margin:0 0 6px;
+  overflow:hidden;
+  color:#9fe8df;
+  font-size:8px;
+  font-weight:800;
+  line-height:1.35;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.fe-ent-hover-description {
+  margin:0;
+  color:rgba(216,226,245,.76);
+  font-size:8px;
+  line-height:1.42;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+  overflow-wrap:anywhere;
+}
+.fe-ent-card:hover .fe-ent-card-hover-info,
+.fe-ent-card:focus-visible .fe-ent-card-hover-info {
+  visibility:visible;
+  opacity:1;
+  transform:translateY(0);
+  transition-delay:.8s,.8s,.8s;
+}
+.fe-ent-card:not(:hover):not(:focus-visible) .fe-ent-card-hover-info { transition-delay:0s,0s,0s; }
+.fe-ent-card:focus-visible .fe-ent-card-hover-info { transition-delay:0s,0s,0s; }
+
+/* Touch devices do not hover; keep the cards clean and let tap open the full detail page. */
+@media (hover:none), (pointer:coarse) {
+  .app-card-extra-info,
+  .fe-ent-card-hover-info { display:none !important; }
+  .app-card:hover { transform:none !important; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .app-card-extra-info,
+  .fe-ent-card-hover-info { transition:none !important; }
+}
+</style>
+
+
+<style id="fistengine-entertainment-showcase-hover-polish">
+/* Wide video-first showcase, modeled on FistEngine's existing store showcase. */
+.fe-ent-spotlight {
+  display:grid !important; grid-template-columns:minmax(0,1.75fr) minmax(245px,.82fr); align-items:stretch; gap:13px;
+  min-height:0; margin:0 0 26px; overflow:visible; border:0; border-radius:0; background:transparent; box-shadow:none;
+}
+.fe-ent-spotlight[hidden] { display:none !important; }
+.fe-ent-spotlight-primary { min-width:0; overflow:hidden; border:1px solid rgba(207,224,255,.16); border-radius:18px; background:linear-gradient(145deg,rgba(23,32,52,.95),rgba(10,16,28,.98)); box-shadow:0 18px 42px rgba(0,0,0,.25),inset 0 1px rgba(255,255,255,.06); }
+.fe-ent-spotlight-media { position:relative; isolation:isolate; min-width:0; min-height:335px; aspect-ratio:16/8.5; overflow:hidden; background:#0a101b; }
+.fe-ent-spotlight-art { position:absolute; inset:0; z-index:-2; background-position:center 34%; background-repeat:no-repeat; background-size:cover; opacity:.94; transition:opacity .2s; }
+.fe-ent-spotlight-video,.fe-ent-spotlight-frame { position:absolute; inset:0; z-index:-1; width:100%; height:100%; border:0; object-fit:cover; background:#050810; }
+.fe-ent-spotlight-frame { pointer-events:none; }
+.fe-ent-spotlight-video[hidden],.fe-ent-spotlight-frame[hidden] { display:none !important; }
+.fe-ent-spotlight-shade { position:absolute; inset:0; z-index:0; background:linear-gradient(90deg,rgba(6,10,19,.97) 0%,rgba(6,10,19,.79) 41%,rgba(6,10,19,.12) 100%),linear-gradient(0deg,rgba(5,8,15,.76),transparent 67%); pointer-events:none; }
+.fe-ent-spotlight-copy { position:absolute; z-index:2; left:clamp(18px,2.6vw,32px); right:20px; bottom:23px; max-width:72%; padding:0; }
+.fe-ent-spotlight-label { display:inline-flex; align-items:center; gap:7px; margin:0 0 9px; color:#ffe0a3; font-size:9px; font-weight:900; letter-spacing:1.5px; }
+.fe-ent-spotlight-label.recommended { color:#9df4e9; }
+.fe-ent-spotlight-copy h2 { margin:0 0 8px; color:#fff; font-size:clamp(24px,2.9vw,38px); font-weight:900; letter-spacing:-1px; line-height:1.08; text-shadow:0 3px 20px #000; overflow-wrap:anywhere; }
+.fe-ent-spotlight-copy p { max-width:620px; margin:0 0 12px; color:#d4dced; font-size:10px; line-height:1.58; text-shadow:0 2px 10px #000; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.fe-ent-spotlight-meta { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 13px; color:#d7e1f3; font-size:8px; }
+.fe-ent-spotlight-meta span { padding:5px 7px; border:1px solid rgba(235,242,255,.16); border-radius:7px; background:rgba(7,12,22,.5); backdrop-filter:blur(9px); }
+.fe-ent-spotlight-cta { display:inline-flex; align-items:center; gap:9px; min-height:36px; padding:0 15px; border:1px solid rgba(108,231,220,.32); border-radius:10px; background:linear-gradient(135deg,rgba(108,231,220,.22),rgba(169,149,255,.22)); color:#f1fffd; font-size:9px; font-weight:900; cursor:pointer; }
+.fe-ent-spotlight-cta:hover { border-color:rgba(108,231,220,.65); background:linear-gradient(135deg,rgba(108,231,220,.32),rgba(169,149,255,.28)); }
+.fe-ent-spotlight-live { position:absolute; z-index:3; top:13px; right:14px; display:inline-flex; align-items:center; gap:7px; padding:6px 8px; border:1px solid rgba(255,255,255,.12); border-radius:7px; background:rgba(4,9,17,.68); color:#e3f6ff; font-size:8px; font-weight:900; letter-spacing:1px; backdrop-filter:blur(10px); }
+.fe-ent-spotlight-live[hidden] { display:none !important; }
+.fe-ent-spotlight-live i { width:6px; height:6px; border-radius:50%; background:#87f0d5; box-shadow:0 0 9px rgba(135,240,213,.75); }
+.fe-ent-spotlight-selectors { display:flex; gap:0; min-height:75px; overflow-x:auto; border-top:1px solid rgba(206,225,255,.12); scrollbar-width:thin; scrollbar-color:#394760 transparent; background:rgba(7,12,21,.35); }
+.fe-ent-spotlight-selector { display:flex; flex:1 0 150px; min-width:0; align-items:center; gap:9px; padding:9px 11px; border:0; border-right:1px solid rgba(206,225,255,.08); border-top:2px solid transparent; background:transparent; text-align:left; cursor:pointer; transition:background .18s,border-color .18s; }
+.fe-ent-spotlight-selector:hover,.fe-ent-spotlight-selector.active { background:linear-gradient(180deg,rgba(108,231,220,.11),rgba(169,149,255,.055)); }
+.fe-ent-spotlight-selector.active { border-top-color:var(--fe-teal); }
+.fe-ent-spotlight-selector img { flex:none; width:43px; height:52px; object-fit:cover; border:1px solid rgba(221,232,255,.16); border-radius:7px; background:#111827; }
+.fe-ent-selector-copy { display:flex; flex-direction:column; gap:5px; min-width:0; }
+.fe-ent-selector-copy strong { overflow:hidden; color:#eef3ff; font-size:9px; font-weight:850; text-overflow:ellipsis; white-space:nowrap; }
+.fe-ent-selector-copy small { color:#88a6b5; font-size:7px; font-weight:900; letter-spacing:.75px; }
+.fe-ent-recommended-panel { min-width:0; display:flex; flex-direction:column; padding:14px 13px; overflow:hidden; border:1px solid rgba(207,224,255,.14); border-radius:18px; background:linear-gradient(155deg,rgba(28,38,59,.92),rgba(11,17,29,.97)); box-shadow:0 18px 42px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.05); }
+.fe-ent-recommended-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:1px 2px 12px; border-bottom:1px solid rgba(206,225,255,.12); }
+.fe-ent-recommended-heading span { color:#8edfd7; font-size:7px; font-weight:900; letter-spacing:1.35px; }
+.fe-ent-recommended-heading h3 { margin:4px 0 0; color:#f5f7ff; font-size:17px; font-weight:850; letter-spacing:-.4px; }
+.fe-ent-recommended-heading>i { color:#b9adff; font-size:17px; }
+.fe-ent-recommended-list { display:flex; flex:1; flex-direction:column; min-width:0; }
+.fe-ent-recommended-item { display:flex; align-items:center; gap:10px; width:100%; min-width:0; padding:10px 2px; border:0; border-bottom:1px solid rgba(206,225,255,.09); border-radius:8px; background:transparent; text-align:left; cursor:pointer; transition:background .16s,transform .16s; }
+.fe-ent-recommended-item:hover { background:rgba(255,255,255,.045); transform:translateX(2px); }
+.fe-ent-recommended-item img { flex:none; width:48px; height:56px; object-fit:cover; border:1px solid rgba(221,232,255,.14); border-radius:7px; background:#101827; }
+.fe-ent-recommended-copy { display:flex; flex:1; flex-direction:column; min-width:0; gap:4px; }
+.fe-ent-recommended-copy strong { overflow:hidden; color:#edf3ff; font-size:9px; font-weight:850; text-overflow:ellipsis; white-space:nowrap; }
+.fe-ent-recommended-copy small { overflow:hidden; color:#91a1bb; font-size:7px; line-height:1.4; text-overflow:ellipsis; white-space:nowrap; }
+.fe-ent-recommended-arrow { flex:none; color:#8fe3d9; font-size:9px; }
+.fe-ent-recommended-empty { display:flex; flex:1; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:22px 9px; color:#8898b2; text-align:center; }
+.fe-ent-recommended-empty>i { color:#78dcd3; font-size:23px; }
+.fe-ent-recommended-empty strong { color:#e0e8f8; font-size:10px; }
+.fe-ent-recommended-empty span { max-width:220px; font-size:8px; line-height:1.55; }
+
+/* Picture-led, compact hover details for both app cards and entertainment cards. */
+.app-card { overflow:visible !important; position:relative; }
+.app-card:hover,.app-card:focus-visible { z-index:90 !important; }
+.app-card-extra-info {
+  display:block !important; position:absolute !important; top:calc(100% - 1px) !important; left:-1px !important; right:-1px !important; z-index:100 !important;
+  max-height:220px !important; overflow:hidden !important; margin:0 !important; padding:0 !important;
+  border:1px solid rgba(205,231,255,.2) !important; border-top-color:rgba(108,231,220,.4) !important; border-radius:0 0 15px 15px !important;
+  background:linear-gradient(145deg,rgba(23,35,52,.99),rgba(9,15,26,.995)) !important; box-shadow:0 18px 35px rgba(0,0,0,.46),inset 0 1px rgba(255,255,255,.08) !important;
+  -webkit-backdrop-filter:blur(20px) saturate(145%) !important; backdrop-filter:blur(20px) saturate(145%) !important;
+  visibility:hidden !important; opacity:0 !important; transform:translateY(-5px) !important; pointer-events:none !important;
+  transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s !important;
+}
+.app-card-hover-visual { position:relative; height:76px; overflow:hidden; isolation:isolate; background:#111827; }
+.app-card-hover-backdrop { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; filter:saturate(.9); }
+.app-card-hover-shade { position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(5,10,18,.75),rgba(5,10,18,.22)),linear-gradient(0deg,rgba(5,10,18,.7),transparent 75%); }
+.app-card-hover-heading { position:absolute; inset:auto 9px 8px; display:flex; align-items:center; gap:8px; min-width:0; }
+.app-card-hover-heading>img { width:39px; height:39px; flex:none; object-fit:cover; border:1px solid rgba(255,255,255,.45); border-radius:9px; background:#0b111c; box-shadow:0 3px 10px #0008; }
+.app-card-hover-heading>span { display:flex; flex-direction:column; min-width:0; gap:4px; }
+.app-card-hover-heading strong { color:#fff; font-size:10px; line-height:1.25; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.app-card-hover-heading small { color:#c2d0e5; font-size:7px; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.app-card-hover-body { padding:9px 10px 10px; }
+.app-card-size { display:flex !important; align-items:center; gap:6px !important; color:rgba(218,231,250,.76) !important; font-size:8px !important; line-height:1.3 !important; }
+.app-card-size i { color:var(--fe-teal) !important; }
+.app-card-size strong { margin-left:auto; color:#f6fbff !important; font-size:9px !important; white-space:nowrap; }
+.app-card-description { margin:6px 0 0 !important; color:rgba(216,226,245,.78) !important; font-size:8px !important; line-height:1.42 !important; display:-webkit-box !important; -webkit-line-clamp:2 !important; -webkit-box-orient:vertical !important; overflow:hidden !important; overflow-wrap:anywhere !important; }
+.app-card:hover .app-card-extra-info,.app-card:focus-visible .app-card-extra-info { visibility:visible !important; opacity:1 !important; transform:translateY(0) !important; pointer-events:none !important; transition-delay:.5s,.5s,.5s !important; }
+.app-card:not(:hover):not(:focus-visible) .app-card-extra-info { transition-delay:0s,0s,0s !important; }
+.app-card:focus-visible .app-card-extra-info { transition-delay:0s,0s,0s !important; }
+.fe-ent-card { overflow:visible !important; position:relative !important; }
+.fe-ent-card:hover,.fe-ent-card:focus-visible { z-index:90 !important; }
+.fe-ent-card .fe-ent-poster-wrap { overflow:hidden !important; border-radius:13px 13px 0 0; }
+.fe-ent-card-hover-info { display:block; position:absolute; top:calc(100% - 1px); left:-1px; right:-1px; z-index:100; max-height:235px; overflow:hidden; padding:0; border:1px solid rgba(205,231,255,.2); border-top-color:rgba(108,231,220,.4); border-radius:0 0 15px 15px; background:linear-gradient(145deg,rgba(23,35,52,.99),rgba(9,15,26,.995)); box-shadow:0 18px 35px rgba(0,0,0,.46),inset 0 1px rgba(255,255,255,.08); -webkit-backdrop-filter:blur(20px) saturate(145%); backdrop-filter:blur(20px) saturate(145%); visibility:hidden; opacity:0; transform:translateY(-5px); pointer-events:none; transition:opacity .16s ease,transform .16s ease,visibility 0s linear .16s; }
+.fe-ent-hover-visual { position:relative; height:82px; overflow:hidden; isolation:isolate; background:#111827; }
+.fe-ent-hover-backdrop { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; filter:saturate(.9); }
+.fe-ent-hover-shade { position:absolute; inset:0; z-index:-1; background:linear-gradient(90deg,rgba(5,10,18,.65),rgba(5,10,18,.18)),linear-gradient(0deg,rgba(5,10,18,.8),transparent 80%); }
+.fe-ent-hover-head { position:absolute; inset:auto 9px 8px; display:flex; align-items:center; gap:8px; min-width:0; }
+.fe-ent-hover-head>img { width:42px; height:49px; flex:none; object-fit:cover; border:1px solid rgba(255,255,255,.48); border-radius:7px; background:#0b111c; box-shadow:0 3px 10px #0008; }
+.fe-ent-hover-head-copy { display:flex; flex-direction:column; min-width:0; gap:4px; }
+.fe-ent-hover-head-copy strong { color:#fff; font-size:9px; line-height:1.25; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fe-ent-hover-head-copy small { color:#c2d0e5; font-size:7px; line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.fe-ent-hover-body { padding:9px 10px 10px; }
+.fe-ent-hover-description { margin:0; color:rgba(216,226,245,.78); font-size:8px; line-height:1.42; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; overflow-wrap:anywhere; }
+.fe-ent-hover-badges { display:flex; flex-wrap:wrap; gap:4px; margin-top:7px; }
+.fe-ent-hover-badges span { display:inline-flex; align-items:center; gap:4px; max-width:100%; padding:3px 5px; overflow:hidden; border:1px solid rgba(108,231,220,.17); border-radius:5px; color:#a9e8e1; font-size:7px; text-overflow:ellipsis; white-space:nowrap; }
+.fe-ent-card:hover .fe-ent-card-hover-info,.fe-ent-card:focus-visible .fe-ent-card-hover-info { visibility:visible; opacity:1; transform:translateY(0); transition-delay:.5s,.5s,.5s; }
+.fe-ent-card:not(:hover):not(:focus-visible) .fe-ent-card-hover-info { transition-delay:0s,0s,0s; }
+.fe-ent-card:focus-visible .fe-ent-card-hover-info { transition-delay:0s,0s,0s; }
+@media (min-width:1100px) { .fe-ent-spotlight-media { min-height:355px; } }
+@media (max-width:1000px) { .fe-ent-spotlight { grid-template-columns:minmax(0,1.4fr) minmax(210px,.9fr); gap:10px; } .fe-ent-spotlight-media { min-height:300px; } .fe-ent-spotlight-copy { max-width:84%; left:20px; bottom:18px; } .fe-ent-recommended-panel { padding:12px 10px; } .fe-ent-recommended-item { gap:8px; padding:8px 1px; } .fe-ent-recommended-item img { width:40px; height:49px; } }
+@media (max-width:780px) { .fe-ent-spotlight { grid-template-columns:1fr; } .fe-ent-spotlight-media { min-height:320px; aspect-ratio:16/9; } .fe-ent-spotlight-copy { max-width:82%; } .fe-ent-recommended-panel { min-height:0; } .fe-ent-recommended-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 10px; } .fe-ent-recommended-item { padding:8px 4px; } }
+@media (max-width:700px) { .fe-ent-spotlight { gap:10px; margin-bottom:20px; } .fe-ent-spotlight-primary,.fe-ent-recommended-panel { border-radius:14px; } .fe-ent-spotlight-media { min-height:280px; } .fe-ent-spotlight-copy { left:15px; right:13px; bottom:16px; max-width:91%; } .fe-ent-spotlight-copy h2 { font-size:23px; } .fe-ent-spotlight-copy p { font-size:9px; } .fe-ent-spotlight-meta { margin-bottom:9px; } .fe-ent-spotlight-selectors { min-height:66px; } .fe-ent-spotlight-selector { flex-basis:130px; padding:7px; gap:7px; } .fe-ent-spotlight-selector img { width:35px; height:44px; } .fe-ent-recommended-list { grid-template-columns:1fr 1fr; } }
+@media (max-width:430px) { .fe-ent-spotlight-media { min-height:255px; } .fe-ent-spotlight-copy { max-width:96%; } .fe-ent-spotlight-copy h2 { font-size:21px; } .fe-ent-spotlight-copy p { -webkit-line-clamp:2; } .fe-ent-recommended-list { grid-template-columns:1fr; } .fe-ent-recommended-item:nth-child(n+5) { display:none; } }
+@media (hover:none),(pointer:coarse) { .app-card-extra-info,.fe-ent-card-hover-info { display:none !important; } .app-card:hover,.fe-ent-card:hover { transform:none !important; } }
+@media (prefers-reduced-motion:reduce) { .app-card-extra-info,.fe-ent-card-hover-info,.fe-ent-spotlight-selector,.fe-ent-recommended-item { transition:none !important; } }
+</style>
+
+<style id="fistengine-hover-in-card-and-fullwidth-entertainment-showcase">
+/* Entertainment showcase: one wide, cinematic feature across the store content. */
+#entertainmentSpotlight.fe-ent-spotlight[hidden] { display:none !important; }
+#entertainmentSpotlight.fe-ent-spotlight:not([hidden]) { display:grid !important; }
+#entertainmentSpotlight.fe-ent-spotlight {
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  width:100% !important;
+  gap:0 !important;
+  margin:0 0 26px !important;
+  overflow:hidden !important;
+  border:0 !important;
+  border-radius:20px !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+#entertainmentSpotlight .fe-ent-spotlight-primary {
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  overflow:hidden !important;
+  border:1px solid rgba(207,224,255,.17) !important;
+  border-radius:20px !important;
+  background:linear-gradient(145deg,rgba(23,32,52,.96),rgba(10,16,28,.99)) !important;
+  box-shadow:0 20px 46px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.07) !important;
+}
+#entertainmentSpotlight .fe-ent-recommended-panel { display:none !important; }
+#entertainmentSpotlight .fe-ent-spotlight-media {
+  display:block !important;
+  width:100% !important;
+  height:clamp(340px,34vw,520px) !important;
+  min-height:0 !important;
+  max-height:none !important;
+  aspect-ratio:auto !important;
+  overflow:hidden !important;
+  background:#080d17 !important;
+}
+#entertainmentSpotlight .fe-ent-spotlight-art,
+#entertainmentSpotlight .fe-ent-spotlight-video,
+#entertainmentSpotlight .fe-ent-spotlight-frame { width:100%; height:100%; }
+#entertainmentSpotlight .fe-ent-spotlight-copy { max-width:min(760px,78%); left:clamp(20px,3.2vw,48px); right:24px; bottom:clamp(22px,3vw,42px); }
+#entertainmentSpotlight .fe-ent-spotlight-copy h2 { font-size:clamp(27px,3.4vw,48px); }
+#entertainmentSpotlight .fe-ent-spotlight-selectors { min-height:82px; }
+#entertainmentSpotlight .fe-ent-spotlight-selector { flex:1 0 170px; }
+
+/* Desktop hover previews stay INSIDE their own card; no floating panels over the next row. */
+@media (hover:hover) and (pointer:fine) {
+  .app-card,
+  .fe-ent-card {
+    position:relative !important;
+    overflow:hidden !important;
+    isolation:isolate;
+    transform-origin:center center;
+    transition:transform .22s cubic-bezier(.2,.7,.2,1),border-color .22s ease,box-shadow .22s ease,background .22s ease !important;
+  }
+  .app-card:hover,
+  .app-card:focus-visible,
+  .fe-ent-card:hover,
+  .fe-ent-card:focus-visible {
+    z-index:12 !important;
+    transform:translateY(-3px) scale(1.018) !important;
+    border-color:rgba(108,231,220,.48) !important;
+    box-shadow:0 18px 38px rgba(0,0,0,.34),0 0 0 1px rgba(108,231,220,.08) !important;
+    transition-delay:1s !important;
+  }
+  .app-card:not(:hover):not(:focus-visible),
+  .fe-ent-card:not(:hover):not(:focus-visible) { transition-delay:0s !important; }
+
+  .app-card-extra-info {
+    display:flex !important;
+    flex-direction:column !important;
+    position:absolute !important;
+    inset:0 !important;
+    top:0 !important; left:0 !important; right:0 !important; bottom:0 !important;
+    z-index:20 !important;
+    width:100% !important; height:100% !important; max-height:none !important;
+    overflow:hidden !important; margin:0 !important; padding:0 !important;
+    border:1px solid rgba(205,231,255,.22) !important;
+    border-radius:inherit !important;
+    background:linear-gradient(145deg,rgba(17,27,43,.98),rgba(7,12,22,.99)) !important;
+    box-shadow:inset 0 1px rgba(255,255,255,.08) !important;
+    -webkit-backdrop-filter:blur(16px) saturate(140%) !important;
+    backdrop-filter:blur(16px) saturate(140%) !important;
+    visibility:hidden !important; opacity:0 !important;
+    transform:scale(.985) !important; pointer-events:none !important;
+    transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s !important;
+    transition-delay:0s,0s,.2s !important;
+  }
+  .app-card-hover-visual { flex:0 0 54% !important; height:auto !important; min-height:86px !important; width:100% !important; }
+  .app-card-hover-heading { inset:auto 10px 9px !important; gap:9px !important; }
+  .app-card-hover-heading>img { width:42px !important; height:42px !important; }
+  .app-card-hover-body { flex:1 1 auto !important; min-height:0 !important; overflow:hidden !important; padding:10px 11px 11px !important; }
+  .app-card-description { -webkit-line-clamp:3 !important; font-size:8px !important; line-height:1.45 !important; }
+  .app-card:hover .app-card-extra-info,
+  .app-card:focus-visible .app-card-extra-info {
+    visibility:visible !important; opacity:1 !important; transform:scale(1) !important;
+    transition-delay:1s,1s,1s !important;
+  }
+  .app-card:focus-visible .app-card-extra-info { transition-delay:0s,0s,0s !important; }
+
+  .fe-ent-card { overflow:hidden !important; }
+  .fe-ent-card-hover-info {
+    display:flex !important;
+    flex-direction:column !important;
+    position:absolute !important;
+    inset:0 !important;
+    top:0 !important; left:0 !important; right:0 !important; bottom:0 !important;
+    z-index:20 !important;
+    width:100% !important; height:100% !important; max-height:none !important;
+    overflow:hidden !important; margin:0 !important; padding:0 !important;
+    border:1px solid rgba(205,231,255,.22) !important;
+    border-radius:inherit !important;
+    background:linear-gradient(145deg,rgba(17,27,43,.98),rgba(7,12,22,.99)) !important;
+    box-shadow:inset 0 1px rgba(255,255,255,.08) !important;
+    -webkit-backdrop-filter:blur(16px) saturate(140%) !important;
+    backdrop-filter:blur(16px) saturate(140%) !important;
+    visibility:hidden !important; opacity:0 !important;
+    transform:scale(.985) !important; pointer-events:none !important;
+    transition:opacity .2s ease,transform .2s ease,visibility 0s linear .2s !important;
+    transition-delay:0s,0s,.2s !important;
+  }
+  .fe-ent-hover-visual { flex:0 0 55% !important; height:auto !important; min-height:115px !important; width:100% !important; }
+  .fe-ent-hover-head { inset:auto 10px 9px !important; gap:9px !important; }
+  .fe-ent-hover-head>img { width:44px !important; height:50px !important; }
+  .fe-ent-hover-head-copy { flex:1; min-width:0; }
+  .fe-ent-hover-body { flex:1 1 auto !important; min-height:0 !important; overflow:hidden !important; padding:10px 11px 11px !important; }
+  .fe-ent-hover-description { -webkit-line-clamp:3 !important; font-size:8px !important; line-height:1.45 !important; }
+  .fe-ent-hover-badges { gap:4px !important; margin-top:8px !important; }
+  .fe-ent-card:hover .fe-ent-card-hover-info,
+  .fe-ent-card:focus-visible .fe-ent-card-hover-info {
+    visibility:visible !important; opacity:1 !important; transform:scale(1) !important;
+    transition-delay:1s,1s,1s !important;
+  }
+  .fe-ent-card:focus-visible .fe-ent-card-hover-info { transition-delay:0s,0s,0s !important; }
+  .app-card .app-wishlist-toggle,
+  .fe-ent-card .app-wishlist-toggle { z-index:30 !important; }
+}
+
+/* Keep mobile/touch cards compact; tapping still opens the complete details page. */
+@media (hover:none),(pointer:coarse) {
+  .app-card-extra-info,.fe-ent-card-hover-info { display:none !important; }
+  .app-card,.fe-ent-card,.app-card:hover,.fe-ent-card:hover { transform:none !important; }
+  #entertainmentSpotlight .fe-ent-spotlight-media { height:clamp(270px,62vw,380px) !important; }
+  #entertainmentSpotlight .fe-ent-spotlight-copy { max-width:92%; left:15px; right:13px; bottom:16px; }
+}
+@media (max-width:700px) {
+  #entertainmentSpotlight.fe-ent-spotlight { margin-bottom:20px !important; border-radius:14px !important; }
+  #entertainmentSpotlight .fe-ent-spotlight-primary { border-radius:14px !important; }
+  #entertainmentSpotlight .fe-ent-spotlight-media { height:clamp(270px,62vw,380px) !important; }
+  #entertainmentSpotlight .fe-ent-spotlight-copy h2 { font-size:23px; }
+  #entertainmentSpotlight .fe-ent-spotlight-copy p { font-size:9px; -webkit-line-clamp:2; }
+  #entertainmentSpotlight .fe-ent-spotlight-selector { flex-basis:140px; padding:8px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .app-card,.fe-ent-card,.app-card-extra-info,.fe-ent-card-hover-info { transition:none !important; }
+  .app-card:hover,.app-card:focus-visible,.fe-ent-card:hover,.fe-ent-card:focus-visible { transition-delay:0s !important; }
+}
+</style>
+
+
+<style id="fistengine-entertainment-global-search-and-tabs">
+  .fe-ent-global-search{display:flex;align-items:stretch;gap:10px;width:100%;margin:0 0 20px;padding:8px;border:1px solid rgba(206,225,255,.14);border-radius:16px;background:linear-gradient(110deg,rgba(22,31,49,.88),rgba(10,16,28,.83));box-shadow:0 12px 30px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.045)}
+  .fe-ent-global-search-field{display:flex;align-items:center;gap:12px;flex:1;min-width:0;padding:0 13px;border:1px solid transparent;border-radius:10px;background:rgba(3,8,17,.38);transition:border-color .18s,background .18s}
+  .fe-ent-global-search-field:focus-within{border-color:rgba(108,231,220,.4);background:rgba(3,8,17,.56)}
+  .fe-ent-global-search-field>i{flex:none;color:#6ce7dc;font-size:15px}
+  .fe-ent-global-search-field input{width:100%;min-width:0;height:47px;padding:0;border:0;outline:0;background:transparent;color:#f6f8ff;font-size:12px;box-shadow:none}
+  .fe-ent-global-search-field input::placeholder{color:#7e8ba5}
+  .fe-ent-global-search-field kbd{flex:none;padding:4px 7px;border:1px solid rgba(207,225,255,.12);border-radius:6px;color:#8291ac;font:8px Inter,sans-serif;letter-spacing:.8px}
+  .fe-ent-global-search-submit{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-width:126px;padding:0 18px;border:1px solid rgba(108,231,220,.25);border-radius:11px;background:linear-gradient(135deg,rgba(108,231,220,.19),rgba(169,149,255,.17));color:#eafffd;font-size:10px;font-weight:850;cursor:pointer;transition:transform .18s,border-color .18s,background .18s}
+  .fe-ent-global-search-submit:hover{transform:translateY(-1px);border-color:rgba(108,231,220,.5);background:linear-gradient(135deg,rgba(108,231,220,.27),rgba(169,149,255,.23))}
+  .fe-ent-global-results{margin:0 0 25px;padding:21px;border:1px solid rgba(206,225,255,.12);border-radius:17px;background:linear-gradient(145deg,rgba(19,27,44,.7),rgba(8,13,23,.75));}
+  .fe-ent-global-results[hidden]{display:none!important}
+  .fe-ent-global-results-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:9px}
+  .fe-ent-global-results-heading h2{margin:0;color:#f3f6ff;font-size:23px;font-weight:850;letter-spacing:-.65px;overflow-wrap:anywhere}
+  .fe-ent-global-results-heading p{margin:6px 0 0;color:#8d9ab3;font-size:10px}
+  .fe-ent-global-clear{flex:none;display:inline-flex;align-items:center;gap:7px;min-height:35px;padding:0 11px;border:1px solid rgba(206,225,255,.13);border-radius:9px;background:rgba(255,255,255,.035);color:#bac6dc;font-size:9px;font-weight:750;cursor:pointer}
+  .fe-ent-global-clear:hover{border-color:rgba(108,231,220,.35);color:#eafffd}
+  .fe-ent-global-results-status{margin:0 0 17px;color:#8290aa;font-size:9px;line-height:1.6}
+  .fe-ent-global-result-groups{display:grid;gap:25px}
+  .fe-ent-global-group{min-width:0}
+  .fe-ent-global-group-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:0 0 11px;padding:0 0 9px;border-bottom:1px solid rgba(206,225,255,.11)}
+  .fe-ent-global-group-heading>div>span{display:block;margin-bottom:4px;color:#76cfc8;font-size:7px;font-weight:900;letter-spacing:1.55px}
+  .fe-ent-global-group-heading h3{display:flex;align-items:center;gap:9px;margin:0;color:#edf3ff;font-size:17px;font-weight:850;letter-spacing:-.3px}
+  .fe-ent-global-group-heading h3 i{color:#6ce7dc;font-size:14px}
+  .fe-ent-global-group-count{color:#8795af;font-size:9px;white-space:nowrap}
+  .fe-ent-global-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .fe-ent-global-empty{min-height:190px}
+  #entertainmentHub.global-search-active #entertainmentSpotlight,
+  #entertainmentHub.global-search-active .fe-ent-search-toolbar,
+  #entertainmentHub.global-search-active .fe-ent-page-categories,
+  #entertainmentHub.global-search-active .fe-ent-catalog-heading,
+  #entertainmentHub.global-search-active #entertainmentStatus,
+  #entertainmentHub.global-search-active #entertainmentGrid{display:none!important}
+  .fe-ent-page-categories{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:-8px 0 27px;padding:13px 14px;border:1px solid rgba(206,225,255,.11);border-radius:13px;background:linear-gradient(100deg,rgba(22,31,49,.67),rgba(12,19,31,.54));}
+  .fe-ent-page-categories-label{display:flex;flex-direction:column;gap:4px;min-width:130px}
+  .fe-ent-page-categories-label>span{color:#c0cde2;font-size:9px;font-weight:900;letter-spacing:1.15px}
+  .fe-ent-page-categories-label small{color:#76849e;font-size:8px}
+  .fe-ent-page-category-buttons{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+  .fe-ent-page-category{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:36px;padding:0 14px;border:1px solid rgba(206,225,255,.12);border-radius:9px;background:rgba(255,255,255,.025);color:#a6b3cb;font-size:9px;font-weight:800;cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .18s}
+  .fe-ent-page-category i{color:#8593ad;font-size:10px}
+  .fe-ent-page-category:hover{transform:translateY(-1px);border-color:rgba(108,231,220,.3);color:#f4fffe}
+  .fe-ent-page-category:hover i,.fe-ent-page-category.selected i{color:#6ce7dc}
+  .fe-ent-page-category.selected{border-color:rgba(108,231,220,.28);background:linear-gradient(130deg,rgba(108,231,220,.14),rgba(169,149,255,.12));color:#f1fffd;box-shadow:inset 0 1px rgba(255,255,255,.07)}
+  @media(max-width:1250px){.fe-ent-global-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  @media(max-width:1000px){.fe-ent-global-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.fe-ent-global-results{padding:16px}}
+  @media(max-width:700px){.fe-ent-global-search{padding:6px;gap:6px;border-radius:12px}.fe-ent-global-search-field{gap:8px;padding:0 9px}.fe-ent-global-search-field input{height:42px;font-size:10px}.fe-ent-global-search-field kbd{display:none}.fe-ent-global-search-submit{min-width:42px;padding:0 12px}.fe-ent-global-search-submit span{display:none}.fe-ent-global-results{padding:13px;border-radius:13px}.fe-ent-global-results-heading{align-items:flex-start}.fe-ent-global-results-heading h2{font-size:18px}.fe-ent-global-results-heading p{font-size:9px}.fe-ent-global-clear{min-height:31px;padding:0 8px;font-size:8px}.fe-ent-global-group-heading h3{font-size:15px}.fe-ent-global-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.fe-ent-page-categories{display:block;margin:-5px 0 22px;padding:11px}.fe-ent-page-categories-label{margin-bottom:10px}.fe-ent-page-category-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.fe-ent-page-category{justify-content:flex-start;min-height:40px;padding:0 12px}.fe-ent-global-result-groups{gap:21px}}
+  @media(max-width:380px){.fe-ent-global-grid{gap:9px 7px}.fe-ent-global-results-heading{flex-direction:column}.fe-ent-global-clear{align-self:flex-start}}
+</style>
+
 </head>
 <body>
 <header class="header">
@@ -1397,7 +2111,8 @@ html {
       <span class="logo-word">Fist<span>ENGINE</span></span>
     </a>
     <div class="top-nav-links" aria-label="FistEngine links">
-      <a href="index.html" class="active">Store</a>
+      <a href="#games" class="active" data-store-home>Store</a>
+      <a href="#entertainmentHub" data-open-entertainment><i class="fa-solid fa-clapperboard" aria-hidden="true"></i> Entertainment</a>
       <a href="#explore" data-scroll-target="games">Library</a>
       <a href="about-us.html">About</a>
       <a href="https://fistengine.github.io/contact.html">Contact</a>
@@ -1491,6 +2206,7 @@ html {
         <a class="top-nav-link" data-catalog-view="games" href="#games">Games</a>
         <a class="top-nav-link" data-catalog-view="apps" href="#games">Apps</a>
         <a class="top-nav-link" data-catalog-view="pc-software" href="#games">PC Software</a>
+        <a class="top-nav-link" data-open-entertainment href="#entertainmentHub"><i class="fa-solid fa-clapperboard" aria-hidden="true"></i>&nbsp; Entertainment</a>
       </nav>
       <div class="search-wrapper">
         <label class="nav-search" for="searchInput"><i class="fa-solid fa-magnifying-glass"></i><input id="searchInput" type="search" autocomplete="off" placeholder="Search the store..."></label>
@@ -1501,6 +2217,7 @@ html {
 
 <div class="store-layout">
   <aside class="store-sidebar" id="storeSidebar" aria-label="Store navigation" aria-hidden="true">
+    <div id="standardSidebarContent">
     <a class="sidebar-brand" href="index.html"><img src="favicon.png" alt=""><span>Fist<span class="sidebar-brand-accent">ENGINE</span></span></a>
     <p class="sidebar-caption">Browse the store</p>
     <a class="sidebar-link selected" data-catalog-view="for-you" href="#games" title="Your Store" aria-current="page"><i class="fa-solid fa-house"></i><span>Your Store</span></a>
@@ -1508,6 +2225,7 @@ html {
     <a class="sidebar-link" data-catalog-view="games" href="#games" title="Games"><i class="fa-solid fa-gamepad"></i><span>Games</span></a>
     <a class="sidebar-link" data-catalog-view="apps" href="#games" title="Apps"><i class="fa-solid fa-mobile-screen-button"></i><span>Apps</span></a>
     <a class="sidebar-link" data-catalog-view="pc-software" href="#games" title="PC Software"><i class="fa-solid fa-desktop"></i><span>PC Software</span></a>
+    <a class="sidebar-link" data-open-entertainment href="#entertainmentHub" title="Entertainment"><i class="fa-solid fa-clapperboard"></i><span>Entertainment</span></a>
     <a class="sidebar-link wishlist-sidebar-link" data-catalog-view="wishlist" data-wishlist-view="true" href="#games" title="Wishlist"><i class="fa-regular fa-heart"></i><span>Wishlist</span><span class="sidebar-wishlist-count" id="sidebarWishlistCount">0</span></a>
     <div class="sidebar-divider"></div>
     <p class="sidebar-caption">Explore FistEngine</p>
@@ -1519,10 +2237,94 @@ html {
     <a class="sidebar-link" href="ledgerOS-fistengine.html"><i class="fa-solid fa-chart-line"></i><span>LedgerOS</span></a>
     <a class="sidebar-link" href="fistengine-download.html"><i class="fa-brands fa-windows"></i><span>FistEngine Client</span></a>
     <div class="sidebar-promo"><strong>Discover more with FistEngine</strong><p>One place for your games, apps, PC software and useful tools.</p><a href="about-us.html">Learn more <i class="fa-solid fa-arrow-right"></i></a></div>
+    </div>
+    <div id="entertainmentSidebarContent" hidden>
+      <a class="sidebar-brand" href="#entertainmentHub"><img src="favicon.png" alt=""><span>Fist<span class="sidebar-brand-accent">ENGINE</span></span></a>
+      <p class="sidebar-caption">Entertainment</p>
+      <a class="sidebar-link entertainment-back-link" data-store-home href="#games" title="Back to Store"><i class="fa-solid fa-arrow-left"></i><span>Back to Store</span></a>
+      <div class="sidebar-divider"></div>
+      <p class="sidebar-caption">Browse library</p>
+      <a class="sidebar-link entertainment-category-link selected" data-ent-category="anime" href="#entertainmentHub" aria-current="page" title="Anime"><i class="fa-solid fa-dragon"></i><span>Anime</span><span class="ent-sidebar-count" data-ent-count="anime">0</span></a>
+      <a class="sidebar-link entertainment-category-link" data-ent-category="movies" href="#entertainmentHub" title="Movies"><i class="fa-solid fa-film"></i><span>Movies</span><span class="ent-sidebar-count" data-ent-count="movies">0</span></a>
+      <a class="sidebar-link entertainment-category-link" data-ent-category="drama" href="#entertainmentHub" title="Drama"><i class="fa-solid fa-masks-theater"></i><span>Drama</span><span class="ent-sidebar-count" data-ent-count="drama">0</span></a>
+      <a class="sidebar-link entertainment-category-link" data-ent-category="series" href="#entertainmentHub" title="Series"><i class="fa-solid fa-tv"></i><span>Series</span><span class="ent-sidebar-count" data-ent-count="series">0</span></a>
+      <div class="sidebar-divider"></div>
+      <a class="sidebar-link wishlist-sidebar-link" data-catalog-view="wishlist" data-wishlist-view="true" href="#games" title="Wishlist"><i class="fa-regular fa-heart"></i><span>Wishlist</span><span class="sidebar-wishlist-count" id="entSidebarWishlistCount">0</span></a>
+      <div class="sidebar-promo"><strong>Your watchlist, your way</strong><p>Save titles with the heart button and find them again in your personal wishlist.</p><a href="#entertainmentHub" data-ent-category="anime">Browse titles <i class="fa-solid fa-arrow-right"></i></a></div>
+    </div>
   </aside>
   <div class="sidebar-overlay" aria-hidden="true"></div>
 
   <main class="store-main">
+    <section class="fe-ent-hub" id="entertainmentHub" hidden aria-label="FistEngine Entertainment">
+      <div class="fe-ent-heading-row">
+        <div class="fe-ent-heading-copy">
+          <div class="fe-ent-breadcrumb"><span>FISTENGINE</span><i class="fa-solid fa-chevron-right"></i><strong>ENTERTAINMENT</strong></div>
+          <span class="fe-ent-eyebrow"><i class="fa-solid fa-clapperboard"></i> THE ENTERTAINMENT LIBRARY</span>
+          <h1>Entertainment</h1>
+          <p>Find your next film, series, drama or anime — all in one place.</p>
+        </div>
+        <div class="fe-ent-heading-badge"><i class="fa-solid fa-play"></i><span>DISCOVER · WATCH · SAVE</span></div>
+      </div>
+      <form class="fe-ent-global-search" id="entertainmentGlobalSearchForm" role="search" aria-label="Search all entertainment categories">
+        <label class="fe-ent-global-search-field" for="entertainmentGlobalSearch">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <input id="entertainmentGlobalSearch" type="search" autocomplete="off" placeholder="Search all anime, movies, dramas and series by title or tags…" aria-label="Search across all entertainment categories">
+          <kbd>ENTER</kbd>
+        </label>
+        <button class="fe-ent-global-search-submit" type="submit"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>Search all</span></button>
+      </form>
+      <section class="fe-ent-global-results" id="entertainmentGlobalResults" hidden aria-live="polite" aria-label="Search results across all entertainment categories">
+        <div class="fe-ent-global-results-heading">
+          <div><span class="fe-ent-kicker">ALL CATEGORIES</span><h2 id="entertainmentGlobalResultsTitle">Search results</h2><p id="entertainmentGlobalResultsSubtitle">Matches from Anime, Movies, Drama and Series.</p></div>
+          <button type="button" class="fe-ent-global-clear" id="entertainmentGlobalClear"><i class="fa-solid fa-xmark" aria-hidden="true"></i> Clear search</button>
+        </div>
+        <div id="entertainmentGlobalResultsStatus" class="fe-ent-global-results-status" role="status"></div>
+        <div id="entertainmentGlobalResultGroups" class="fe-ent-global-result-groups"></div>
+      </section>
+      <section class="fe-ent-spotlight" id="entertainmentSpotlight" hidden aria-label="Featured and recommended entertainment">
+        <div class="fe-ent-spotlight-primary">
+          <div class="fe-ent-spotlight-media" id="entertainmentSpotlightMedia">
+            <div class="fe-ent-spotlight-art" id="entertainmentSpotlightArt"></div>
+            <video id="entertainmentSpotlightVideo" class="fe-ent-spotlight-video" muted autoplay loop playsinline preload="metadata" aria-label="Entertainment preview video" hidden></video>
+            <iframe id="entertainmentSpotlightFrame" class="fe-ent-spotlight-frame" title="Entertainment preview" allow="autoplay; encrypted-media; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" hidden></iframe>
+            <div class="fe-ent-spotlight-shade"></div>
+            <span class="fe-ent-spotlight-live" id="entertainmentSpotlightLive" hidden><i></i> PREVIEW</span>
+            <div class="fe-ent-spotlight-copy">
+              <span class="fe-ent-spotlight-label" id="entertainmentSpotlightLabel"><i class="fa-solid fa-star"></i> FEATURED</span>
+              <h2 id="entertainmentSpotlightTitle"></h2>
+              <p id="entertainmentSpotlightDescription"></p>
+              <div class="fe-ent-spotlight-meta" id="entertainmentSpotlightMeta"></div>
+              <button type="button" id="entertainmentSpotlightDetails" class="fe-ent-spotlight-cta"><i class="fa-solid fa-circle-play"></i> View details <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="fe-ent-spotlight-selectors" id="entertainmentSpotlightSelectors" aria-label="Choose featured or recommended entertainment"></div>
+        </div>
+        <aside class="fe-ent-recommended-panel" aria-label="Recommended titles">
+          <div class="fe-ent-recommended-heading"><div><span>HANDPICKED FOR YOU</span><h3>Recommended</h3></div><i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i></div>
+          <div class="fe-ent-recommended-list" id="entertainmentRecommendedList"></div>
+        </aside>
+      </section>
+      <div class="fe-ent-search-toolbar">
+        <label class="fe-ent-search" for="entertainmentSearch"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="entertainmentSearch" type="search" autocomplete="off" placeholder="Search titles, genres, tags, language…" aria-label="Search entertainment by title or admin-added tags"><kbd>↵</kbd></label>
+        <div class="fe-ent-results-count" id="entertainmentResultsCount">Loading titles…</div>
+      </div>
+      <nav class="fe-ent-page-categories" aria-label="Browse entertainment categories">
+        <div class="fe-ent-page-categories-label"><span>EXPLORE BY CATEGORY</span><small>Choose a collection</small></div>
+        <div class="fe-ent-page-category-buttons">
+          <button type="button" class="fe-ent-page-category selected" data-ent-category="anime" aria-pressed="true"><i class="fa-solid fa-dragon" aria-hidden="true"></i><span>Anime</span></button>
+          <button type="button" class="fe-ent-page-category" data-ent-category="movies" aria-pressed="false"><i class="fa-solid fa-film" aria-hidden="true"></i><span>Movies</span></button>
+          <button type="button" class="fe-ent-page-category" data-ent-category="drama" aria-pressed="false"><i class="fa-solid fa-masks-theater" aria-hidden="true"></i><span>Drama</span></button>
+          <button type="button" class="fe-ent-page-category" data-ent-category="series" aria-pressed="false"><i class="fa-solid fa-tv" aria-hidden="true"></i><span>Series</span></button>
+        </div>
+      </nav>
+      <div class="fe-ent-catalog-heading">
+        <div><span class="fe-ent-kicker">NOW BROWSING</span><h2 id="entertainmentCategoryTitle">Anime</h2><p id="entertainmentCategorySubtitle">Explore anime titles selected for FistEngine.</p></div>
+        <span class="fe-ent-category-indicator"><i class="fa-solid fa-layer-group"></i> <span id="entertainmentCategoryCount">0 titles</span></span>
+      </div>
+      <div id="entertainmentStatus" class="fe-ent-status" role="status" aria-live="polite">Connecting to the FistEngine entertainment library…</div>
+      <div class="fe-ent-card-grid" id="entertainmentGrid" aria-live="polite"></div>
+    </section>
     <span id="appCount" class="fe-visually-hidden">0+</span>
 
     <section class="ae-home-showcase" id="aeHomeShowcase" aria-label="Featured and recommended games">
@@ -1555,7 +2357,7 @@ html {
       <div class="apps-grid" id="gamesGrid"><div class="loading-state"><i class="fa-solid fa-spinner fa-spin"></i><span>Loading games, apps and software...</span></div></div>
     </section>
 
-    <section class="store-discovery-panel" aria-label="Explore FistEngine">
+    <section class="store-discovery-panel" id="storeDiscoveryPanel" aria-label="Explore FistEngine">
       <article class="discovery-tile"><i class="fa-solid fa-compass"></i><h3>Discover the full catalog</h3><p>Browse every game, app and desktop tool in one place.</p><a href="#explore" data-open-explore>Explore all products <i class="fa-solid fa-arrow-right"></i></a></article>
       <article class="discovery-tile"><i class="fa-solid fa-cloud-arrow-down"></i><h3>Easy access</h3><p>Open each product page to review details, media and download information.</p></article>
       <article class="discovery-tile"><i class="fa-solid fa-shield-halved"></i><h3>Know before you download</h3><p>Check version, file size and compatibility before installing.</p></article>
@@ -1605,17 +2407,11 @@ html {
   <div class="ae-product-page" role="dialog" aria-modal="true" aria-labelledby="detailsName">
     <div class="ae-product-background" id="detailsBackgroundLayer" hidden aria-hidden="true"><img id="detailsBackgroundImage" alt=""><div class="ae-product-background-shade"></div></div>
     <header class="ae-product-topbar">
-      <a class="ae-product-brand" href="index.html"><img src="favicon.png" alt="">FistEngine</a>
-      <nav class="ae-product-nav" aria-label="Product page navigation">
-        <a href="index.html">Home</a>
-        <a href="index.html#games">Games</a>
-        <a href="index.html#games">Apps</a>
-        <a href="index.html#games">PC Software</a>
-        <a href="index.html#games">Explore</a>
-      </nav>
+      <a class="ae-product-brand" href="index.html" aria-label="FistEngine home">
+        <img src="logo.png" alt="FistEngine logo" onerror="this.onerror=null;this.src='https://fistengine.github.io/logo.png';">
+        <span>FistEngine</span>
+      </a>
       <div class="ae-product-header-actions">
-        <a class="ae-product-icon-link" href="index.html#games" aria-label="Browse products"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <a class="ae-product-icon-link" href="User-Console.html" aria-label="Sign in"><i class="fa-regular fa-user"></i></a>
         <button type="button" class="details-close" id="detailsClose" aria-label="Back to store"><i class="fa-solid fa-arrow-left"></i><span>Back</span></button>
       </div>
     </header>
@@ -1641,6 +2437,7 @@ html {
             <div class="ae-product-hero-action">
               <a id="detailsDownload" class="details-download" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-download"></i> Download</a>
               <button type="button" class="details-wishlist-toggle" id="detailsWishlistButton" aria-pressed="false" title="Add to wishlist"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>Add to Wishlist</span></button>
+              <div id="detailsDownloadMirrors" class="details-download-mirrors" hidden aria-label="Additional download links"></div>
               <span class="ae-safe-note"><i class="fa-solid fa-shield-halved"></i> Check platform and publisher information before installing.</span>
             </div>
           </section>
@@ -1680,7 +2477,7 @@ html {
           <div class="ae-video-stage" id="detailsVideoStage">
             <video id="detailsVideo" class="ae-product-video" controls autoplay muted playsinline preload="metadata"></video>
             <div id="detailsMediaFallback" class="ae-media-fallback" hidden><img id="detailsMediaFallbackImage" alt=""><span><i class="fa-regular fa-images"></i> Product preview</span></div>
-            <div id="detailsVideoEmpty" class="ae-video-empty" hidden><i class="fa-solid fa-clapperboard"></i><strong>Media coming soon</strong><span>Add MP4 or WebM preview links from the FistEngine admin panel.</span></div>
+            <div id="detailsVideoEmpty" class="ae-video-empty" hidden><i class="fa-solid fa-clapperboard"></i><strong>Media coming soon</strong><span>Add YouTube, Vimeo or direct MP4/WebM preview links from the FistEngine admin panel.</span></div>
           </div>
           <div id="detailsVideoPlaylist" class="ae-video-playlist" aria-label="Video previews"></div>
           <div id="detailsScreenshotRail" class="ae-screenshot-rail" aria-label="Screenshot thumbnails"></div>
@@ -1712,6 +2509,7 @@ html {
             getFirestore,
             collection,
             getDocs,
+            onSnapshot,
             query,
             orderBy,
             doc,
@@ -1803,6 +2601,14 @@ html {
         let wishlistRemovedKeys = new Set();
         let wishlistLoadToken = 0;
         let activeCatalogView = "for-you";
+        let entertainmentMode = false;
+        let activeEntertainmentCategory = "anime";
+        let entertainmentItems = [];
+        let activeGlobalEntertainmentQuery = "";
+        let entertainmentSpotlightId = "";
+        let entertainmentSpotlightMediaKey = "";
+        let entertainmentLoadError = null;
+        let unsubscribeEntertainment = null;
         const WISHLIST_CACHE_PREFIX = "fistengine-wishlist-v1-";
         let wishlistToastTimer = null;
 
@@ -1992,7 +2798,14 @@ html {
                 source: String(product?.source || "FistEngine"),
                 sourceLabel: String(product?.sourceLabel || ""),
                 external: Boolean(product?.external),
-                downloadLabel: String(product?.downloadLabel || "Download")
+                downloadLabel: String(product?.downloadLabel || "Download"),
+                isEntertainment: Boolean(product?.isEntertainment),
+                entertainmentCategory: String(product?.entertainmentCategory || ""),
+                year: String(product?.year || ""),
+                language: String(product?.language || ""),
+                quality: String(product?.quality || ""),
+                badge: String(product?.badge || ""),
+                downloadLinks: list(product?.downloadLinks)
             };
         }
 
@@ -2036,8 +2849,10 @@ html {
             const count = wishlistIds.size;
             const topCount = document.getElementById("topWishlistCount");
             const sidebarCount = document.getElementById("sidebarWishlistCount");
+            const entertainmentSidebarCount = document.getElementById("entSidebarWishlistCount");
             if (topCount) topCount.textContent = String(count);
             if (sidebarCount) sidebarCount.textContent = String(count);
+            if (entertainmentSidebarCount) entertainmentSidebarCount.textContent = String(count);
             document.querySelectorAll(".app-wishlist-toggle").forEach(button => {
                 const key = button.dataset.wishlistKey;
                 const saved = Boolean(key && wishlistIds.has(key));
@@ -2773,22 +3588,25 @@ html {
 
 const cardInfo = document.createElement("div");
 cardInfo.className = "app-card-extra-info";
-
 const size = app.size || "Not listed";
 const description = app.description || "No description available.";
-
+const hoverBackdrop = app.detailsBackground || (Array.isArray(app.screenshots) ? app.screenshots[0] : "") || app.icon || "logo.png";
+const hoverIcon = app.icon || hoverBackdrop || "logo.png";
+const hoverMeta = [app.developer, app.category || inferContentType(app), app.version ? `v${app.version}` : "", app.rating ? `★ ${app.rating}` : ""].filter(Boolean).slice(0, 3).map(value => escapeHTML(String(value))).join(" · ");
 cardInfo.innerHTML = `
-    <div class="app-card-size">
-        <i class="fa-solid fa-database"></i>
-        <span>Size:</span>
-        <strong>${escapeHTML(String(size))}</strong>
+    <div class="app-card-hover-visual">
+      <img class="app-card-hover-backdrop" src="${escapeHTML(String(hoverBackdrop))}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${escapeHTML(String(hoverIcon))}'">
+      <span class="app-card-hover-shade"></span>
+      <div class="app-card-hover-heading">
+        <img src="${escapeHTML(String(hoverIcon))}" alt="" loading="lazy" onerror="this.onerror=null;this.src='logo.png'">
+        <span><strong>${escapeHTML(String(app.name || "FistEngine title"))}</strong><small>${hoverMeta || "Available on FistEngine"}</small></span>
+      </div>
     </div>
-
-    <p class="app-card-description">
-        ${escapeHTML(String(description))}
-    </p>
+    <div class="app-card-hover-body">
+      <div class="app-card-size"><i class="fa-solid fa-database"></i><span>Size</span><strong>${escapeHTML(String(size))}</strong></div>
+      <p class="app-card-description">${escapeHTML(String(description))}</p>
+    </div>
 `;
-
 card.appendChild(cardInfo);
 card.dataset.version = String(app.version || "");
 card.dataset.size = String(app.size || "");
@@ -2969,15 +3787,25 @@ card.dataset.size = String(app.size || "");
                 app.developer ||
                 "FistEngine Developer";
 
-            category.textContent =
-                app.category ||
-                "Apps";
+            const isEntertainmentProduct = Boolean(app.isEntertainment);
+            category.textContent = app.category || "Apps";
+            const productKicker = document.querySelector(".ae-product-kicker");
+            if (productKicker) productKicker.textContent = isEntertainmentProduct ? "FISTENGINE ENTERTAINMENT LISTING" : "FISTENGINE STORE LISTING";
+            const statLabel = (valueId, label) => {
+                const value = document.getElementById(valueId);
+                const labelNode = value?.parentElement?.querySelector("span");
+                if (labelNode) labelNode.textContent = label;
+            };
+            statLabel("detailsVersion", isEntertainmentProduct ? "RELEASE YEAR" : "VERSION");
+            statLabel("detailsSize", isEntertainmentProduct ? "QUALITY" : "DOWNLOAD SIZE");
+            statLabel("detailsPlatform", isEntertainmentProduct ? "LANGUAGE" : "PLATFORM");
 
             rating.innerHTML =
                 `<i class="fa-solid fa-star"></i> ${escapeHTML(String(app.rating ?? "New"))}`;
 
-            downloads.textContent =
-                formatDownloads(app.downloads);
+            downloads.textContent = isEntertainmentProduct
+                ? (app.year ? `Released ${app.year}` : "Entertainment")
+                : formatDownloads(app.downloads);
 
             setDetailsValue(
                 version,
@@ -3010,6 +3838,10 @@ card.dataset.size = String(app.size || "");
                 app.whatsNew,
                 "No update information has been added yet."
             );
+            if (isEntertainmentProduct && !String(app.whatsNew || "").trim()) {
+                const whatsNewSection = document.getElementById("detailsWhatsNewSection");
+                if (whatsNewSection) whatsNewSection.style.display = "none";
+            }
 
             const featured =
                 document.getElementById(
@@ -3078,19 +3910,49 @@ card.dataset.size = String(app.size || "");
             screenshotSection.style.display =
                 shots.length ? "block" : "none";
 
-            // Build the Steam-style media area from direct MP4/WebM URLs supplied in admin.
-            const rawVideos = Array.isArray(app.videos) ? app.videos :
-                (Array.isArray(app.videoUrls) ? app.videoUrls : (app.video || app.trailerUrl ? [app.video || app.trailerUrl] : []));
-            const videoUrls = rawVideos.map(value => String(value || "").trim()).filter(value => {
-                try { const u = new URL(value, window.location.href); return (u.protocol === "http:" || u.protocol === "https:") && /\.(mp4|webm|ogg)(?:$|[?#])/i.test(u.href); }
-                catch (_) { return false; }
-            }).slice(0, 10);
+            // Direct video links and YouTube/Vimeo trailers supplied by the admin are both supported.
+            const rawVideos = Array.isArray(app.videos) ? [...app.videos] :
+                (Array.isArray(app.videoUrls) ? [...app.videoUrls] : (app.video || app.trailerUrl ? [app.video || app.trailerUrl] : []));
+            if (app.trailerUrl && !rawVideos.some(value => String(value || "").trim() === String(app.trailerUrl).trim())) rawVideos.unshift(app.trailerUrl);
+            function normalizeEntertainmentVideo(value) {
+                const raw = String(value || "").trim();
+                if (!raw) return null;
+                try {
+                    const u = new URL(raw, window.location.href);
+                    if (u.protocol !== "https:" && u.protocol !== "http:") return null;
+                    const host = u.hostname.toLowerCase().replace(/^www\./, "");
+                    if (/\.(mp4|webm|ogg)(?:$|[?#])/i.test(u.href)) return { url: u.href, kind: "direct", embedUrl: "", label: raw === String(app.trailerUrl || "").trim() ? "Trailer" : "Video preview" };
+                    let youtubeId = "";
+                    if (host === "youtu.be") youtubeId = u.pathname.split("/").filter(Boolean)[0] || "";
+                    else if (/^(youtube\.com|m\.youtube\.com|youtube-nocookie\.com)$/.test(host)) youtubeId = u.searchParams.get("v") || (u.pathname.match(/\/(?:embed|shorts|live)\/([^/?]+)/i) || [])[1] || "";
+                    if (youtubeId && /^[A-Za-z0-9_-]{6,}$/.test(youtubeId)) return { url: u.href, kind: "embed", embedUrl: `https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&mute=1&rel=0`, label: raw === String(app.trailerUrl || "").trim() ? "Trailer" : "YouTube preview" };
+                    if (/^(vimeo\.com|player\.vimeo\.com)$/.test(host)) {
+                        const vimeoId = (u.pathname.match(/(?:video\/)?(\d+)(?:$|\/)/) || [])[1];
+                        if (vimeoId) return { url: u.href, kind: "embed", embedUrl: `https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1`, label: raw === String(app.trailerUrl || "").trim() ? "Trailer" : "Vimeo preview" };
+                    }
+                } catch (_) { return null; }
+                return null;
+            }
+            const videoItems = rawVideos.map(normalizeEntertainmentVideo).filter(Boolean).slice(0, 10);
+            const videoUrls = videoItems.map(item => item.url);
             const video = document.getElementById("detailsVideo");
             const heroVideo = document.getElementById("detailsHeroVideo");
             const heroVideoCard = document.getElementById("detailsHeroVideoCard");
             const heroVideoIndex = document.getElementById("detailsHeroVideoIndex");
             const videoStage = document.getElementById("detailsVideoStage");
             const videoEmpty = document.getElementById("detailsVideoEmpty");
+            let embedFrame = videoStage?.querySelector(".ae-video-embed") || null;
+            if (videoStage && !embedFrame) {
+                embedFrame = document.createElement("iframe");
+                embedFrame.className = "ae-video-embed";
+                embedFrame.title = `${app.name || "Product"} video preview`;
+                embedFrame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
+                embedFrame.allowFullscreen = true;
+                embedFrame.referrerPolicy = "strict-origin-when-cross-origin";
+                embedFrame.hidden = true;
+                videoStage.appendChild(embedFrame);
+            }
+            if (embedFrame) { embedFrame.hidden = true; embedFrame.src = "about:blank"; }
             if (videoEmpty?.querySelector("strong")) videoEmpty.querySelector("strong").textContent = "Media coming soon";
             const fallback = document.getElementById("detailsMediaFallback");
             const fallbackImage = document.getElementById("detailsMediaFallbackImage");
@@ -3145,46 +4007,63 @@ card.dataset.size = String(app.size || "");
                 }
             };
             const playVideoAt = index => {
-                if (!video || !videoUrls.length) return;
-                activeVideoIndex = (index + videoUrls.length) % videoUrls.length;
-                video.hidden = false;
+                if (!video || !videoItems.length) return;
+                activeVideoIndex = (index + videoItems.length) % videoItems.length;
+                const selectedVideo = videoItems[activeVideoIndex];
                 if (fallback) fallback.hidden = true;
                 if (videoEmpty) videoEmpty.hidden = true;
-                video.src = videoUrls[activeVideoIndex];
+                if (embedFrame) { embedFrame.hidden = true; embedFrame.src = "about:blank"; }
+                video.pause();
+                video.removeAttribute("src");
                 video.load();
-                const playAttempt = video.play();
-                if (playAttempt && typeof playAttempt.catch === "function") playAttempt.catch(() => {});
-
-                // Show the same selected preview in the upper-right hero column.
-                // The upper copy is muted and synchronized with the primary player below.
-                if (heroVideo && heroVideoCard) {
-                    heroVideoCard.hidden = false;
-                    heroVideo.pause();
-                    heroVideo.src = videoUrls[activeVideoIndex];
-                    heroVideo.muted = true;
-                    heroVideo.autoplay = true;
-                    heroVideo.loop = true;
-                    heroVideo.playsInline = true;
-                    heroVideo.load();
-                    const heroAttempt = heroVideo.play();
-                    if (heroAttempt && typeof heroAttempt.catch === "function") heroAttempt.catch(() => {});
+                if (selectedVideo.kind === "embed") {
+                    video.hidden = true;
+                    if (heroVideo) { heroVideo.pause(); heroVideo.removeAttribute("src"); heroVideo.load(); }
+                    if (heroVideoCard) heroVideoCard.hidden = true;
+                    if (embedFrame) {
+                        embedFrame.title = `${app.name || "Product"} ${selectedVideo.label || "video preview"}`;
+                        embedFrame.hidden = false;
+                        embedFrame.src = selectedVideo.embedUrl;
+                    } else if (fallback) {
+                        fallback.hidden = false;
+                    }
+                } else {
+                    if (embedFrame) { embedFrame.hidden = true; embedFrame.src = "about:blank"; }
+                    video.hidden = false;
+                    video.src = selectedVideo.url;
+                    video.load();
+                    const playAttempt = video.play();
+                    if (playAttempt && typeof playAttempt.catch === "function") playAttempt.catch(() => {});
+                    // The upper-right looping preview is only used for direct media files.
+                    if (heroVideo && heroVideoCard) {
+                        heroVideoCard.hidden = false;
+                        heroVideo.pause();
+                        heroVideo.src = selectedVideo.url;
+                        heroVideo.muted = true;
+                        heroVideo.autoplay = true;
+                        heroVideo.loop = true;
+                        heroVideo.playsInline = true;
+                        heroVideo.load();
+                        const heroAttempt = heroVideo.play();
+                        if (heroAttempt && typeof heroAttempt.catch === "function") heroAttempt.catch(() => {});
+                    }
                 }
-                if (heroVideoIndex) heroVideoIndex.textContent = `${String(activeVideoIndex + 1).padStart(2, "0")} / ${String(videoUrls.length).padStart(2, "0")}`;
+                if (heroVideoIndex) heroVideoIndex.textContent = `${String(activeVideoIndex + 1).padStart(2, "0")} / ${String(videoItems.length).padStart(2, "0")}`;
                 if (playlist) Array.from(playlist.children).forEach((button, buttonIndex) => button.classList.toggle("active", buttonIndex === activeVideoIndex));
             };
-            if (videoUrls.length) {
-                video.hidden = false;
+            if (videoItems.length) {
+                video.hidden = true;
                 if (videoEmpty) videoEmpty.hidden = true;
                 if (fallback) fallback.hidden = true;
                 if (mediaCount) mediaCount.textContent = `${videoUrls.length} VIDEO${videoUrls.length === 1 ? "" : "S"}`;
                 video.muted = true;
                 video.playsInline = true;
                 video.onended = () => {
-                    if (videoUrls.length === 1) playVideoAt(0);
+                    if (videoItems.length === 1) playVideoAt(0);
                     else {
                         let next = -1;
-                        for (let step = 1; step <= videoUrls.length; step++) {
-                            const candidate = (activeVideoIndex + step) % videoUrls.length;
+                        for (let step = 1; step <= videoItems.length; step++) {
+                            const candidate = (activeVideoIndex + step) % videoItems.length;
                             if (!failedVideoIndexes.has(candidate)) { next = candidate; break; }
                         }
                         if (next >= 0) playVideoAt(next);
@@ -3193,13 +4072,14 @@ card.dataset.size = String(app.size || "");
                 video.onerror = () => {
                     failedVideoIndexes.add(activeVideoIndex);
                     let next = -1;
-                    for (let step = 1; step <= videoUrls.length; step++) {
-                        const candidate = (activeVideoIndex + step) % videoUrls.length;
+                    for (let step = 1; step <= videoItems.length; step++) {
+                        const candidate = (activeVideoIndex + step) % videoItems.length;
                         if (!failedVideoIndexes.has(candidate)) { next = candidate; break; }
                     }
                     if (next >= 0 && failedVideoIndexes.size < videoUrls.length) playVideoAt(next);
                     else {
                         video.pause(); video.hidden = true;
+                        if (embedFrame) { embedFrame.hidden = true; embedFrame.src = "about:blank"; }
                         if (heroVideo) { heroVideo.pause(); heroVideo.removeAttribute("src"); heroVideo.load(); }
                         if (heroVideoCard) heroVideoCard.hidden = true;
                         if (fallback) fallback.hidden = false;
@@ -3207,11 +4087,12 @@ card.dataset.size = String(app.size || "");
                         if (mediaCount) mediaCount.textContent = "PREVIEW UNAVAILABLE";
                     }
                 };
-                videoUrls.forEach((url, index) => {
+                videoItems.forEach((item, index) => {
                     const button = document.createElement("button");
                     button.type = "button";
                     button.className = "ae-video-chip";
-                    button.innerHTML = `<i class=\"fa-solid fa-play\"></i><span>Preview ${index + 1}</span>`;
+                    const label = item.label || `Preview ${index + 1}`;
+                    button.innerHTML = `<i class=\"fa-solid fa-play\"></i><span>${escapeHTML(label)}</span>`;
                     button.addEventListener("click", () => playVideoAt(index));
                     playlist.appendChild(button);
                 });
@@ -3231,7 +4112,8 @@ card.dataset.size = String(app.size || "");
                 thumb.appendChild(img);
                 thumb.addEventListener("click", () => {
                     if (fallbackImage) fallbackImage.src = url;
-                    if (video && !video.hidden) { video.pause(); video.hidden = true; }
+                    if (video && !video.hidden) { video.pause(); video.removeAttribute("src"); video.load(); video.hidden = true; }
+                    if (embedFrame) { embedFrame.hidden = true; embedFrame.src = "about:blank"; }
                     if (heroVideo) heroVideo.pause();
                     if (heroVideoCard) heroVideoCard.hidden = true;
                     if (fallback) fallback.hidden = false;
@@ -3259,9 +4141,38 @@ card.dataset.size = String(app.size || "");
             const ratingSpec = document.getElementById("detailsRatingSpec");
             if (ratingSpec) ratingSpec.textContent = String(app.rating ?? "New");
             const compatibilityLine = document.getElementById("detailsCompatibilityLine");
-            if (compatibilityLine) compatibilityLine.textContent = app.android || "Compatibility not specified";
+            if (compatibilityLine) {
+                compatibilityLine.textContent = isEntertainmentProduct
+                    ? (app.language ? `Language ${app.language}` : "Language not listed")
+                    : (app.android || "Compatibility not specified");
+            }
             const versionLine = document.getElementById("detailsVersionLine");
-            if (versionLine) versionLine.textContent = app.version ? `Version ${app.version}` : "Version not listed";
+            if (versionLine) {
+                versionLine.textContent = isEntertainmentProduct
+                    ? (app.year ? `Release year ${app.year}` : "Release year not listed")
+                    : (app.version ? `Version ${app.version}` : "Version not listed");
+            }
+
+            const mirrorWrap = document.getElementById("detailsDownloadMirrors");
+            if (mirrorWrap) {
+                mirrorWrap.innerHTML = "";
+                const mirrorLinks = Array.isArray(app.downloadLinks) ? app.downloadLinks.filter(Boolean).slice(0, 8) : [];
+                mirrorLinks.forEach((url, index) => {
+                    try {
+                        const parsed = new URL(String(url), window.location.href);
+                        if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return;
+                        if (app.apk && String(app.apk) === parsed.href) return;
+                        const link = document.createElement("a");
+                        link.className = "details-download-mirror";
+                        link.href = parsed.href;
+                        link.target = "_blank";
+                        link.rel = "noopener noreferrer";
+                        link.innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${escapeHTML(`Mirror ${index + 1}`)}`;
+                        mirrorWrap.appendChild(link);
+                    } catch (_) { /* Ignore invalid external links. */ }
+                });
+                mirrorWrap.hidden = mirrorWrap.children.length === 0;
+            }
 
             if (
                 app.apk &&
@@ -3287,7 +4198,7 @@ card.dataset.size = String(app.size || "");
             modal.classList.add("open");
             modal.setAttribute("aria-hidden", "false");
             document.body.classList.add("details-open");
-            if (videoUrls.length) window.requestAnimationFrame(() => playVideoAt(0));
+            if (videoItems.length) window.requestAnimationFrame(() => playVideoAt(0));
 
         }
 
@@ -3340,6 +4251,8 @@ card.dataset.size = String(app.size || "");
 
         function closeAppDetails() {
 
+            const embedFrame = document.querySelector("#detailsVideoStage .ae-video-embed");
+            if (embedFrame) { embedFrame.src = "about:blank"; embedFrame.hidden = true; }
             const modal =
                 document.getElementById(
                     "appDetailsModal"
@@ -4287,6 +5200,7 @@ if (videos.length) {
         }
 
         function renderCurrentCatalog() {
+            if (entertainmentMode) return;
             renderFeaturedHub();
             const grid = document.getElementById("gamesGrid");
             if (!grid) return;
@@ -4333,6 +5247,7 @@ if (videos.length) {
         }
 
         function setCatalogView(view) {
+            if (entertainmentMode) exitEntertainmentMode();
             activeCatalogView = view;
             if (view !== "for-you") {
                 clearTimeout(automaticSearchTimer);
@@ -4527,7 +5442,7 @@ if (videos.length) {
                 link.dataset.exploreBound = "true";
                 link.addEventListener("click", event => { event.preventDefault(); openExplorePage(); document.body.classList.remove("sidebar-open"); });
             });
-            setCatalogView(activeCatalogView);
+            if (!entertainmentMode) setCatalogView(activeCatalogView);
         }
 
         function setupSearch(apps) {
@@ -4614,11 +5529,689 @@ if (videos.length) {
         }
 
 
+
+        /* =====================================================
+           ENTERTAINMENT CATALOG — same store shell, separate data
+        ====================================================== */
+        const ENT_CATEGORY_META = {
+            anime: { title: "Anime", subtitle: "Explore anime titles selected for FistEngine.", icon: "fa-dragon" },
+            movies: { title: "Movies", subtitle: "Find films to add to your next movie night.", icon: "fa-film" },
+            drama: { title: "Drama", subtitle: "Discover dramas, stories and new favourites.", icon: "fa-masks-theater" },
+            series: { title: "Series", subtitle: "Browse series worth watching next.", icon: "fa-tv" }
+        };
+
+        function feEntCategoryName(value) {
+            return ENT_CATEGORY_META[String(value || "").toLowerCase()]?.title || "Entertainment";
+        }
+
+        function entertainmentAsProduct(item) {
+            const categoryName = feEntCategoryName(item.category);
+            const tags = [...new Set([
+                ...(Array.isArray(item.tags) ? item.tags : []),
+                categoryName,
+                item.year || "",
+                item.language || "",
+                item.quality || ""
+            ].map(value => String(value || "").trim()).filter(Boolean))];
+            const downloadLinks = Array.isArray(item.downloadLinks) ? item.downloadLinks.filter(Boolean) : [];
+            const primaryDownload = String(item.downloadUrl || downloadLinks[0] || "").trim();
+            const media = [item.trailerUrl, ...(Array.isArray(item.videos) ? item.videos : [])]
+                .map(value => String(value || "").trim()).filter((value, index, list) => value && list.indexOf(value) === index);
+            return {
+                id: String(item.id || ""),
+                wishlistKey: `fistengine-entertainment-${String(item.id || item.title || "title")}`,
+                source: "FistEngine Entertainment",
+                sourceLabel: "ENTERTAINMENT",
+                name: String(item.title || item.name || "Untitled title"),
+                developer: [item.year, item.language].filter(Boolean).join(" · ") || "FistEngine Entertainment",
+                category: categoryName,
+                contentType: "Entertainment",
+                rating: String(item.rating || "New"),
+                downloads: item.year || "Entertainment",
+                icon: String(item.coverUrl || item.backgroundUrl || "logo.png"),
+                apk: primaryDownload || "#",
+                downloadLabel: "Download title",
+                version: String(item.year || ""),
+                size: String(item.quality || ""),
+                android: String(item.language || ""),
+                description: String(item.description || ""),
+                whatsNew: "",
+                screenshots: Array.isArray(item.screenshots) ? item.screenshots.filter(Boolean) : [],
+                videos: media,
+                trailerUrl: String(item.trailerUrl || ""),
+                featured: Boolean(item.featured),
+                verified: false,
+                detailsBackground: String(item.backgroundUrl || item.coverUrl || ""),
+                tags,
+                isEntertainment: true,
+                entertainmentCategory: String(item.category || "movies"),
+                year: String(item.year || ""),
+                language: String(item.language || ""),
+                quality: String(item.quality || ""),
+                badge: String(item.badge || ""),
+                downloadLinks
+            };
+        }
+
+        function feEntSearchText(item) {
+            const tags = Array.isArray(item.tags) ? item.tags : String(item.tags || item.searchTags || "").split(/[;,]/);
+            const searchTags = Array.isArray(item.searchTags) ? item.searchTags : String(item.searchTags || "").split(/[;,]/);
+            const genres = Array.isArray(item.genres) ? item.genres : String(item.genres || item.genre || "").split(/[;,]/);
+            return [
+                item.title, item.name, item.description, item.synopsis, item.overview,
+                item.category, item.year, item.rating, item.language, item.quality, item.badge,
+                item.studio, item.publisher, item.provider, item.director, item.cast,
+                ...tags, ...searchTags, ...genres
+            ].join(" ").toLowerCase();
+        }
+
+        function clearGlobalEntertainmentSearch(clearInput = true) {
+            activeGlobalEntertainmentQuery = "";
+            const hub = document.getElementById("entertainmentHub");
+            const results = document.getElementById("entertainmentGlobalResults");
+            const input = document.getElementById("entertainmentGlobalSearch");
+            if (hub) hub.classList.remove("global-search-active");
+            if (results) results.hidden = true;
+            if (clearInput && input) input.value = "";
+        }
+
+        function renderGlobalEntertainmentResults(query = activeGlobalEntertainmentQuery) {
+            const cleanQuery = String(query || "").trim();
+            const hub = document.getElementById("entertainmentHub");
+            const results = document.getElementById("entertainmentGlobalResults");
+            const title = document.getElementById("entertainmentGlobalResultsTitle");
+            const subtitle = document.getElementById("entertainmentGlobalResultsSubtitle");
+            const status = document.getElementById("entertainmentGlobalResultsStatus");
+            const groupsHost = document.getElementById("entertainmentGlobalResultGroups");
+            if (!hub || !results || !status || !groupsHost) return;
+            if (!cleanQuery) {
+                clearGlobalEntertainmentSearch(false);
+                return;
+            }
+
+            activeGlobalEntertainmentQuery = cleanQuery;
+            hub.classList.add("global-search-active");
+            results.hidden = false;
+            if (title) title.textContent = `Results for “${cleanQuery}”`;
+            if (subtitle) subtitle.textContent = "Matching titles grouped under Anime, Movies, Drama and Series.";
+            groupsHost.replaceChildren();
+
+            const terms = cleanQuery.toLowerCase().split(/\s+/).filter(Boolean);
+            const matches = entertainmentItems.filter(item => {
+                const haystack = feEntSearchText(item);
+                return terms.every(term => haystack.includes(term));
+            });
+            const sortTitles = list => [...list].sort((a, b) =>
+                (Number(b.sortOrder) - Number(a.sortOrder)) ||
+                (Number(Boolean(b.featured)) - Number(Boolean(a.featured))) ||
+                (Number(Boolean(b.recommended)) - Number(Boolean(a.recommended))) ||
+                String(a.title || "").localeCompare(String(b.title || ""))
+            );
+
+            if (entertainmentLoadError) {
+                status.textContent = "The entertainment library could not be searched. Check Firestore read permissions and your Firebase connection.";
+                return;
+            }
+            if (!matches.length) {
+                status.textContent = `No titles match “${cleanQuery}” across any entertainment category. Search checks title, synopsis, language, quality and admin-added tags.`;
+                const empty = document.createElement("div");
+                empty.className = "fe-ent-empty fe-ent-global-empty";
+                empty.innerHTML = '<i class="fa-solid fa-magnifying-glass"></i><strong>No matching titles</strong><span>Try another title, genre, language or search tag. Your search includes all four categories.</span>';
+                groupsHost.appendChild(empty);
+                return;
+            }
+
+            const categoryOrder = ["anime", "movies", "drama", "series"];
+            const matchedCount = matches.length;
+            status.textContent = `${matchedCount} matching ${matchedCount === 1 ? "title" : "titles"} across all categories.`;
+            categoryOrder.forEach(category => {
+                const categoryMatches = sortTitles(matches.filter(item => String(item.category || "movies").toLowerCase() === category));
+                if (!categoryMatches.length) return;
+                const group = document.createElement("section");
+                group.className = "fe-ent-global-group";
+                group.setAttribute("aria-label", `${feEntCategoryName(category)} search results`);
+                const header = document.createElement("div");
+                header.className = "fe-ent-global-group-heading";
+                const headingCopy = document.createElement("div");
+                const kicker = document.createElement("span");
+                kicker.textContent = "CATEGORY MATCH";
+                const heading = document.createElement("h3");
+                heading.innerHTML = `<i class="fa-solid ${ENT_CATEGORY_META[category].icon}" aria-hidden="true"></i> ${escapeHTML(feEntCategoryName(category))}`;
+                headingCopy.append(kicker, heading);
+                const count = document.createElement("span");
+                count.className = "fe-ent-global-group-count";
+                count.textContent = `${categoryMatches.length} ${categoryMatches.length === 1 ? "title" : "titles"}`;
+                header.append(headingCopy, count);
+                const grid = document.createElement("div");
+                grid.className = "fe-ent-card-grid fe-ent-global-grid";
+                categoryMatches.forEach(item => grid.appendChild(createEntertainmentCard(item)));
+                group.append(header, grid);
+                groupsHost.appendChild(group);
+            });
+            updateWishlistUI();
+        }
+
+        function createEntertainmentCard(item) {
+            const product = entertainmentAsProduct(item);
+            const card = document.createElement("article");
+            card.className = "fe-ent-card";
+            card.tabIndex = 0;
+            card.setAttribute("role", "button");
+            card.setAttribute("aria-label", `View ${product.name} details`);
+            const open = () => openAppDetails(product);
+            card.addEventListener("click", open);
+            card.addEventListener("keydown", event => {
+                if (event.target !== card) return;
+                if (event.key === "Enter" || event.key === " ") { event.preventDefault(); open(); }
+            });
+
+            const posterWrap = document.createElement("div");
+            posterWrap.className = "fe-ent-poster-wrap";
+            const poster = document.createElement("img");
+            poster.className = "fe-ent-poster";
+            poster.src = String(item.coverUrl || product.icon || item.backgroundUrl || "logo.png");
+            poster.alt = `${product.name} artwork`;
+            poster.loading = "lazy";
+            poster.onerror = function () {
+                this.onerror = null;
+                this.src = String(product.icon || "logo.png");
+            };
+            posterWrap.appendChild(poster);
+            const shade = document.createElement("span");
+            shade.className = "fe-ent-poster-shade";
+            posterWrap.appendChild(shade);
+            const badgeText = item.badge || (item.featured ? "FEATURED" : (item.recommended ? "RECOMMENDED" : ""));
+            if (badgeText) {
+                const badge = document.createElement("span");
+                badge.className = `fe-ent-card-badge${item.featured ? " featured" : ""}${item.recommended && !item.featured ? " recommended" : ""}`;
+                badge.textContent = String(badgeText).slice(0, 40);
+                posterWrap.appendChild(badge);
+            }
+            card.appendChild(posterWrap);
+
+            const heart = document.createElement("button");
+            heart.type = "button";
+            heart.className = "app-wishlist-toggle";
+            heart.dataset.wishlistKey = wishlistKey(product);
+            heart.setAttribute("aria-pressed", "false");
+            heart.setAttribute("aria-label", "Add to wishlist");
+            heart.title = "Add to wishlist";
+            heart.innerHTML = '<i class="fa-regular fa-heart" aria-hidden="true"></i>';
+            heart.addEventListener("click", event => {
+                event.preventDefault(); event.stopPropagation(); toggleWishlist(product, heart);
+            });
+            card.appendChild(heart);
+
+            const copy = document.createElement("div");
+            copy.className = "fe-ent-card-copy";
+
+            // A compact square cover overlaps the wide artwork, matching FistEngine app cards.
+            const cardIcon = document.createElement("img");
+            cardIcon.className = "fe-ent-card-icon";
+            cardIcon.src = String(item.coverUrl || product.icon || item.backgroundUrl || "logo.png");
+            cardIcon.alt = `${product.name} cover`;
+            cardIcon.loading = "lazy";
+            cardIcon.onerror = function () { this.onerror = null; this.src = "logo.png"; };
+            copy.appendChild(cardIcon);
+
+            const title = document.createElement("div");
+            title.className = "fe-ent-card-title";
+            title.textContent = product.name;
+            copy.appendChild(title);
+
+            const developer = document.createElement("div");
+            developer.className = "fe-ent-card-developer";
+            developer.textContent = String(item.studio || item.publisher || item.provider || item.language || feEntCategoryName(item.category));
+            developer.title = developer.textContent;
+            copy.appendChild(developer);
+
+            const meta = document.createElement("div");
+            meta.className = "fe-ent-card-meta";
+            if (item.rating) {
+                const rating = document.createElement("span");
+                rating.className = "rating";
+                rating.innerHTML = `<i class="fa-solid fa-star"></i>${escapeHTML(String(item.rating))}`;
+                meta.appendChild(rating);
+            }
+            if (item.year) {
+                const year = document.createElement("span");
+                year.textContent = String(item.year);
+                meta.appendChild(year);
+            }
+            if (item.quality) {
+                const quality = document.createElement("span");
+                quality.textContent = String(item.quality);
+                meta.appendChild(quality);
+            }
+            if (!meta.children.length) {
+                const category = document.createElement("span");
+                category.textContent = feEntCategoryName(item.category);
+                meta.appendChild(category);
+            }
+            copy.appendChild(meta);
+            card.appendChild(copy);
+
+            // Delayed picture-led quick preview. Tapping the card still opens the full product details.
+            const hoverInfo = document.createElement("div");
+            hoverInfo.className = "fe-ent-card-hover-info";
+            const hoverVisual = document.createElement("div");
+            hoverVisual.className = "fe-ent-hover-visual";
+            const hoverBackdrop = document.createElement("img");
+            hoverBackdrop.className = "fe-ent-hover-backdrop";
+            hoverBackdrop.src = String(item.backgroundUrl || item.coverUrl || "logo.png");
+            hoverBackdrop.alt = "";
+            hoverBackdrop.loading = "lazy";
+            hoverBackdrop.onerror = function () { this.onerror = null; this.src = String(item.coverUrl || "logo.png"); };
+            hoverVisual.appendChild(hoverBackdrop);
+            const hoverShade = document.createElement("span");
+            hoverShade.className = "fe-ent-hover-shade";
+            hoverVisual.appendChild(hoverShade);
+            const hoverHead = document.createElement("div");
+            hoverHead.className = "fe-ent-hover-head";
+            const hoverPoster = document.createElement("img");
+            hoverPoster.src = String(item.coverUrl || item.backgroundUrl || "logo.png");
+            hoverPoster.alt = "";
+            hoverPoster.loading = "lazy";
+            hoverPoster.onerror = function () { this.onerror = null; this.src = "logo.png"; };
+            const hoverHeadCopy = document.createElement("span");
+            hoverHeadCopy.className = "fe-ent-hover-head-copy";
+            const hoverTitle = document.createElement("strong");
+            hoverTitle.textContent = product.name;
+            const hoverValues = [feEntCategoryName(item.category), item.year, item.rating ? `★ ${item.rating}` : "", item.quality].filter(Boolean);
+            const hoverMeta = document.createElement("small");
+            hoverMeta.textContent = hoverValues.slice(0, 3).join(" · ");
+            hoverHeadCopy.append(hoverTitle, hoverMeta);
+            hoverHead.append(hoverPoster, hoverHeadCopy);
+            hoverVisual.appendChild(hoverHead);
+            hoverInfo.appendChild(hoverVisual);
+            const hoverBody = document.createElement("div");
+            hoverBody.className = "fe-ent-hover-body";
+            const hoverDescription = document.createElement("p");
+            hoverDescription.className = "fe-ent-hover-description";
+            hoverDescription.textContent = String(item.description || item.synopsis || item.overview || "Open to view the full description, trailer, screenshots, and download options.");
+            hoverBody.appendChild(hoverDescription);
+            const hoverBadges = document.createElement("div");
+            hoverBadges.className = "fe-ent-hover-badges";
+            if (item.trailerUrl || (Array.isArray(item.videos) && item.videos.length)) {
+                const videoBadge = document.createElement("span");
+                videoBadge.innerHTML = '<i class="fa-solid fa-circle-play"></i> Preview';
+                hoverBadges.appendChild(videoBadge);
+            }
+            if (item.downloadUrl || (Array.isArray(item.downloadLinks) && item.downloadLinks.length)) {
+                const downloadBadge = document.createElement("span");
+                downloadBadge.innerHTML = '<i class="fa-solid fa-download"></i> Download';
+                hoverBadges.appendChild(downloadBadge);
+            }
+            (Array.isArray(item.tags) ? item.tags : []).slice(0, 2).forEach(tag => {
+                const tagBadge = document.createElement("span");
+                tagBadge.textContent = String(tag);
+                hoverBadges.appendChild(tagBadge);
+            });
+            if (hoverBadges.childElementCount) hoverBody.appendChild(hoverBadges);
+            hoverInfo.appendChild(hoverBody);
+            card.appendChild(hoverInfo);
+            return card;
+        }
+
+        function entertainmentSpotlightVideo(urlValue) {
+            const raw = String(urlValue || "").trim();
+            if (!raw) return null;
+            try {
+                const url = new URL(raw, window.location.href);
+                if (!["http:", "https:"].includes(url.protocol)) return null;
+                if (/\.(mp4|webm|ogg|m4v)(?:$)/i.test(url.pathname)) return { type: "file", src: url.href };
+                const host = url.hostname.toLowerCase().replace(/^www\./, "");
+                let videoId = "";
+                if (host === "youtu.be") videoId = url.pathname.split("/").filter(Boolean)[0] || "";
+                else if (host === "youtube.com" || host === "m.youtube.com" || host === "youtube-nocookie.com") {
+                    videoId = url.searchParams.get("v") || (url.pathname.match(/\/(?:embed|shorts|live)\/([^/?]+)/i) || [])[1] || "";
+                }
+                if (videoId && /^[\w-]{6,}$/.test(videoId)) {
+                    return { type: "embed", src: `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1&mute=1&controls=0&loop=1&playlist=${encodeURIComponent(videoId)}&rel=0&modestbranding=1` };
+                }
+                if (host === "vimeo.com" || host === "player.vimeo.com") {
+                    const vimeoId = (url.pathname.match(/\/(?:video\/)?(\d{6,})(?:$|\/)/) || [])[1];
+                    if (vimeoId) return { type: "embed", src: `https://player.vimeo.com/video/${vimeoId}?autoplay=1&muted=1&background=1&loop=1&title=0&byline=0&portrait=0` };
+                }
+            } catch (_) { /* An unavailable preview falls back to its artwork. */ }
+            return null;
+        }
+
+        function entertainmentItemPreview(item) {
+            const urls = [item?.trailerUrl, ...(Array.isArray(item?.videos) ? item.videos : [])].map(value => String(value || "").trim()).filter(Boolean);
+            for (const url of urls) {
+                const preview = entertainmentSpotlightVideo(url);
+                if (preview) return preview;
+            }
+            return null;
+        }
+
+        function renderEntertainmentSpotlight(items) {
+            const panel = document.getElementById("entertainmentSpotlight");
+            if (!panel) return;
+            const selectors = document.getElementById("entertainmentSpotlightSelectors");
+            const recommendations = document.getElementById("entertainmentRecommendedList");
+            const art = document.getElementById("entertainmentSpotlightArt");
+            const video = document.getElementById("entertainmentSpotlightVideo");
+            const frame = document.getElementById("entertainmentSpotlightFrame");
+            const live = document.getElementById("entertainmentSpotlightLive");
+            const label = document.getElementById("entertainmentSpotlightLabel");
+            const title = document.getElementById("entertainmentSpotlightTitle");
+            const description = document.getElementById("entertainmentSpotlightDescription");
+            const meta = document.getElementById("entertainmentSpotlightMeta");
+            const details = document.getElementById("entertainmentSpotlightDetails");
+            if (!selectors || !recommendations || !art || !video || !frame || !title || !description || !details) return;
+
+            const curated = [...(Array.isArray(items) ? items : [])]
+                .filter(item => item && (item.featured === true || item.recommended === true))
+                .sort((a, b) => (Number(b.sortOrder) - Number(a.sortOrder)) || (Number(Boolean(b.featured)) - Number(Boolean(a.featured))) || (Number(Boolean(b.recommended)) - Number(Boolean(a.recommended))) || String(a.title || "").localeCompare(String(b.title || "")))
+                .slice(0, 12);
+
+            if (!curated.length) {
+                panel.hidden = true;
+                entertainmentSpotlightId = "";
+                entertainmentSpotlightMediaKey = "";
+                video.pause(); video.removeAttribute("src"); video.load(); video.hidden = true;
+                frame.src = "about:blank"; frame.hidden = true;
+                if (live) live.hidden = true;
+                selectors.replaceChildren(); recommendations.replaceChildren();
+                return;
+            }
+
+            let current = curated.find(item => String(item.id) === String(entertainmentSpotlightId));
+            if (!current) current = curated[0];
+            entertainmentSpotlightId = String(current.id || current.title || "");
+            const product = entertainmentAsProduct(current);
+            const artUrl = String(current.backgroundUrl || current.coverUrl || "logo.png").trim();
+            art.style.backgroundImage = artUrl ? `url("${artUrl.replace(/["\\]/g, "")}")` : "none";
+            art.hidden = false;
+
+            // Keep the preview playing while users type/search or change the catalog view.
+            // Load a different clip only when the selected showcase title actually changes.
+            const preview = entertainmentMode ? entertainmentItemPreview(current) : null;
+            const mediaKey = `${String(current.id || current.title || "")}|${preview?.type || "art"}|${preview?.src || ""}`;
+            if (mediaKey !== entertainmentSpotlightMediaKey) {
+                video.pause();
+                video.oncanplay = null;
+                video.onerror = null;
+                video.removeAttribute("src");
+                video.load();
+                frame.src = "about:blank";
+                frame.hidden = true;
+                video.hidden = true;
+                entertainmentSpotlightMediaKey = mediaKey;
+                if (preview?.type === "file") {
+                    video.hidden = false;
+                    video.poster = artUrl;
+                    video.src = preview.src;
+                    video.oncanplay = () => { art.hidden = true; };
+                    video.onerror = () => { art.hidden = false; video.hidden = true; };
+                    const attemptPlay = video.play();
+                    if (attemptPlay && typeof attemptPlay.catch === "function") attemptPlay.catch(() => { /* Poster remains available if autoplay is blocked. */ });
+                } else if (preview?.type === "embed") {
+                    frame.hidden = false;
+                    frame.src = preview.src;
+                }
+            }
+            if (live) live.hidden = !preview;
+
+            if (label) {
+                const isFeatured = Boolean(current.featured);
+                label.classList.toggle("recommended", !isFeatured);
+                label.innerHTML = isFeatured ? '<i class="fa-solid fa-star"></i> FEATURED' : '<i class="fa-solid fa-sparkles"></i> RECOMMENDED';
+            }
+            title.textContent = product.name;
+            description.textContent = current.description || `Discover ${product.name} in the FistEngine ${feEntCategoryName(current.category)} library.`;
+            if (meta) {
+                meta.replaceChildren();
+                [feEntCategoryName(current.category), current.year, current.rating ? `★ ${current.rating}` : "", current.language, current.quality].filter(Boolean).slice(0, 4).forEach(value => {
+                    const chip = document.createElement("span"); chip.textContent = String(value); meta.appendChild(chip);
+                });
+            }
+            details.disabled = false;
+            details.onclick = () => openAppDetails(product);
+
+            selectors.replaceChildren();
+            curated.forEach((item, index) => {
+                const button = document.createElement("button");
+                button.type = "button";
+                button.className = `fe-ent-spotlight-selector${String(item.id) === String(current.id) ? " active" : ""}`;
+                button.setAttribute("aria-pressed", String(String(item.id) === String(current.id)));
+                button.setAttribute("aria-label", `Preview ${item.title || "entertainment title"}`);
+                const image = document.createElement("img");
+                image.src = String(item.coverUrl || item.backgroundUrl || "logo.png");
+                image.alt = ""; image.loading = "lazy";
+                image.onerror = function () { this.onerror = null; this.src = "logo.png"; };
+                const copy = document.createElement("span"); copy.className = "fe-ent-selector-copy";
+                const name = document.createElement("strong"); name.textContent = String(item.title || "Untitled title");
+                const sub = document.createElement("small"); sub.textContent = item.featured ? "FEATURED PICK" : "RECOMMENDED";
+                copy.append(name, sub); button.append(image, copy);
+                button.addEventListener("click", () => { entertainmentSpotlightId = String(item.id || item.title || ""); renderEntertainmentSpotlight(entertainmentItems); });
+                selectors.appendChild(button);
+            });
+
+            recommendations.replaceChildren();
+            const sideItems = curated.filter(item => String(item.id) !== String(current.id)).slice(0, 5);
+            if (!sideItems.length) {
+                const empty = document.createElement("div"); empty.className = "fe-ent-recommended-empty";
+                const icon = document.createElement("i"); icon.className = "fa-solid fa-clapperboard";
+                const strong = document.createElement("strong"); strong.textContent = "More picks coming soon";
+                const note = document.createElement("span"); note.textContent = "Mark more titles Featured or Recommended in the Entertainment Control Panel to add them here.";
+                empty.append(icon, strong, note); recommendations.appendChild(empty);
+            } else {
+                sideItems.forEach(item => {
+                    const button = document.createElement("button"); button.type = "button"; button.className = "fe-ent-recommended-item";
+                    button.addEventListener("click", () => { entertainmentSpotlightId = String(item.id || item.title || ""); renderEntertainmentSpotlight(entertainmentItems); });
+                    const image = document.createElement("img"); image.src = String(item.coverUrl || item.backgroundUrl || "logo.png"); image.alt = ""; image.loading = "lazy";
+                    image.onerror = function () { this.onerror = null; this.src = "logo.png"; };
+                    const copy = document.createElement("span"); copy.className = "fe-ent-recommended-copy";
+                    const name = document.createElement("strong"); name.textContent = String(item.title || "Untitled title");
+                    const sub = document.createElement("small"); sub.textContent = [feEntCategoryName(item.category), item.year, item.rating ? `★ ${item.rating}` : ""].filter(Boolean).join(" · ");
+                    copy.append(name, sub);
+                    const arrow = document.createElement("i"); arrow.className = "fa-solid fa-chevron-right fe-ent-recommended-arrow";
+                    button.append(image, copy, arrow); recommendations.appendChild(button);
+                });
+            }
+            panel.hidden = false;
+        }
+
+        function renderEntertainmentCatalog() {
+            if (activeGlobalEntertainmentQuery) renderGlobalEntertainmentResults(activeGlobalEntertainmentQuery);
+            const grid = document.getElementById("entertainmentGrid");
+            if (!grid) return;
+            const meta = ENT_CATEGORY_META[activeEntertainmentCategory] || ENT_CATEGORY_META.anime;
+            const title = document.getElementById("entertainmentCategoryTitle");
+            const subtitle = document.getElementById("entertainmentCategorySubtitle");
+            const count = document.getElementById("entertainmentCategoryCount");
+            const resultCount = document.getElementById("entertainmentResultsCount");
+            const status = document.getElementById("entertainmentStatus");
+            if (title) title.textContent = meta.title;
+            if (subtitle) subtitle.textContent = meta.subtitle;
+
+            document.querySelectorAll("[data-ent-category]").forEach(link => {
+                const active = link.dataset.entCategory === activeEntertainmentCategory;
+                link.classList.toggle("selected", active);
+                if (link.classList.contains("entertainment-category-link")) link.setAttribute("aria-current", active ? "page" : "false");
+                if (link.classList.contains("fe-ent-page-category")) link.setAttribute("aria-pressed", String(active));
+            });
+            document.querySelectorAll("[data-ent-count]").forEach(node => {
+                const category = node.dataset.entCount;
+                node.textContent = String(entertainmentItems.filter(item => item.category === category).length);
+            });
+
+            const query = String(document.getElementById("entertainmentSearch")?.value || "").trim().toLowerCase();
+            const categoryItems = entertainmentItems.filter(item => item.category === activeEntertainmentCategory);
+            const visible = categoryItems.filter(item => !query || feEntSearchText(item).includes(query));
+            // The hero shelf is global: featured/recommended titles from every category remain visible.
+            renderEntertainmentSpotlight(entertainmentItems);
+            if (count) count.textContent = `${visible.length} ${visible.length === 1 ? "title" : "titles"}`;
+            if (resultCount) resultCount.textContent = query ? `${visible.length} result${visible.length === 1 ? "" : "s"}` : `${categoryItems.length} title${categoryItems.length === 1 ? "" : "s"}`;
+            grid.innerHTML = "";
+            if (entertainmentLoadError) {
+                status.classList.add("is-error"); status.classList.remove("is-loading");
+                status.textContent = "The entertainment library could not load. Check Firestore read permissions and your Firebase connection.";
+                grid.innerHTML = '<div class="fe-ent-empty"><i class="fa-solid fa-triangle-exclamation"></i><strong>Could not load entertainment</strong><span>The Apps store is still available. Check the browser console for the Firestore error.</span></div>';
+                return;
+            }
+            status.classList.remove("is-error"); status.classList.remove("is-loading");
+            if (!entertainmentItems.length) {
+                status.textContent = "Your entertainment library is connected and waiting for its first title.";
+                grid.innerHTML = '<div class="fe-ent-empty"><i class="fa-solid fa-clapperboard"></i><strong>No titles published yet</strong><span>Titles added in the FistEngine Entertainment Control Panel will appear here automatically.</span></div>';
+                return;
+            }
+            if (!visible.length) {
+                status.textContent = query ? `No ${meta.title.toLowerCase()} titles match “${query}”. Search checks titles, descriptions and admin-added tags.` : `No titles have been added to ${meta.title.toLowerCase()} yet.`;
+                grid.innerHTML = `<div class="fe-ent-empty"><i class="fa-solid ${meta.icon}"></i><strong>${query ? "No matching titles" : `No ${meta.title} yet`}</strong><span>${query ? "Try another title, genre, language or search tag." : "Add titles to this category from the FistEngine Entertainment Control Panel."}</span></div>`;
+                return;
+            }
+            const sorted = [...visible].sort((a, b) => (Number(b.sortOrder) - Number(a.sortOrder)) || (Number(Boolean(b.featured)) - Number(Boolean(a.featured))) || (Number(Boolean(b.recommended)) - Number(Boolean(a.recommended))) || String(a.title).localeCompare(String(b.title)));
+            status.textContent = query ? `Search includes the title, synopsis, category, release year, language, quality and the search tags set by the admin.` : `Browse ${meta.title.toLowerCase()} from your FistEngine entertainment library. Select a title to view its media, screenshots and download links.`;
+            sorted.forEach(item => grid.appendChild(createEntertainmentCard(item)));
+            updateWishlistUI();
+        }
+
+        function enterEntertainmentMode(category = activeEntertainmentCategory) {
+            clearGlobalEntertainmentSearch(true);
+            if (!ENT_CATEGORY_META[category]) category = "anime";
+            entertainmentMode = true;
+            activeEntertainmentCategory = category;
+            document.body.classList.add("entertainment-mode");
+            const setHidden = (id, hidden) => { const node = document.getElementById(id); if (node) node.hidden = hidden; };
+            setHidden("aeHomeShowcase", true);
+            setHidden("games", true);
+            setHidden("storeDiscoveryPanel", true);
+            setHidden("entertainmentHub", false);
+            setHidden("standardSidebarContent", true);
+            setHidden("entertainmentSidebarContent", false);
+            document.querySelectorAll("[data-open-entertainment]").forEach(link => { link.classList.add("active", "selected"); });
+            document.querySelectorAll("[data-store-home]").forEach(link => { link.classList.remove("active", "selected"); });
+            document.querySelectorAll(".sidebar-link[data-catalog-view], .top-nav-link[data-catalog-view], .category[data-catalog-view]").forEach(link => { link.classList.remove("active", "selected"); });
+            document.body.classList.remove("sidebar-open");
+            renderEntertainmentCatalog();
+            window.requestAnimationFrame(() => document.getElementById("entertainmentHub")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }));
+        }
+
+        function exitEntertainmentMode() {
+            if (!entertainmentMode) return;
+            entertainmentMode = false;
+            // Stop featured media when leaving Entertainment so hidden previews do not keep playing.
+            const spotlightVideo = document.getElementById("entertainmentSpotlightVideo");
+            const spotlightFrame = document.getElementById("entertainmentSpotlightFrame");
+            if (spotlightVideo) { spotlightVideo.pause(); spotlightVideo.removeAttribute("src"); spotlightVideo.load(); spotlightVideo.hidden = true; }
+            if (spotlightFrame) { spotlightFrame.src = "about:blank"; spotlightFrame.hidden = true; }
+            const spotlightArt = document.getElementById("entertainmentSpotlightArt");
+            if (spotlightArt) spotlightArt.hidden = false;
+            entertainmentSpotlightMediaKey = "";
+            document.body.classList.remove("entertainment-mode");
+            const setHidden = (id, hidden) => { const node = document.getElementById(id); if (node) node.hidden = hidden; };
+            setHidden("aeHomeShowcase", false);
+            setHidden("games", false);
+            setHidden("storeDiscoveryPanel", false);
+            setHidden("entertainmentHub", true);
+            setHidden("standardSidebarContent", false);
+            setHidden("entertainmentSidebarContent", true);
+            document.querySelectorAll("[data-open-entertainment]").forEach(link => { link.classList.remove("active", "selected"); });
+            document.querySelector(".top-nav-links [data-store-home]")?.classList.add("active");
+            document.body.classList.remove("sidebar-open");
+        }
+
+        function setupEntertainmentNavigation() {
+            document.querySelectorAll("[data-open-entertainment]").forEach(link => {
+                if (link.dataset.entertainmentBound === "true") return;
+                link.dataset.entertainmentBound = "true";
+                link.addEventListener("click", event => {
+                    event.preventDefault();
+                    enterEntertainmentMode(activeEntertainmentCategory || "anime");
+                });
+            });
+            document.querySelectorAll("[data-store-home]").forEach(link => {
+                if (link.dataset.storeHomeBound === "true") return;
+                link.dataset.storeHomeBound = "true";
+                link.addEventListener("click", event => {
+                    event.preventDefault();
+                    if (entertainmentMode) exitEntertainmentMode();
+                    setCatalogView("for-you");
+                    window.requestAnimationFrame(() => document.getElementById("games")?.scrollIntoView({ behavior: "smooth", block: "start" }));
+                });
+            });
+            document.querySelectorAll("[data-ent-category]").forEach(link => {
+                if (link.dataset.entCategoryBound === "true") return;
+                link.dataset.entCategoryBound = "true";
+                link.addEventListener("click", event => {
+                    event.preventDefault();
+                    enterEntertainmentMode(link.dataset.entCategory || "anime");
+                });
+            });
+            const search = document.getElementById("entertainmentSearch");
+            if (search && search.dataset.entBound !== "true") {
+                search.dataset.entBound = "true";
+                search.addEventListener("input", renderEntertainmentCatalog);
+            }
+
+            const globalForm = document.getElementById("entertainmentGlobalSearchForm");
+            const globalInput = document.getElementById("entertainmentGlobalSearch");
+            const globalClear = document.getElementById("entertainmentGlobalClear");
+            if (globalForm && globalForm.dataset.entBound !== "true") {
+                globalForm.dataset.entBound = "true";
+                globalForm.addEventListener("submit", event => {
+                    event.preventDefault();
+                    const query = String(globalInput?.value || "").trim();
+                    if (!query) {
+                        clearGlobalEntertainmentSearch(false);
+                        globalInput?.focus();
+                        return;
+                    }
+                    renderGlobalEntertainmentResults(query);
+                });
+            }
+            if (globalInput && globalInput.dataset.entBound !== "true") {
+                globalInput.dataset.entBound = "true";
+                globalInput.addEventListener("input", () => {
+                    if (!globalInput.value.trim() && activeGlobalEntertainmentQuery) clearGlobalEntertainmentSearch(false);
+                });
+            }
+            if (globalClear && globalClear.dataset.entBound !== "true") {
+                globalClear.dataset.entBound = "true";
+                globalClear.addEventListener("click", () => {
+                    clearGlobalEntertainmentSearch(true);
+                    globalInput?.focus();
+                    renderEntertainmentCatalog();
+                });
+            }
+        }
+
+        function startEntertainmentListener() {
+            if (typeof onSnapshot !== "function") return;
+            if (unsubscribeEntertainment) unsubscribeEntertainment();
+            unsubscribeEntertainment = onSnapshot(collection(db, "entertainment"), snapshot => {
+                entertainmentLoadError = null;
+                entertainmentItems = snapshot.docs.map(docSnapshot => ({ id: docSnapshot.id, ...docSnapshot.data() })).map(item => ({
+                    ...item,
+                    title: String(item.title || item.name || "Untitled title"),
+                    category: ["anime", "movies", "drama", "series"].includes(String(item.category || "").toLowerCase()) ? String(item.category).toLowerCase() : "movies",
+                    year: String(item.year || ""), rating: String(item.rating || ""), language: String(item.language || ""), quality: String(item.quality || ""), badge: String(item.badge || ""),
+                    description: String(item.description || ""), tags: Array.isArray(item.tags) ? item.tags.map(tag => String(tag)) : [],
+                    screenshots: Array.isArray(item.screenshots) ? item.screenshots.filter(Boolean) : [],
+                    videos: Array.isArray(item.videos) ? item.videos.filter(Boolean) : [], downloadLinks: Array.isArray(item.downloadLinks) ? item.downloadLinks.filter(Boolean) : [],
+                    downloadUrl: String(item.downloadUrl || ""), coverUrl: String(item.coverUrl || ""), backgroundUrl: String(item.backgroundUrl || ""), trailerUrl: String(item.trailerUrl || ""),
+                    sortOrder: Number(item.sortOrder) || 0, featured: Boolean(item.featured), recommended: Boolean(item.recommended)
+                })).sort((a, b) => (b.sortOrder - a.sortOrder) || (Number(b.featured) - Number(a.featured)) || (Number(b.recommended) - Number(a.recommended)) || String(a.title).localeCompare(String(b.title)));
+                renderEntertainmentCatalog();
+            }, error => {
+                console.error("FistEngine entertainment library load failed:", error);
+                entertainmentLoadError = error;
+                renderEntertainmentCatalog();
+            });
+        }
+
         /* =====================================================
            START APKCITY
         ====================================================== */
 
         function startFistEngine() {
+            // Bind Entertainment independently so it remains reachable even if the app catalog has an issue.
+            setupEntertainmentNavigation();
+            startEntertainmentListener();
             // Load the admin-managed Firestore library and external public catalogs
             // independently so an outage in either source does not block the other.
             loadApps();
@@ -4646,6 +6239,10 @@ if (videos.length) {
         document.body.classList.remove("details-open");
         const video = document.getElementById("detailsVideo");
         if (video) { video.pause(); video.removeAttribute("src"); video.load(); }
+        const embedFrame = document.querySelector("#detailsVideoStage .ae-video-embed");
+        if (embedFrame) { embedFrame.src = "about:blank"; embedFrame.hidden = true; }
+        const heroVideo = document.getElementById("detailsHeroVideo");
+        if (heroVideo) { heroVideo.pause(); heroVideo.removeAttribute("src"); heroVideo.load(); }
     }
     detailsClose.addEventListener("click", function (event) {
         event.preventDefault();
