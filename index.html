@@ -2102,8 +2102,59 @@ html {
   @media(max-width:380px){.fe-ent-global-grid{gap:9px 7px}.fe-ent-global-results-heading{flex-direction:column}.fe-ent-global-clear{align-self:flex-start}}
 </style>
 
+
+<style id="fistengine-welcome-video-style">
+  #fistengineWelcomeIntro {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    z-index: 2147483647;
+    overflow: hidden;
+    background: #000;
+  }
+  #fistengineWelcomeIntro video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background: #000;
+  }
+</style>
 </head>
 <body>
+<div id="fistengineWelcomeIntro" aria-label="FistENGINE welcome animation">
+  <video id="fistengineWelcomeVideo" src="./welcome.mp4" autoplay muted playsinline preload="auto">
+    Your browser does not support HTML5 video.
+  </video>
+</div>
+<script id="fistengineWelcomeVideoScript">
+(function () {
+  const intro = document.getElementById('fistengineWelcomeIntro');
+  const video = document.getElementById('fistengineWelcomeVideo');
+  if (!intro || !video) return;
+
+  // Remove the welcome overlay only after the whole video has played.
+  video.addEventListener('ended', function () { intro.remove(); }, { once: true });
+
+  // If the file is missing or unsupported, reveal the website instead of blocking it.
+  video.addEventListener('error', function () { intro.remove(); }, { once: true });
+
+  const playback = video.play();
+  if (playback && typeof playback.catch === 'function') {
+    playback.catch(function () {
+      // Retry muted autoplay on the first user interaction if the browser blocks it.
+      function retryPlayback() { video.play().catch(function () { intro.remove(); }); }
+      window.addEventListener('pointerdown', retryPlayback, { once: true });
+      window.addEventListener('keydown', retryPlayback, { once: true });
+      window.addEventListener('touchstart', retryPlayback, { once: true, passive: true });
+    });
+  }
+})();
+</script>
+
 <header class="header">
   <nav class="nav" aria-label="Main navigation">
     <a href="index.html" class="logo" aria-label="FistEngine Store home">
