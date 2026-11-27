@@ -1451,10 +1451,38 @@ html {
   .fe-ent-empty>i { margin-bottom:13px; color:#6ce7dc; font-size:28px; }
   .fe-ent-empty strong { margin-bottom:6px; color:#e3e9fa; font-size:14px; }
   .fe-ent-empty span { max-width:440px; font-size:10px; line-height:1.7; }
-  .details-download-mirrors { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; width:225px; }
-  .details-download-mirrors[hidden] { display:none !important; }
-  .details-download-mirror { display:inline-flex; align-items:center; gap:6px; min-height:29px; padding:0 9px; border:1px solid rgba(108,231,220,.18); border-radius:9px; background:rgba(108,231,220,.05); color:#a7eae2; font-size:8px; font-weight:800; }
-  .details-download-mirror:hover { border-color:rgba(108,231,220,.45); background:rgba(108,231,220,.11); color:#fff; }
+      .details-download-mirrors {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 9px;
+    width: min(100%, 340px);
+  }
+  .details-download-mirrors[hidden] { display: none !important; }
+  .details-download-mirror {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 46px;
+    padding: 0 14px;
+    border: 1px solid rgba(220,255,247,.49);
+    border-radius: 14px;
+    background: linear-gradient(110deg, #b9fff0 0%, #86e4dc 49%, #b8b0ff 100%);
+    color: #081721;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .1px;
+    text-align: center;
+    box-shadow: 0 10px 26px rgba(72,218,203,.18), inset 0 1px rgba(255,255,255,.8);
+    transition: transform .2s, box-shadow .2s, filter .2s;
+  }
+  .details-download-mirror:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.05);
+    color: #081721;
+    box-shadow: 0 15px 34px rgba(72,218,203,.26), inset 0 1px rgba(255,255,255,.8);
+  }
   .ae-video-embed { position:absolute; inset:0; z-index:4; display:block; width:100%; height:100%; border:0; background:#05090d; }
   .ae-video-embed[hidden] { display:none !important; }
   body.entertainment-mode .store-nav-wrap .top-nav-link[data-open-entertainment],
@@ -1463,7 +1491,8 @@ html {
   body.entertainment-mode .store-nav { justify-content:flex-start; }
   @media(max-width:1250px) { .fe-ent-card-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
   @media(max-width:1000px) { .fe-ent-card-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px 11px; } .fe-ent-heading-badge { display:none; } }
-  @media(max-width:700px) { .fe-ent-heading-row { align-items:flex-start; margin-bottom:17px; padding-bottom:16px; } .fe-ent-heading-copy h1 { font-size:29px; } .fe-ent-heading-copy p { font-size:10px; } .fe-ent-search-toolbar { align-items:stretch; flex-direction:column; gap:8px; margin-bottom:22px; } .fe-ent-search { min-height:43px; } .fe-ent-search input { height:41px; } .fe-ent-results-count { text-align:right; } .fe-ent-catalog-heading h2 { font-size:19px; } .fe-ent-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 9px; } .fe-ent-card-copy { padding:9px 8px 9px; } .fe-ent-card-title { font-size:10px; } .fe-ent-card .app-wishlist-toggle { width:29px; height:29px; } .fe-ent-card-meta { font-size:8px; } .details-download-mirrors { width:100%; justify-content:center; } }
+  @media(max-width:700px) { .fe-ent-heading-row { align-items:flex-start; margin-bottom:17px; padding-bottom:16px; } .fe-ent-heading-copy h1 { font-size:29px; } .fe-ent-heading-copy p { font-size:10px; } .fe-ent-search-toolbar { align-items:stretch; flex-direction:column; gap:8px; margin-bottom:22px; } .fe-ent-search { min-height:43px; } .fe-ent-search input { height:41px; } .fe-ent-results-count { text-align:right; } .fe-ent-catalog-heading h2 { font-size:19px; } .fe-ent-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 9px; } .fe-ent-card-copy { padding:9px 8px 9px; } .fe-ent-card-title { font-size:10px; } .fe-ent-card .app-wishlist-toggle { width:29px; height:29px; } .fe-ent-card-meta { font-size:8px; }
+ .details-download-mirrors { width: 100%; } }
   @media(max-width:380px) { .fe-ent-card-grid { gap:9px 7px; } .fe-ent-card-copy { padding:8px 7px; } .fe-ent-card-open { font-size:7px; } }
   @media(hover:none),(pointer:coarse) { .fe-ent-card:hover { transform:none; } .fe-ent-card:hover .fe-ent-poster { transform:none; } }
   @media(prefers-reduced-motion:reduce) { .fe-ent-status.is-loading::before { animation:none; } .fe-ent-card,.fe-ent-poster,.fe-ent-card-open { transition:none; } }
@@ -2865,7 +2894,8 @@ html {
                 language: String(product?.language || ""),
                 quality: String(product?.quality || ""),
                 badge: String(product?.badge || ""),
-                downloadLinks: list(product?.downloadLinks)
+                                downloadLinks: Array.isArray(product?.downloadLinks) ? product.downloadLinks.slice(0, 20) : []
+
             };
         }
 
@@ -4231,13 +4261,28 @@ card.dataset.size = String(app.size || "");
                 }
             }
 
-            const mirrorWrap = document.getElementById("detailsDownloadMirrors");
+                        const mirrorWrap = document.getElementById("detailsDownloadMirrors");
             if (mirrorWrap) {
                 mirrorWrap.innerHTML = "";
-                const mirrorLinks = Array.isArray(app.downloadLinks) ? app.downloadLinks.filter(Boolean).slice(0, 8) : [];
-                mirrorLinks.forEach((url, index) => {
+                const mirrorLinks = Array.isArray(app.downloadLinks) ? app.downloadLinks.filter(Boolean).slice(0, 20) : [];
+                mirrorLinks.forEach((entry, index) => {
                     try {
-                        const parsed = new URL(String(url), window.location.href);
+                        let customLabel = "";
+                        let rawUrl = "";
+                        if (entry && typeof entry === "object") {
+                            customLabel = String(entry.label || entry.name || "").trim();
+                            rawUrl = String(entry.url || "").trim();
+                        } else {
+                            const text = String(entry || "").trim();
+                            const pipeIndex = text.indexOf("|");
+                            if (pipeIndex !== -1) {
+                                customLabel = text.slice(0, pipeIndex).trim();
+                                rawUrl = text.slice(pipeIndex + 1).trim();
+                            } else {
+                                rawUrl = text;
+                            }
+                        }
+                        const parsed = new URL(rawUrl, window.location.href);
                         if (parsed.protocol !== "http:" && parsed.protocol !== "https:") return;
                         if (app.apk && String(app.apk) === parsed.href) return;
                         const link = document.createElement("a");
@@ -4245,7 +4290,8 @@ card.dataset.size = String(app.size || "");
                         link.href = parsed.href;
                         link.target = "_blank";
                         link.rel = "noopener noreferrer";
-                        link.innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${escapeHTML(`Mirror ${index + 1}`)}`;
+                        const label = customLabel || `Mirror ${index + 1}`;
+                        link.innerHTML = `<i class="fa-solid fa-arrow-up-right-from-square"></i> ${escapeHTML(label)}`;
                         mirrorWrap.appendChild(link);
                     } catch (_) { /* Ignore invalid external links. */ }
                 });
@@ -5631,8 +5677,8 @@ if (videos.length) {
                 item.language || "",
                 item.quality || ""
             ].map(value => String(value || "").trim()).filter(Boolean))];
-            const downloadLinks = Array.isArray(item.downloadLinks) ? item.downloadLinks.filter(Boolean) : [];
-            const primaryDownload = String(item.downloadUrl || downloadLinks[0] || "").trim();
+                        const downloadLinks = Array.isArray(item.downloadLinks) ? item.downloadLinks.filter(Boolean) : [];
+            const primaryDownload = String(item.downloadUrl || "").trim();
             const media = [item.trailerUrl, ...(Array.isArray(item.videos) ? item.videos : [])]
                 .map(value => String(value || "").trim()).filter((value, index, list) => value && list.indexOf(value) === index);
             return {
